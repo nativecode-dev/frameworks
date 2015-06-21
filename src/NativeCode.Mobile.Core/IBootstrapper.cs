@@ -1,8 +1,8 @@
 ﻿namespace NativeCode.Mobile.Core
 {
-    using System.Runtime.CompilerServices;
-    using System.Threading;
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using NativeCode.Mobile.Core.Dependencies;
 
     /// <summary>
     /// Provides a contract for initializing an app.
@@ -10,15 +10,14 @@
     public interface IBootstrapper
     {
         /// <summary>
-        /// Initializes this instance.
+        /// Gets the dependency adapter.
         /// </summary>
-        void Initialize();
+        DependencyAdapter DependencyAdapter { get; }
 
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>Returns a <see cref="Task" />.</returns>
-        ConfiguredTaskAwaitable InitializeAsync(CancellationToken cancellationToken);
+        /// <param name="modules">The modules.</param>
+        void Initialize(IEnumerable<IDependencyModule> modules);
     }
 }

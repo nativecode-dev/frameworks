@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:NativeCode.Mobile.AppCompat.Controls;assembly=NativeCode.Mobile.AppCompat.Controls"
+             x:Class="Demo.Views.AppStylesView" IsBusy="{Binding IsBusy}" Title="{Binding Title}">
+  <controls:NavigationLayout>
+    <controls:NavigationLayout.Children>
+      <controls:NavigationLayoutMenu Command="{Binding SimpleNavigationCommand}" Text="Simple Navigation" />
+      <controls:NavigationLayoutMenu Command="{Binding SimpleMasterDetailCommand}" Text="Simple Master/Detail" />
+      <controls:NavigationLayoutMenu Command="{Binding MasterDetailInnerNavigationCommand}" Text="Master/Detail Navigation (inner)" />
+      <controls:NavigationLayoutMenu Command="{Binding MasterDetailOuterNavigationCommand}" Text="Master/Detail Navigation (outer)" />
+    </controls:NavigationLayout.Children>
+  </controls:NavigationLayout>
+</ContentPage>

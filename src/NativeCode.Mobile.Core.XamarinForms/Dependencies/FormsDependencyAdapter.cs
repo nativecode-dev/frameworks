@@ -5,96 +5,87 @@
 
     using NativeCode.Mobile.Core.Dependencies;
 
-    using Xamarin.Forms;
+    using SimpleInjector;
 
     public class FormsDependencyAdapter : DependencyAdapter
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FormsDependencyAdapter"/> class.
-        /// </summary>
-        /// <param name="modules">The modules.</param>
-        public FormsDependencyAdapter(IEnumerable<IDependencyModule> modules)
+        private readonly Container container;
+
+        public FormsDependencyAdapter()
         {
-            foreach (var module in modules)
-            {
-                module.RegisterDependencies(this);
-            }
+            this.container = new Container();
         }
 
         public override void Factory(Type contract, Func<IDependencyResolver, object> factory)
         {
-            throw new NotSupportedException();
+            this.container.Register(() => factory(this));
         }
 
         public override void Factory<TContract>(Func<IDependencyResolver, TContract> factory)
         {
-            throw new NotSupportedException();
+            this.container.Register(() => factory(this));
         }
 
         public override void Register(Type contract, string key, DependencyLifetime lifetime = DependencyLifetime.Default)
         {
-            throw new NotSupportedException();
+            if (lifetime == DependencyLifetime.PerApplication)
+            {
+                this.container.RegisterSingle(contract);
+                return;
+            }
+
+            this.container.Register(contract);
         }
 
         public override void Register(Type contract, Type implementation, string key, DependencyLifetime lifetime = DependencyLifetime.Default)
         {
-            throw new NotSupportedException();
-        }
-
-        public override void Register<TContract>(DependencyKey key = DependencyKey.None, DependencyLifetime lifetime = DependencyLifetime.Default)
-        {
-            DependencyService.Register<TContract>();
-        }
-
-        public override void Register<TContract>(string key, DependencyLifetime lifetime = DependencyLifetime.Default)
-        {
-            DependencyService.Register<TContract>();
-        }
-
-        public override void Register<TContract, TImplementation>(
-            DependencyKey key = DependencyKey.None,
-            DependencyLifetime lifetime = DependencyLifetime.Default)
-        {
-            DependencyService.Register<TContract, TImplementation>();
-        }
-
-        public override void Register<TContract, TImplementation>(string key, DependencyLifetime lifetime = DependencyLifetime.Default)
-        {
-            DependencyService.Register<TContract, TImplementation>();
+            this.container.Register(contract, implementation, CreateLifestyle(lifetime));
         }
 
         public override object Resolve(Type type, string key = null)
         {
-            throw new NotSupportedException();
+            return this.container.GetInstance(type);
         }
 
         public override object Resolve(Type type, DependencyKey key)
         {
-            throw new NotSupportedException();
+            return this.container.GetInstance(type);
         }
 
         public override T Resolve<T>(string key = null)
         {
-            return DependencyService.Get<T>();
+            return this.container.GetInstance<T>();
         }
 
         public override T Resolve<T>(DependencyKey key)
         {
-            return DependencyService.Get<T>();
+            return this.container.GetInstance<T>();
         }
 
         public override IEnumerable<object> ResolveAll(Type type)
         {
-            throw new NotSupportedException();
+            return this.container.GetAllInstances(type);
         }
 
         public override IEnumerable<T> ResolveAll<T>()
         {
-            return DependencyService.Get<IEnumerable<T>>();
+            return this.container.GetAllInstances<T>();
         }
 
         protected override void Dispose(bool disposing)
         {
+        }
+
+        private static Lifestyle CreateLifestyle(DependencyLifetime lifetime)
+        {
+            switch (lifetime)
+            {
+                case DependencyLifetime.PerApplication:
+                    return Lifestyle.Singleton;
+
+                default:
+                    return Lifestyle.Transient;
+            }
         }
     }
 }

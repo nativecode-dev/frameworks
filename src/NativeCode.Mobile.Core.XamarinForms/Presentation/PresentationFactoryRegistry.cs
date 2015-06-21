@@ -14,29 +14,39 @@
 
         public static void Register<TView, TViewModel>(IDependencyRegistrar registrar) where TView : Page where TViewModel : ViewModel
         {
-            var key = typeof(TViewModel).AssemblyQualifiedName;
+            Register(registrar, typeof(TView), typeof(TViewModel));
+        }
+
+        public static void Register(IDependencyRegistrar registrar, Type view, Type viewModel)
+        {
+            var key = viewModel.AssemblyQualifiedName;
 
             if (Registrations.ContainsKey(key))
             {
                 return;
             }
 
-            Registrations.Add(key, new Registration(typeof(TView), typeof(TViewModel)));
+            Registrations.Add(key, new Registration(view, viewModel));
 
-            registrar.Register<TView>();
-            registrar.Register<TViewModel>();
+            registrar.Register(view);
+            registrar.Register(viewModel);
         }
 
         public static Registration GetRegistration<TViewModel>() where TViewModel : ViewModel
         {
-            var key = typeof(TViewModel).AssemblyQualifiedName;
+            return GetRegistration(typeof(TViewModel));
+        }
+
+        public static Registration GetRegistration(Type viewModel)
+        {
+            var key = viewModel.AssemblyQualifiedName;
 
             if (Registrations.ContainsKey(key))
             {
                 return Registrations[key];
             }
 
-            throw new ViewModelTypeNotFoundException(typeof(TViewModel));
+            throw new ViewModelTypeNotFoundException(viewModel);
         }
 
         public class Registration

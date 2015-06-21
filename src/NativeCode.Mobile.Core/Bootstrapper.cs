@@ -1,21 +1,38 @@
 ﻿namespace NativeCode.Mobile.Core
 {
-    using System.Runtime.CompilerServices;
-    using System.Threading;
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using NativeCode.Mobile.Core.Dependencies;
 
     public abstract class Bootstrapper : IBootstrapper
     {
-        public void Initialize()
+        public DependencyAdapter DependencyAdapter { get; private set; }
+
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        /// <param name="modules">The modules.</param>
+        public void Initialize(IEnumerable<IDependencyModule> modules)
         {
-            this.InitializeAsync(CancellationToken.None).GetAwaiter().GetResult();
+            this.DependencyAdapter = this.CreateDependencyAdapter();
+
+            this.InternalInitialize();
+
+            foreach (var module in modules)
+            {
+                module.RegisterDependencies(this.DependencyAdapter);
+            }
         }
 
-        public ConfiguredTaskAwaitable InitializeAsync(CancellationToken cancellationToken)
-        {
-            return Task.Run(() => this.InternalInitialize(), cancellationToken).ConfigureAwait(false);
-        }
+        /// <summary>
+        /// Creates a dependency adapter.
+        /// </summary>
+        /// <returns>Returns a new <see cref="DependencyAdapter" />.</returns>
+        protected abstract DependencyAdapter CreateDependencyAdapter();
 
+        /// <summary>
+        /// Initialize the app.
+        /// </summary>
         protected abstract void InternalInitialize();
     }
 }

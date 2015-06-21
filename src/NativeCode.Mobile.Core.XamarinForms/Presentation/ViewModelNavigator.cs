@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
+    using NativeCode.Mobile.Core.Dependencies;
     using NativeCode.Mobile.Core.Presentation;
 
     using Xamarin.Forms;
@@ -18,6 +19,7 @@
         public ViewModelNavigator(Func<INavigation> navigation)
         {
             this.navigation = navigation;
+            this.PresentationFactory = DependencyResolver.Current.Resolve<IPresentationFactory>();
         }
 
         /// <summary>
@@ -28,29 +30,39 @@
             get { return this.navigation(); }
         }
 
-        public Task<TViewModel> PopAsync<TViewModel>(bool animated = true) where TViewModel : ViewModel
+        protected IPresentationFactory PresentationFactory { get; private set; }
+
+        public async Task<TViewModel> PopAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel
         {
-            throw new NotImplementedException();
+            var page = await this.Navigation.PopAsync(animated);
+
+            return (TViewModel)page.BindingContext;
         }
 
-        public Task<TViewModel> PopModalAsync<TViewModel>(bool animated = true) where TViewModel : ViewModel
+        public async Task<TViewModel> PopModalAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel
         {
-            throw new NotImplementedException();
+            var page = await this.Navigation.PopModalAsync(animated);
+
+            return (TViewModel)page.BindingContext;
         }
 
         public Task PopToRootAsync(bool animated = true)
         {
-            throw new NotImplementedException();
+            return this.Navigation.PopToRootAsync(animated);
         }
 
-        public Task PushAsync<TViewModel>(bool animated = true) where TViewModel : ViewModel
+        public Task PushAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel
         {
-            throw new NotImplementedException();
+            var view = this.PresentationFactory.GetViewFor<TViewModel>();
+
+            return this.Navigation.PushAsync(view, animated);
         }
 
-        public Task PushModalAsync<TViewModel>(bool animated = true) where TViewModel : ViewModel
+        public Task PushModalAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel
         {
-            throw new NotImplementedException();
+            var view = this.PresentationFactory.GetViewFor<TViewModel>();
+
+            return this.Navigation.PushModalAsync(view, animated);
         }
     }
 }
