@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Droid", "Demo\Demo.Dro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeCode.Mobile.Core.Droid", "NativeCode.Mobile.Core.Droid\NativeCode.Mobile.Core.Droid.csproj", "{C1019953-80E9-4402-A7AC-74B2DCFD76B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeCode.Mobile.Core.XamarinForms.Droid", "NativeCode.Mobile.Core.XamarinForms.Droid\NativeCode.Mobile.Core.XamarinForms.Droid.csproj", "{730FDB85-3FCC-4BB4-B87A-5574B0C7B9D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{C1019953-80E9-4402-A7AC-74B2DCFD76B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1019953-80E9-4402-A7AC-74B2DCFD76B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1019953-80E9-4402-A7AC-74B2DCFD76B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{730FDB85-3FCC-4BB4-B87A-5574B0C7B9D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{730FDB85-3FCC-4BB4-B87A-5574B0C7B9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{730FDB85-3FCC-4BB4-B87A-5574B0C7B9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{730FDB85-3FCC-4BB4-B87A-5574B0C7B9D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

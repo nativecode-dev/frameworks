@@ -8,7 +8,7 @@
     {
         public IViewModelNavigator GetCurrentNavigator()
         {
-            var navigation = GetNavigationPage();
+            var navigation = GetFromMasterDetail();
 
             if (navigation != null)
             {
@@ -18,7 +18,12 @@
             return new ViewModelNavigator(() => GetFromMainPage().Navigation);
         }
 
-        private static Page GetNavigationPage()
+        private static Page GetFromMainPage()
+        {
+            return Application.Current.MainPage;
+        }
+
+        private static Page GetFromMasterDetail()
         {
             var master = Application.Current.MainPage as MasterDetailPage;
 
@@ -33,11 +38,6 @@
             }
 
             return null;
-        }
-
-        private static Page GetFromMainPage()
-        {
-            return Application.Current.MainPage;
         }
     }
 }

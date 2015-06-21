@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Provides platform types for Android.")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: AssemblyInformationalVersion("1.0.0.0")]
-[assembly: AssemblyProduct("NativeCode.Mobile")]
+[assembly: AssemblyProduct("NativeCode Mobile")]
 [assembly: AssemblyTitle("NativeCode.Mobile.Core.Droid")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyVersion("1.0.0.0")]

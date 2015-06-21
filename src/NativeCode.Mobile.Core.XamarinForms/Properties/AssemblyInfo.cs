@@ -8,7 +8,7 @@ using System.Resources;
 [assembly: AssemblyDescription("Provides controls and types for Xamarin.Forms.")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: AssemblyInformationalVersion("1.0.0.0")]
-[assembly: AssemblyProduct("NativeCode.Mobile")]
+[assembly: AssemblyProduct("NativeCode Mobile")]
 [assembly: AssemblyTitle("NativeCode.Mobile.Core.XamarinForms")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyVersion("1.0.0.0")]
