@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:triggers="clr-namespace:Demo.Triggers;assembly=Demo"
-             x:Class="Demo.Views.WebBrowserView" IsBusy="{Binding IsBusy}" Title="{Binding Title}">
+             xmlns:triggers="clr-namespace:Demo.Triggers;assembly=Demo" x:Class="Demo.Views.WebBrowserView"
+             x:Name="This" IsBusy="{Binding IsBusy}" Title="{Binding Title}">
   <WebView CanGoBack="{Binding CanNavigateBack, Mode=OneWayToSource}" CanGoForward="{Binding CanNavigateForward, Mode=OneWayToSource}"
            Source="{Binding SourceUrl}">
     <WebView.Triggers>
       <EventTrigger Event="Navigated">
-        <triggers:WebViewNavigatedTrigger />
+        <triggers:WebViewNavigatedTrigger Page="{x:Reference This}" />
       </EventTrigger>
       <EventTrigger Event="Navigating">
-        <triggers:WebViewNavigatingTrigger />
+        <triggers:WebViewNavigatingTrigger Page="{x:Reference This}" />
       </EventTrigger>
     </WebView.Triggers>
   </WebView>

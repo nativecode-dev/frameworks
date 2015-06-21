@@ -4,6 +4,7 @@
     using System.Collections.Generic;
 
     using NativeCode.Mobile.Core.Dependencies;
+    using NativeCode.Mobile.Core.Logging;
 
     using SimpleInjector;
 
@@ -44,7 +45,16 @@
 
         public override object Resolve(Type type, string key = null)
         {
-            return this.container.GetInstance(type);
+            try
+            {
+                var instance = this.container.GetInstance(type);
+                return instance;
+            }
+            catch (Exception ex)
+            {
+                Logger.Default.Exception(ex);
+                throw;
+            }
         }
 
         public override object Resolve(Type type, DependencyKey key)

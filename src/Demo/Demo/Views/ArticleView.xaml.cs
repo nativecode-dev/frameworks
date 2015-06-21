@@ -2,9 +2,9 @@
 {
     using Xamarin.Forms;
 
-    public partial class WebBrowserView : ContentPage
+    public partial class ArticleView : ContentPage
     {
-        public WebBrowserView()
+        public ArticleView()
         {
             this.InitializeComponent();
         }

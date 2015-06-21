@@ -7,13 +7,6 @@
 
     public class PresentationFactory : IPresentationFactory
     {
-        public NavigationPage GetNavigationView<TViewModel>() where TViewModel : NavigableViewModel
-        {
-            var view = this.GetViewFor<TViewModel>();
-
-            return new NavigationPage(view);
-        }
-
         public Page GetViewFor<TViewModel>() where TViewModel : NavigableViewModel
         {
             var registration = PresentationFactoryRegistry.GetRegistration<TViewModel>();

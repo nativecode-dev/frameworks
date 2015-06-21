@@ -3,6 +3,7 @@
     using System.Collections.Generic;
 
     using Android.App;
+    using Android.Content.PM;
     using Android.OS;
 
     using NativeCode.Mobile.AppCompat.FormsAppCompat;
@@ -12,9 +13,11 @@
 
     using Xamarin.Forms;
 
-    [Activity(MainLauncher = true, Theme = CompatThemeLightDarkActionBar)]
+    [Activity(ConfigurationChanges = AppConfiguration, MainLauncher = true, Theme = CompatThemeLightDarkActionBar)]
     public class MainActivity : AppCompatFormsApplicationActivity
     {
+        private const ConfigChanges AppConfiguration = ConfigChanges.Orientation | ConfigChanges.ScreenSize;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);

@@ -46,14 +46,17 @@
 
         public static void ShowInnerMasterDetailStyle()
         {
+            Current.MainPage = Instance.PresentationFactory.GetViewFor<MasterDetailInnerNavigationViewModel>();
         }
 
         public static void ShowOuterMasterDetailStyle()
         {
+            Current.MainPage = Instance.PresentationFactory.GetViewFor<MasterDetailOuterNavigationViewModel>().WithNavigation();
         }
 
         public static void ShowSimpleMasterDetailStyle()
         {
+            Current.MainPage = Instance.PresentationFactory.GetViewFor<SimpleMasterDetailViewModel>();
         }
 
         public static void ShowSimpleNavigationStyle()

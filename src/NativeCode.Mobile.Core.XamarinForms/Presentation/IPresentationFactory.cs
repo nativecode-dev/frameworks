@@ -10,13 +10,6 @@
     public interface IPresentationFactory
     {
         /// <summary>
-        /// Gets a view wrapped in a <see cref="NavigationPage" />.
-        /// </summary>
-        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
-        /// <returns>Returns a <see cref="NavigationPage" />.</returns>
-        NavigationPage GetNavigationView<TViewModel>() where TViewModel : NavigableViewModel;
-
-        /// <summary>
         /// Gets a <see cref="Page" /> bound by a view model.
         /// </summary>
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>

@@ -43,10 +43,26 @@
     <Compile Include="Triggers\WebViewNavigatedTrigger.cs" />
     <Compile Include="Triggers\WebViewNavigatingTrigger.cs" />
     <Compile Include="ViewModels\AppStylesViewModel.cs" />
+    <Compile Include="ViewModels\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\MasterDetailInnerNavigationViewModel.cs" />
+    <Compile Include="ViewModels\MasterDetailOuterNavigationViewModel.cs" />
+    <Compile Include="ViewModels\SimpleMasterDetailViewModel.cs" />
     <Compile Include="ViewModels\SimpleNavigationViewModel.cs" />
     <Compile Include="ViewModels\WebBrowserViewModel.cs" />
     <Compile Include="Views\AppStylesView.xaml.cs">
       <DependentUpon>AppStylesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArticleView.xaml.cs">
+      <DependentUpon>ArticleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MasterDetailInnerNavigationView.xaml.cs">
+      <DependentUpon>MasterDetailInnerNavigationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MasterDetailOuterNavigationView.xaml.cs">
+      <DependentUpon>MasterDetailOuterNavigationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleMasterDetailView.xaml.cs">
+      <DependentUpon>SimpleMasterDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SimpleNavigationView.xaml.cs">
       <DependentUpon>SimpleNavigationView.xaml</DependentUpon>
@@ -116,6 +132,31 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <EmbeddedResource Include="Resources\LoremIpsum.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SimpleMasterDetailView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MasterDetailOuterNavigationView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MasterDetailInnerNavigationView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ArticleView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

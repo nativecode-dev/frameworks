@@ -19,7 +19,7 @@
         {
             DependencyResolver.SetResolver(() => this.DependencyAdapter);
 
-            this.DependencyAdapter.Register<IPresentationFactory, PresentationFactory>();
+            this.DependencyAdapter.Register<IPresentationFactory, PresentationFactory>(lifetime: DependencyLifetime.PerApplication);
 
             this.RegisterViews();
         }
@@ -27,6 +27,10 @@
         private void RegisterViews()
         {
             PresentationFactoryRegistry.Register<AppStylesView, AppStylesViewModel>(this.DependencyAdapter);
+            PresentationFactoryRegistry.Register<ArticleView, ArticleViewModel>(this.DependencyAdapter);
+            PresentationFactoryRegistry.Register<MasterDetailInnerNavigationView, MasterDetailInnerNavigationViewModel>(this.DependencyAdapter);
+            PresentationFactoryRegistry.Register<MasterDetailOuterNavigationView, MasterDetailOuterNavigationViewModel>(this.DependencyAdapter);
+            PresentationFactoryRegistry.Register<SimpleMasterDetailView, SimpleMasterDetailViewModel>(this.DependencyAdapter);
             PresentationFactoryRegistry.Register<SimpleNavigationView, SimpleNavigationViewModel>(this.DependencyAdapter);
             PresentationFactoryRegistry.Register<WebBrowserView, WebBrowserViewModel>(this.DependencyAdapter);
         }
