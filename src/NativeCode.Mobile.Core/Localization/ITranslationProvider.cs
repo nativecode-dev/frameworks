@@ -1,6 +1,5 @@
 ﻿namespace NativeCode.Mobile.Core.Localization
 {
-    using System.Collections.Generic;
     using System.Globalization;
 
     /// <summary>
@@ -15,11 +14,5 @@
         /// <param name="culture">The culture.</param>
         /// <returns>Returns translated string.</returns>
         string GetString(string key, CultureInfo culture);
-
-        /// <summary>
-        /// Gets the collection of translation keys used.
-        /// </summary>
-        /// <returns>Returns a collection of used translation keys.</returns>
-        IEnumerable<string> GetKeysUsed();
     }
 }

@@ -15,6 +15,7 @@
         public FormsDependencyAdapter()
         {
             this.container = new Container();
+            this.container.Options.AllowOverridingRegistrations = true;
         }
 
         public override void Factory(Type contract, Func<IDependencyResolver, object> factory)

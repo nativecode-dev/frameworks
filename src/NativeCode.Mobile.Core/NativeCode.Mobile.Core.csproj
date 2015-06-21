@@ -52,6 +52,7 @@
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="IBootstrapper.cs" />
+    <Compile Include="Localization\DefaultTranslationProvider.cs" />
     <Compile Include="Localization\ITranslationProvider.cs" />
     <Compile Include="Localization\ITranslator.cs" />
     <Compile Include="Localization\Translator.cs" />
