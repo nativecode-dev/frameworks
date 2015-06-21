@@ -4,10 +4,7 @@ namespace NativeCode.Mobile.Core.Droid
     using NativeCode.Mobile.Core.Dependencies;
     using NativeCode.Mobile.Core.Droid.Collections;
     using NativeCode.Mobile.Core.Droid.Platform;
-    using NativeCode.Mobile.Core.Localization;
     using NativeCode.Mobile.Core.Platform;
-    using NativeCode.Mobile.Core.Processing;
-    using NativeCode.Mobile.Core.Serialization;
 
     public class CoreAndroidDependencies : IDependencyModule
     {
@@ -15,9 +12,6 @@ namespace NativeCode.Mobile.Core.Droid
         {
             registrar.Register<ICollectionFactory, CollectionFactory>();
             registrar.Register<IDeviceInformant, DeviceInformant>();
-            registrar.Register<IQueueProcessorFactory, QueueProcessorFactory>();
-            registrar.Register<IStringSerializer, JsonStringSerializer>();
-            registrar.Register<ITranslationProvider, DefaultTranslationProvider>();
         }
     }
 }

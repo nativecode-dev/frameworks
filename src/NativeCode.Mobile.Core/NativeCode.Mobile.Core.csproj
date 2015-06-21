@@ -41,6 +41,7 @@
     <Compile Include="Collections\IConcurrentDictionary.cs" />
     <Compile Include="Collections\IConcurrentQueue.cs" />
     <Compile Include="Collections\ObservableBatchCollection.cs" />
+    <Compile Include="CoreDependencies.cs" />
     <Compile Include="Dependencies\DependencyAdapter.cs" />
     <Compile Include="Dependencies\DependencyKey.cs" />
     <Compile Include="Dependencies\DependencyLifetime.cs" />
