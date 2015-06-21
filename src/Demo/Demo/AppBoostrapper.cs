@@ -24,6 +24,7 @@
 
         private void RegisterViews()
         {
+            PresentationFactoryRegistry.Register<AboutView, AboutViewModel>(this.DependencyAdapter);
             PresentationFactoryRegistry.Register<AppStylesView, AppStylesViewModel>(this.DependencyAdapter);
             PresentationFactoryRegistry.Register<ArticleView, ArticleViewModel>(this.DependencyAdapter);
             PresentationFactoryRegistry.Register<MasterDetailInnerNavigationView, MasterDetailInnerNavigationViewModel>(this.DependencyAdapter);

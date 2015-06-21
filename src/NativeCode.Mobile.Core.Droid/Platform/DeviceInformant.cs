@@ -1,9 +1,9 @@
 namespace NativeCode.Mobile.Core.Droid.Platform
 {
-    using System;
-
     using Android.Content;
     using Android.Net;
+    using Android.OS;
+    using Android.Provider;
 
     using NativeCode.Mobile.Core.Platform;
 
@@ -16,30 +16,52 @@ namespace NativeCode.Mobile.Core.Droid.Platform
             this.provider = provider;
         }
 
+        public string DeviceIdentifier
+        {
+            get { return Settings.Secure.GetString(this.Context.ContentResolver, Settings.Secure.AndroidId); }
+        }
+
+        public bool IsConnected
+        {
+            get { return this.GetIsConnected(); }
+        }
+
         protected Context Context
         {
             get { return this.provider.GetCurrentContext(); }
         }
 
-        public bool IsConnected
+        public string GetDisplayString()
         {
-            get
-            {
-                var manager = (ConnectivityManager)this.Context.GetSystemService(Context.ConnectivityService);
-                var network = manager.ActiveNetworkInfo;
-
-                return network != null && network.IsConnected;
-            }
+            return Build.Display;
         }
 
-        public string GetHardwareVersion()
+        public string GetDeviceString()
         {
-            throw new NotImplementedException();
+            return Build.Device;
         }
 
-        public string GetPlatformVersion()
+        public string GetHardwareString()
         {
-            throw new NotImplementedException();
+            return Build.Hardware;
+        }
+
+        public string GetPlatformString()
+        {
+            return Build.VERSION.Sdk;
+        }
+
+        public string GetProductString()
+        {
+            return Build.Product;
+        }
+
+        private bool GetIsConnected()
+        {
+            var manager = (ConnectivityManager)this.Context.GetSystemService(Context.ConnectivityService);
+            var network = manager.ActiveNetworkInfo;
+
+            return network != null && network.IsConnected;
         }
     }
 }

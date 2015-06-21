@@ -13,11 +13,14 @@
         {
             this.Title = "Simple Navigation";
 
+            this.AboutCommand = new Command(async () => await this.Navigator.PushAsync<AboutViewModel>());
             this.ArticleCommand = new Command(async () => await this.Navigator.PushAsync<ArticleViewModel>());
             this.ChooseStyleCommand = new Command(App.ShowAppStyleMenu);
             this.WebBrowserCommand = new Command(async () => await this.Navigator.PushAsync<WebBrowserViewModel>());
             this.WebBrowserNavigationEnabled = device.IsConnected;
         }
+
+        public ICommand AboutCommand { get; private set; }
 
         public ICommand ArticleCommand { get; private set; }
 
