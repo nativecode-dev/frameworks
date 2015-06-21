@@ -62,6 +62,7 @@
     <Compile Include="Logging\LogMessageType.cs" />
     <Compile Include="Logging\LogWriter.cs" />
     <Compile Include="Presentation\IViewModelNavigator.cs" />
+    <Compile Include="Presentation\IViewModelNavigatorProvider.cs" />
     <Compile Include="Presentation\IViewModelNavigatorSetter.cs" />
     <Compile Include="Presentation\NavigableViewModel.cs" />
     <Compile Include="Presentation\ViewModel.cs" />

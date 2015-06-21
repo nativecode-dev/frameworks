@@ -7,13 +7,20 @@
 
     public class PresentationFactory : IPresentationFactory
     {
+        public PresentationFactory(IViewModelNavigatorProvider provider)
+        {
+            this.Provider = provider;
+        }
+
+        protected IViewModelNavigatorProvider Provider { get; private set; }
+
         public Page GetViewFor<TViewModel>() where TViewModel : NavigableViewModel
         {
             var registration = PresentationFactoryRegistry.GetRegistration<TViewModel>();
             var view = (Page)DependencyResolver.Current.Resolve(registration.View);
             var viewModel = DependencyResolver.Current.Resolve<TViewModel>();
 
-            BindViewModelToView(view, viewModel);
+            this.BindViewModelToView(view, viewModel);
 
             return view;
         }
@@ -24,14 +31,14 @@
             var view = (TView)DependencyResolver.Current.Resolve(registration.View);
             var viewModel = DependencyResolver.Current.Resolve<TViewModel>();
 
-            BindViewModelToView(view, viewModel);
+            this.BindViewModelToView(view, viewModel);
 
             return view;
         }
 
-        private static void BindViewModelToView(VisualElement view, IViewModelNavigatorSetter viewModel)
+        private void BindViewModelToView(BindableObject view, IViewModelNavigatorSetter viewModel)
         {
-            viewModel.SetNavigator(new ViewModelNavigator(() => view.Navigation));
+            viewModel.SetNavigator(this.Provider.GetViewModelNavigator());
             view.BindingContext = viewModel;
         }
     }
