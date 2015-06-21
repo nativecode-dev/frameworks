@@ -1,16 +1,18 @@
 ﻿namespace Demo
 {
+    using System.Collections.Generic;
+
     using NativeCode.Mobile.Core;
     using NativeCode.Mobile.Core.Dependencies;
     using NativeCode.Mobile.Core.XamarinForms.Dependencies;
 
-    public class DemoBoostrapper : Bootstrapper
+    internal class AppBoostrapper : Bootstrapper
     {
         private readonly FormsDependencyAdapter dependencyAdapter;
 
-        public DemoBoostrapper()
+        public AppBoostrapper(IEnumerable<IDependencyModule> modules)
         {
-            this.dependencyAdapter = new FormsDependencyAdapter();
+            this.dependencyAdapter = new FormsDependencyAdapter(modules);
         }
 
         protected override void InternalInitialize()

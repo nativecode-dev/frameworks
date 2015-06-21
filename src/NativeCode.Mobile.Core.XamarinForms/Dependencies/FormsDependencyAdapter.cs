@@ -9,6 +9,18 @@
 
     public class FormsDependencyAdapter : DependencyAdapter
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormsDependencyAdapter"/> class.
+        /// </summary>
+        /// <param name="modules">The modules.</param>
+        public FormsDependencyAdapter(IEnumerable<IDependencyModule> modules)
+        {
+            foreach (var module in modules)
+            {
+                module.RegisterDependencies(this);
+            }
+        }
+
         public override void Factory(Type contract, Func<IDependencyResolver, object> factory)
         {
             throw new NotSupportedException();
