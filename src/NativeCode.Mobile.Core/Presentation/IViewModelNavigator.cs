@@ -11,18 +11,16 @@
         /// <summary>
         /// Pops the current view model.
         /// </summary>
-        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
         /// <param name="animated">if set to <c>true</c> animate transition.</param>
-        /// <returns>Returns a view model.</returns>
-        Task<TViewModel> PopAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel;
+        /// <returns>Returns a <see cref="Task" />.</returns>
+        Task PopAsync(bool animated = true);
 
         /// <summary>
         /// Pops the current modal view model.
         /// </summary>
-        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
         /// <param name="animated">if set to <c>true</c> animate transition.</param>
-        /// <returns>Returns a view model.</returns>
-        Task<TViewModel> PopModalAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel;
+        /// <returns>Returns a <see cref="Task" />.</returns>
+        Task PopModalAsync(bool animated = true);
 
         /// <summary>
         /// Pops to root view model.

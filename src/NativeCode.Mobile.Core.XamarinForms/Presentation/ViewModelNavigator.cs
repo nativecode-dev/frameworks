@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using NativeCode.Mobile.Core.Dependencies;
+    using NativeCode.Mobile.Core.Extensions;
     using NativeCode.Mobile.Core.Presentation;
 
     using Xamarin.Forms;
@@ -32,18 +33,18 @@
 
         protected IPresentationFactory PresentationFactory { get; private set; }
 
-        public async Task<TViewModel> PopAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel
+        public async Task PopAsync(bool animated = true)
         {
             var page = await this.Navigation.PopAsync(animated);
-
-            return (TViewModel)page.BindingContext;
+            page.DisposeIfNeeded();
+            page.BindingContext.DisposeIfNeeded();
         }
 
-        public async Task<TViewModel> PopModalAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel
+        public async Task PopModalAsync(bool animated = true)
         {
             var page = await this.Navigation.PopModalAsync(animated);
-
-            return (TViewModel)page.BindingContext;
+            page.DisposeIfNeeded();
+            page.BindingContext.DisposeIfNeeded();
         }
 
         public Task PopToRootAsync(bool animated = true)
