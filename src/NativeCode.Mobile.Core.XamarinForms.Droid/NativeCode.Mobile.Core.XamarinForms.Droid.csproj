@@ -68,12 +68,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Platform\FormsContextProvider.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FormsAndroidDependencies.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NativeCode.Mobile.Core.XamarinForms.Droid.nuspec" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NativeCode.Mobile.Core.Droid\NativeCode.Mobile.Core.Droid.csproj">
+      <Project>{C1019953-80E9-4402-A7AC-74B2DCFD76B2}</Project>
+      <Name>NativeCode.Mobile.Core.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NativeCode.Mobile.Core\NativeCode.Mobile.Core.csproj">
+      <Project>{CB24CD06-8765-4AD4-8DE2-766E98BDDA23}</Project>
+      <Name>NativeCode.Mobile.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

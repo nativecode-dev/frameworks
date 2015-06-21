@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Collections\CollectionFactory.cs" />
     <Compile Include="CoreAndroidDependencies.cs" />
+    <Compile Include="Platform\DeviceInformant.cs" />
+    <Compile Include="Platform\IContextProvider.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

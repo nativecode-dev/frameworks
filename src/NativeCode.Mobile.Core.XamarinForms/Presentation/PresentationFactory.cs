@@ -1,6 +1,9 @@
 ﻿namespace NativeCode.Mobile.Core.XamarinForms.Presentation
 {
+    using System;
+
     using NativeCode.Mobile.Core.Dependencies;
+    using NativeCode.Mobile.Core.Logging;
     using NativeCode.Mobile.Core.Presentation;
 
     using Xamarin.Forms;
@@ -16,29 +19,21 @@
 
         public Page GetViewFor<TViewModel>() where TViewModel : NavigableViewModel
         {
-            var registration = PresentationFactoryRegistry.GetRegistration<TViewModel>();
-            var view = (Page)DependencyResolver.Current.Resolve(registration.View);
-            var viewModel = DependencyResolver.Current.Resolve<TViewModel>();
+            try
+            {
+                var registration = PresentationFactoryRegistry.GetRegistration<TViewModel>();
+                var view = (Page)DependencyResolver.Current.Resolve(registration.View);
+                var viewModel = DependencyResolver.Current.Resolve<TViewModel>();
 
-            this.BindViewModelToView(view, viewModel);
+                view.BindingContext = viewModel;
 
-            return view;
-        }
-
-        public TView GetView<TView, TViewModel>() where TView : Page where TViewModel : NavigableViewModel
-        {
-            var registration = PresentationFactoryRegistry.GetRegistration<TViewModel>();
-            var view = (TView)DependencyResolver.Current.Resolve(registration.View);
-            var viewModel = DependencyResolver.Current.Resolve<TViewModel>();
-
-            this.BindViewModelToView(view, viewModel);
-
-            return view;
-        }
-
-        private void BindViewModelToView(BindableObject view, ViewModel viewModel)
-        {
-            view.BindingContext = viewModel;
+                return view;
+            }
+            catch (Exception ex)
+            {
+                Logger.Default.Exception(ex);
+                throw;
+            }
         }
     }
 }

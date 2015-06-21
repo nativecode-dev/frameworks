@@ -107,6 +107,10 @@
       <Project>{C1019953-80E9-4402-A7AC-74B2DCFD76B2}</Project>
       <Name>NativeCode.Mobile.Core.Droid</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\NativeCode.Mobile.Core.XamarinForms.Droid\NativeCode.Mobile.Core.XamarinForms.Droid.csproj">
+      <Project>{730FDB85-3FCC-4BB4-B87A-5574B0C7B9D5}</Project>
+      <Name>NativeCode.Mobile.Core.XamarinForms.Droid</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\NativeCode.Mobile.Core.XamarinForms\NativeCode.Mobile.Core.XamarinForms.csproj">
       <Project>{D283C287-3C33-4B08-99ED-6C70AE2D81F6}</Project>
       <Name>NativeCode.Mobile.Core.XamarinForms</Name>

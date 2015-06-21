@@ -5,6 +5,6 @@
   <StackLayout Padding="20">
     <Button Command="{Binding ChooseStyleCommand}" Text="Choose App Style" />
     <Button Command="{Binding ArticleCommand}" Text="View Article" />
-    <Button Command="{Binding WebBrowserCommand}" Text="Web Browser" />
+    <Button Command="{Binding WebBrowserCommand}" IsEnabled="{Binding WebBrowserNavigationEnabled}" Text="Web Browser" />
   </StackLayout>
 </ContentPage>

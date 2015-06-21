@@ -15,13 +15,5 @@
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>
         /// <returns>Returns a <see cref="Page" />.</returns>
         Page GetViewFor<TViewModel>() where TViewModel : NavigableViewModel;
-
-        /// <summary>
-        /// Gets a view bound by a view model.
-        /// </summary>
-        /// <typeparam name="TView">The type of the view.</typeparam>
-        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
-        /// <returns>Returns a view.</returns>
-        TView GetView<TView, TViewModel>() where TView : Page where TViewModel : NavigableViewModel;
     }
 }
