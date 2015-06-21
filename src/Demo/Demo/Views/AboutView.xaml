@@ -1,17 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Demo.Views.AboutView" IsBusy="{Binding IsBusy}" Title="{Binding Title}" Padding="20">
-  <TableView>
-    <TableView.Root>
-      <TableSection Title="Device Information">
-        <TextCell Text="Device Identifier" Detail="{Binding DeviceIdentifier}" />
-        <TextCell Text="Device" Detail="{Binding DeviceString}" />
-        <TextCell Text="Display" Detail="{Binding DisplayString}" />
-        <TextCell Text="Hardware" Detail="{Binding HardwareString}" />
-        <TextCell Text="Platform" Detail="{Binding PlatformString}" />
-        <TextCell Text="Product" Detail="{Binding ProductString}" />
-      </TableSection>
-    </TableView.Root>
-  </TableView>
+             x:Class="Demo.Views.AboutView" IsBusy="{Binding IsBusy}" Title="{Binding Title}">
+  <ScrollView Padding="20">
+    <TableView>
+      <TableView.Root>
+        <TableSection Title="Device Information">
+          <TextCell Text="Device Identifier" Detail="{Binding DeviceIdentifier}" />
+          <TextCell Text="Device" Detail="{Binding DeviceString}" />
+          <TextCell Text="Display" Detail="{Binding DisplayString}" />
+          <TextCell Text="Hardware" Detail="{Binding HardwareString}" />
+          <TextCell Text="Platform" Detail="{Binding PlatformString}" />
+          <TextCell Text="Product" Detail="{Binding ProductString}" />
+        </TableSection>
+      </TableView.Root>
+    </TableView>
+  </ScrollView>
 </ContentPage>

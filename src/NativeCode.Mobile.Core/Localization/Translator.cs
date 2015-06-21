@@ -5,7 +5,7 @@
 
     using NativeCode.Mobile.Core.Dependencies;
 
-    public class Translator : ITranslator
+    public sealed class Translator : ITranslator
     {
         private static readonly Lazy<ITranslator> DefaultInstance = new Lazy<ITranslator>(CreateDefaultInstance);
 
