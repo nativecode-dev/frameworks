@@ -19,8 +19,6 @@
         {
             DependencyResolver.SetResolver(() => this.DependencyAdapter);
 
-            this.DependencyAdapter.Register<IPresentationFactory, PresentationFactory>(lifetime: DependencyLifetime.PerApplication);
-
             this.RegisterViews();
         }
 

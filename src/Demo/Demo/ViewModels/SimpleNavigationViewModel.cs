@@ -13,7 +13,7 @@
             this.Title = "Simple Navigation";
 
             this.ChooseStyleCommand = new Command(App.ShowAppStyleMenu);
-            this.WebBrowserCommand = new Command(() => this.Navigator.PushAsync<WebBrowserViewModel>());
+            this.WebBrowserCommand = new Command(async () => await this.Navigator.PushAsync<WebBrowserViewModel>());
         }
 
         public ICommand ChooseStyleCommand { get; private set; }

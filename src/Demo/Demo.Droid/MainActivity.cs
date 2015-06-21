@@ -10,6 +10,7 @@
     using NativeCode.Mobile.AppCompat.Renderers;
     using NativeCode.Mobile.Core.Dependencies;
     using NativeCode.Mobile.Core.Droid;
+    using NativeCode.Mobile.Core.XamarinForms;
 
     using Xamarin.Forms;
 
@@ -30,7 +31,7 @@
 
         private IEnumerable<IDependencyModule> CreateDependencyModules()
         {
-            return new IDependencyModule[] { new CoreAndroidDependencies() };
+            return new IDependencyModule[] { new CoreAndroidDependencies(), new XamarinFormsDependencies() };
         }
     }
 }

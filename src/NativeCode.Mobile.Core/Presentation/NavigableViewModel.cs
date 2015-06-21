@@ -1,12 +1,19 @@
 ﻿namespace NativeCode.Mobile.Core.Presentation
 {
-    public abstract class NavigableViewModel : ViewModel, IViewModelNavigatorSetter
-    {
-        protected IViewModelNavigator Navigator { get; private set; }
+    using NativeCode.Mobile.Core.Dependencies;
 
-        void IViewModelNavigatorSetter.SetNavigator(IViewModelNavigator navigator)
+    public abstract class NavigableViewModel : ViewModel
+    {
+        private readonly IViewModelNavigatorProvider provider;
+
+        protected NavigableViewModel()
         {
-            this.Navigator = navigator;
+            this.provider = DependencyResolver.Current.Resolve<IViewModelNavigatorProvider>();
+        }
+
+        protected IViewModelNavigator Navigator
+        {
+            get { return this.provider.GetCurrentNavigator(); }
         }
     }
 }

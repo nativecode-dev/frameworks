@@ -9,6 +9,6 @@
         /// Gets the view model navigator.
         /// </summary>
         /// <returns>Returns a <see cref="IViewModelNavigator" />.</returns>
-        IViewModelNavigator GetViewModelNavigator();
+        IViewModelNavigator GetCurrentNavigator();
     }
 }

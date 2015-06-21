@@ -36,9 +36,8 @@
             return view;
         }
 
-        private void BindViewModelToView(BindableObject view, IViewModelNavigatorSetter viewModel)
+        private void BindViewModelToView(BindableObject view, ViewModel viewModel)
         {
-            viewModel.SetNavigator(this.Provider.GetViewModelNavigator());
             view.BindingContext = viewModel;
         }
     }

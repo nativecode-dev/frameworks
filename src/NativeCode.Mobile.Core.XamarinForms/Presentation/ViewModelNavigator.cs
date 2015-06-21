@@ -8,12 +8,12 @@
 
     using Xamarin.Forms;
 
-    public class ViewModelNavigator : IViewModelNavigator
+    internal class ViewModelNavigator : IViewModelNavigator
     {
         private readonly Func<INavigation> navigation;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ViewModelNavigator"/> class.
+        /// Initializes a new instance of the <see cref="ViewModelNavigator" /> class.
         /// </summary>
         /// <param name="navigation">The navigation factory.</param>
         public ViewModelNavigator(Func<INavigation> navigation)

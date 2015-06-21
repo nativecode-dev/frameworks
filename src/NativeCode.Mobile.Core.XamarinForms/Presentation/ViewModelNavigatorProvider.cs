@@ -4,27 +4,32 @@
 
     using Xamarin.Forms;
 
-    public class ViewModelNavigatorProvider : IViewModelNavigatorProvider
+    internal class ViewModelNavigatorProvider : IViewModelNavigatorProvider
     {
-        public IViewModelNavigator GetViewModelNavigator()
+        public IViewModelNavigator GetCurrentNavigator()
         {
-            var page = GetFromNavigationPage() ?? GetFromMasterDetailPage() ?? GetFromMainPage();
+            var navigation = GetNavigationPage();
 
-            return new ViewModelNavigator(() => page.Navigation);
+            if (navigation != null)
+            {
+                return new ViewModelNavigator(() => navigation.Navigation);
+            }
+
+            return new ViewModelNavigator(() => GetFromMainPage().Navigation);
         }
 
-        private static Page GetFromNavigationPage()
-        {
-            return Application.Current.MainPage as NavigationPage;
-        }
-
-        private static Page GetFromMasterDetailPage()
+        private static Page GetNavigationPage()
         {
             var master = Application.Current.MainPage as MasterDetailPage;
 
-            if (master != null && master.Detail is NavigationPage)
+            if (master != null && master.Detail != null)
             {
-                return master.Detail;
+                var navigation = master.Detail as NavigationPage;
+
+                if (navigation != null)
+                {
+                    return navigation.CurrentPage;
+                }
             }
 
             return null;
