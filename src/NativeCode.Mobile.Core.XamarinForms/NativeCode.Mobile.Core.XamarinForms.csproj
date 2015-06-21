@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dependencies\FormsDependencyAdapter.cs" />
+    <Compile Include="Extensions\ApplicationExtensions.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />
     <Compile Include="Helpers\AppHelper.cs" />
     <Compile Include="Presentation\Commands\AsyncCommand.cs" />

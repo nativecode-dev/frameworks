@@ -16,6 +16,7 @@
 
             this.DetailView = presentationFactory.GetViewFor<ArticleViewModel>();
             this.MasterView = presentationFactory.GetViewFor<SimpleNavigationViewModel>();
+            this.Title = "Demo App";
         }
 
         public Page DetailView { get; set; }

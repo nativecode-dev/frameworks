@@ -12,9 +12,12 @@
         {
             this.Title = "Simple Navigation";
 
+            this.ArticleCommand = new Command(async () => await this.Navigator.PushAsync<ArticleViewModel>());
             this.ChooseStyleCommand = new Command(App.ShowAppStyleMenu);
             this.WebBrowserCommand = new Command(async () => await this.Navigator.PushAsync<WebBrowserViewModel>());
         }
+
+        public ICommand ArticleCommand { get; private set; }
 
         public ICommand ChooseStyleCommand { get; private set; }
 

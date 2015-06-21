@@ -6,6 +6,7 @@
     using NativeCode.Mobile.Core.Dependencies;
     using NativeCode.Mobile.Core.Extensions;
     using NativeCode.Mobile.Core.Presentation;
+    using NativeCode.Mobile.Core.XamarinForms.Extensions;
 
     using Xamarin.Forms;
 
@@ -64,6 +65,18 @@
             if (initializer != null)
             {
                 initializer((TViewModel)view.BindingContext);
+            }
+
+            if (Application.Current.IsStandAloneMasterDetailPage())
+            {
+                var master = Application.Current.MainPage as MasterDetailPage;
+
+                if (master != null)
+                {
+                    master.Detail = view;
+                    master.IsPresented = false;
+                    return Task.FromResult(0);
+                }
             }
 
             return this.Navigation.PushAsync(view, animated);
