@@ -53,14 +53,34 @@
 
         public Task PushAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel
         {
+            return this.PushAsync<TViewModel>(null, animated);
+        }
+
+        public Task PushAsync<TViewModel>(Action<TViewModel> initializer, bool animated = true) where TViewModel : NavigableViewModel
+        {
             var view = this.PresentationFactory.GetViewFor<TViewModel>();
+
+            if (initializer != null)
+            {
+                initializer((TViewModel)view.BindingContext);
+            }
 
             return this.Navigation.PushAsync(view, animated);
         }
 
         public Task PushModalAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel
         {
+            return this.PushModalAsync<TViewModel>(null, animated);
+        }
+
+        public Task PushModalAsync<TViewModel>(Action<TViewModel> initializer, bool animated = true) where TViewModel : NavigableViewModel
+        {
             var view = this.PresentationFactory.GetViewFor<TViewModel>();
+
+            if (initializer != null)
+            {
+                initializer((TViewModel)view.BindingContext);
+            }
 
             return this.Navigation.PushModalAsync(view, animated);
         }
