@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+           xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <group android:checkableBehavior="single">
+    <item android:id="@+id/navigation_subheader"
+          android:title="@string/appstyle_choose">
+      <menu>
+        <item android:id="@+id/nav_simple_navigation"
+              android:title="@string/appstyle_simple_navigation" />
+        <item android:id="@+id/nav_simple_masterdetail"
+              android:title="@string/appstyle_simple_masterdetail" />
+        <item android:id="@+id/nav_masterdetail_inner"
+              android:title="@string/appstyle_masterdetail_inner" />
+        <item android:id="@+id/nav_masterdetail_outer"
+              android:title="@string/appstyle_masterdetail_outer" />
+      </menu>
+    </item>
+  </group>
+
+</resources>

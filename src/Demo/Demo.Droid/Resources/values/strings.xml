@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+           xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <string name="appstyle_choose">Choose App Style</string>
+  <string name="appstyle_simple_navigation">Simple Navigation</string>
+  <string name="appstyle_simple_masterdetail">Simple Master/Detail</string>
+  <string name="appstyle_masterdetail_inner">Master/Detail Inner Navigation</string>
+  <string name="appstyle_masterdetail_outer">Master/Detail Outer Navigation</string>
+
+</resources>

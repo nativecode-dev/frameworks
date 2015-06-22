@@ -17,8 +17,6 @@
 
         protected override void InternalInitialize()
         {
-            DependencyResolver.SetResolver(() => this.DependencyAdapter);
-
             this.RegisterViews();
         }
 

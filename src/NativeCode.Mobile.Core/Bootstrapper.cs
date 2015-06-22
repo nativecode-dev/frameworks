@@ -15,6 +15,7 @@
         public void Initialize(IEnumerable<IDependencyModule> modules)
         {
             this.DependencyAdapter = this.CreateDependencyAdapter();
+            DependencyResolver.SetResolver(() => this.DependencyAdapter);
 
             this.InternalInitialize();
 
