@@ -28,12 +28,12 @@
             Forms.Init(this, bundle);
             FormsAppCompat.EnableAll();
 
-            this.LoadApplication(new App(this.CreateDependencyModules()));
+            this.LoadApplication(new App(CreateDependencyModules()));
         }
 
-        private IEnumerable<IDependencyModule> CreateDependencyModules()
+        private static IEnumerable<IDependencyModule> CreateDependencyModules()
         {
-            return new IDependencyModule[] { new CoreDependencies(), new CoreAndroidDependencies(), new FormsDependencies(), new FormsAndroidDependencies() };
+            return new[] { CoreDependencies.Instance, CoreAndroidDependencies.Instance, FormsDependencies.Instance, FormsAndroidDependencies.Instance };
         }
     }
 }

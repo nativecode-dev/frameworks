@@ -6,6 +6,13 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid
 
     public class FormsAndroidDependencies : IDependencyModule
     {
+        private static readonly IDependencyModule DefaultInstance = new FormsAndroidDependencies();
+
+        public static IDependencyModule Instance
+        {
+            get { return DefaultInstance; }
+        }
+
         public void RegisterDependencies(IDependencyRegistrar registrar)
         {
             registrar.Register<IContextProvider, FormsContextProvider>();

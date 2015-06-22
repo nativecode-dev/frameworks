@@ -6,6 +6,13 @@
 
     public class FormsDependencies : IDependencyModule
     {
+        private static readonly IDependencyModule DefaultInstance = new FormsDependencies();
+
+        public static IDependencyModule Instance
+        {
+            get { return DefaultInstance; }
+        }
+
         public void RegisterDependencies(IDependencyRegistrar registrar)
         {
             registrar.Register<IPresentationFactory, PresentationFactory>();

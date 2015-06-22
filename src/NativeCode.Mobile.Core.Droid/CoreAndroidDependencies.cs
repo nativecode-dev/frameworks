@@ -8,6 +8,13 @@ namespace NativeCode.Mobile.Core.Droid
 
     public class CoreAndroidDependencies : IDependencyModule
     {
+        private static readonly IDependencyModule DefaultInstance = new CoreAndroidDependencies();
+
+        public static IDependencyModule Instance
+        {
+            get { return DefaultInstance; }
+        }
+
         public void RegisterDependencies(IDependencyRegistrar registrar)
         {
             registrar.Register<ICollectionFactory, CollectionFactory>();
