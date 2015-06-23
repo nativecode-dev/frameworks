@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="Xamarin" default="manual">
+<project name="Mobile" default="manual">
 
   <!--
   # Define properties

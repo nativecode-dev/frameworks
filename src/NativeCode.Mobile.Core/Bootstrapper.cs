@@ -17,12 +17,13 @@
             this.DependencyAdapter = this.CreateDependencyAdapter();
             DependencyResolver.SetResolver(() => this.DependencyAdapter);
 
-            this.InternalInitialize();
-
             foreach (var module in modules)
             {
                 module.RegisterDependencies(this.DependencyAdapter);
             }
+
+            // We need to fire this last, so that any dependencies can overwrite existing ones from modules.
+            this.InternalInitialize();
         }
 
         /// <summary>
