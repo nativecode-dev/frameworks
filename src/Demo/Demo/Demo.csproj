@@ -45,6 +45,7 @@
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AppStylesViewModel.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\FlipViewModel.cs" />
     <Compile Include="ViewModels\MasterDetailInnerNavigationViewModel.cs" />
     <Compile Include="ViewModels\MasterDetailOuterNavigationViewModel.cs" />
     <Compile Include="ViewModels\SimpleMasterDetailViewModel.cs" />
@@ -58,6 +59,9 @@
     </Compile>
     <Compile Include="Views\ArticleView.xaml.cs">
       <DependentUpon>ArticleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FlipView.xaml.cs">
+      <DependentUpon>FlipView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MasterDetailInnerNavigationView.xaml.cs">
       <DependentUpon>MasterDetailInnerNavigationView.xaml</DependentUpon>
@@ -164,6 +168,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AboutView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\FlipView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

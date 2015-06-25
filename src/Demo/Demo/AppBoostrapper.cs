@@ -25,6 +25,7 @@
             PresentationFactoryRegistry.Register<AboutView, AboutViewModel>(this.DependencyAdapter);
             PresentationFactoryRegistry.Register<AppStylesView, AppStylesViewModel>(this.DependencyAdapter);
             PresentationFactoryRegistry.Register<ArticleView, ArticleViewModel>(this.DependencyAdapter);
+            PresentationFactoryRegistry.Register<FlipView, FlipViewModel>(this.DependencyAdapter);
             PresentationFactoryRegistry.Register<MasterDetailInnerNavigationView, MasterDetailInnerNavigationViewModel>(this.DependencyAdapter);
             PresentationFactoryRegistry.Register<MasterDetailOuterNavigationView, MasterDetailOuterNavigationViewModel>(this.DependencyAdapter);
             PresentationFactoryRegistry.Register<SimpleMasterDetailView, SimpleMasterDetailViewModel>(this.DependencyAdapter);

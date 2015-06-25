@@ -40,17 +40,14 @@
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
-    <Reference Include="NativeCode.Mobile.AppCompat, Version=1.0.0.61, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NativeCode.Mobile.AppCompat.1.0.0.61\lib\MonoAndroid50\NativeCode.Mobile.AppCompat.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NativeCode.Mobile.AppCompat">
+      <HintPath>..\..\packages\NativeCode.Mobile.AppCompat.1.0.0.72\lib\MonoAndroid50\NativeCode.Mobile.AppCompat.dll</HintPath>
     </Reference>
-    <Reference Include="NativeCode.Mobile.AppCompat.Controls, Version=1.0.0.61, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NativeCode.Mobile.AppCompat.Controls.1.0.0.61\lib\portable-net45+win+wp80+MonoAndroid10+xamarinios10+MonoTouch10\NativeCode.Mobile.AppCompat.Controls.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NativeCode.Mobile.AppCompat.Controls">
+      <HintPath>..\..\packages\NativeCode.Mobile.AppCompat.Controls.1.0.0.72\lib\portable-net45+win+wp80+MonoAndroid10+xamarinios10+MonoTouch10\NativeCode.Mobile.AppCompat.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="NativeCode.Mobile.AppCompat.Renderers, Version=1.0.0.61, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NativeCode.Mobile.AppCompat.Renderers.1.0.0.61\lib\MonoAndroid50\NativeCode.Mobile.AppCompat.Renderers.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NativeCode.Mobile.AppCompat.Renderers">
+      <HintPath>..\..\packages\NativeCode.Mobile.AppCompat.Renderers.1.0.0.72\lib\MonoAndroid50\NativeCode.Mobile.AppCompat.Renderers.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

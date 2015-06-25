@@ -6,6 +6,7 @@
     <Button Command="{Binding ChooseStyleCommand}" Text="Choose App Style" />
     <Button Command="{Binding ArticleCommand}" Text="View Article" />
     <Button Command="{Binding WebBrowserCommand}" IsEnabled="{Binding WebBrowserNavigationEnabled}" Text="Web Browser" />
+    <Button Command="{Binding FlipViewCommand}" Text="Flip View" />
     <Button Command="{Binding AboutCommand}" Text="About Device" />
   </StackLayout>
 </ContentPage>

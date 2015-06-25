@@ -7,8 +7,8 @@
     <description>$description$</description>
     <language>en-US</language>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-    <projectUrl>https://github.com/nativecode-dev/mobile</projectUrl>
-    <tags>mobile framework library android</tags>
+    <projectUrl>https://github.com/emilsjolander/android-FlipView</projectUrl>
+    <tags>mobile framework library xamarin android bindings</tags>
     <version>$version$</version>
   </metadata>
 </package>

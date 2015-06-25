@@ -1,0 +1,20 @@
+<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+  <attr path="/api/package[@name='se.emilsjolander.flipview']" name="managedName">NativeCode.Bindings.AndroidFlipView</attr>
+
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnFlipListener']/method[@name='onFlippedToPage']/parameter[@name='p0']" name="name">view</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnFlipListener']/method[@name='onFlippedToPage']/parameter[@name='p1']" name="name">position</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnFlipListener']/method[@name='onFlippedToPage']/parameter[@name='p2']" name="name">id</attr>
+
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnOverFlipListener']/method[@name='onOverFlip']/parameter[@name='p0']" name="name">view</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnOverFlipListener']/method[@name='onOverFlip']/parameter[@name='p1']" name="name">mode</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnOverFlipListener']/method[@name='onOverFlip']/parameter[@name='p2']" name="name">overFlippingPrevious</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnOverFlipListener']/method[@name='onOverFlip']/parameter[@name='p3']" name="name">overFlipDistance</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnOverFlipListener']/method[@name='onOverFlip']/parameter[@name='p4']" name="name">flipDistancePerPage</attr>
+</metadata>

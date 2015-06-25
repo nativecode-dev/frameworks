@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeCode.Mobile.Core.Droi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeCode.Mobile.Core.XamarinForms.Droid", "NativeCode.Mobile.Core.XamarinForms.Droid\NativeCode.Mobile.Core.XamarinForms.Droid.csproj", "{730FDB85-3FCC-4BB4-B87A-5574B0C7B9D5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bindings", "Bindings", "{BAD5CF10-1812-4D80-8C1D-EAA213060E25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeCode.Bindings.AndroidFlipView", "Bindings\NativeCode.Bindings.AndroidFlipView\NativeCode.Bindings.AndroidFlipView.csproj", "{E03F321D-5F40-4335-9F9D-EF1B94FA4D63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,10 @@ Global
 		{730FDB85-3FCC-4BB4-B87A-5574B0C7B9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{730FDB85-3FCC-4BB4-B87A-5574B0C7B9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{730FDB85-3FCC-4BB4-B87A-5574B0C7B9D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E03F321D-5F40-4335-9F9D-EF1B94FA4D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E03F321D-5F40-4335-9F9D-EF1B94FA4D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E03F321D-5F40-4335-9F9D-EF1B94FA4D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E03F321D-5F40-4335-9F9D-EF1B94FA4D63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,5 +64,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7CDB0FFD-2834-4F4D-9CB6-E56D8249C692} = {DEE9CC0A-FFCD-49BF-87AC-C3893960A66B}
 		{9E6E1F38-2D18-4D0A-BC84-ADE1BF33F571} = {DEE9CC0A-FFCD-49BF-87AC-C3893960A66B}
+		{E03F321D-5F40-4335-9F9D-EF1B94FA4D63} = {BAD5CF10-1812-4D80-8C1D-EAA213060E25}
 	EndGlobalSection
 EndGlobal

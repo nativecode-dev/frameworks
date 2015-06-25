@@ -16,7 +16,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
-    <NuGetPackageImportStamp>239efa3c</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>8e9d8432</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,8 +46,16 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.Android.Support.Design, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Android.Support.Design.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.21.0.3.0\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.v4.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -68,7 +76,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ViewExtensions.cs" />
     <Compile Include="Platform\FormsContextProvider.cs" />
+    <Compile Include="Renderers\Adapters\FlipAdapter.cs" />
+    <Compile Include="Renderers\Adapters\IFlipAdapterCallback.cs" />
+    <Compile Include="Renderers\FlipViewRenderer.cs" />
+    <Compile Include="Renderers\InflateViewRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FormsAndroidDependencies.cs" />
@@ -78,14 +91,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bindings\NativeCode.Bindings.AndroidFlipView\NativeCode.Bindings.AndroidFlipView.csproj">
+      <Project>{e03f321d-5f40-4335-9f9d-ef1b94fa4d63}</Project>
+      <Name>NativeCode.Bindings.AndroidFlipView</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NativeCode.Mobile.Core.Droid\NativeCode.Mobile.Core.Droid.csproj">
       <Project>{C1019953-80E9-4402-A7AC-74B2DCFD76B2}</Project>
       <Name>NativeCode.Mobile.Core.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NativeCode.Mobile.Core.XamarinForms\NativeCode.Mobile.Core.XamarinForms.csproj">
+      <Project>{D283C287-3C33-4B08-99ED-6C70AE2D81F6}</Project>
+      <Name>NativeCode.Mobile.Core.XamarinForms</Name>
     </ProjectReference>
     <ProjectReference Include="..\NativeCode.Mobile.Core\NativeCode.Mobile.Core.csproj">
       <Project>{CB24CD06-8765-4AD4-8DE2-766E98BDDA23}</Project>
       <Name>NativeCode.Mobile.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\flipview.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

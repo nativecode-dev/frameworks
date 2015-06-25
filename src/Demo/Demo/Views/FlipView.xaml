@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:NativeCode.Mobile.Core.XamarinForms.Controls;assembly=NativeCode.Mobile.Core.XamarinForms"
+             x:Class="Demo.Views.FlipView" IsBusy="{Binding IsBusy}" Title="{Binding Title}">
+  <controls:FlipView>
+    <controls:FlipView.Views>
+      <ContentView>
+        <Label FontSize="Large" Text="Content View Test 1" TextColor="White" />
+      </ContentView>
+      <ContentView>
+        <Label FontSize="Large" Text="Content View Test 2" TextColor="White" />
+      </ContentView>
+      <ContentView>
+        <Label FontSize="Large" Text="Content View Test 3" TextColor="White" />
+      </ContentView>
+    </controls:FlipView.Views>
+  </controls:FlipView>
+</ContentPage>

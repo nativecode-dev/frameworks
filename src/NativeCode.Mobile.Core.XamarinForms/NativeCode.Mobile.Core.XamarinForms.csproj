@@ -43,6 +43,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\FlipView.cs" />
     <Compile Include="Dependencies\FormsDependencyAdapter.cs" />
     <Compile Include="Extensions\ApplicationExtensions.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />
