@@ -3,5 +3,5 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:NativeCode.Mobile.Core.XamarinForms.Controls;assembly=NativeCode.Mobile.Core.XamarinForms"
              x:Class="Demo.Views.FlipView" IsBusy="{Binding IsBusy}" Title="{Binding Title}">
-  <controls:FlipView Views="{Binding FlipViews}" />
+  <controls:FlipView ContentProvider="{Binding ContentProvider}" />
 </ContentPage>

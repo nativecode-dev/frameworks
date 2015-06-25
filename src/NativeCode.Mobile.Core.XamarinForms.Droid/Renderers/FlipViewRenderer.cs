@@ -81,7 +81,7 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
 
                 this.RemoveAllViews();
 
-                this.Adapter = this.FlipAdapter = new FlipAdapter(this.FlipViewElement);
+                this.Adapter = this.FlipAdapter = new FlipAdapter(this.FlipViewElement.ContentProvider);
                 this.Tracker = new VisualElementTracker(this);
 
                 this.PeakNext(true);
@@ -139,7 +139,7 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
                 this.FlipViewElement.Content.Parent = null;
             }
 
-            this.FlipViewElement.Content = this.FlipViewElement.Views[position];
+            this.FlipViewElement.Content = this.FlipViewElement.ContentProvider.GetContent(position);
         }
     }
 }

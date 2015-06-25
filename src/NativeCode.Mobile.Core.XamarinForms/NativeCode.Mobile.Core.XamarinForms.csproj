@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="Controls\FlipView.cs" />
     <Compile Include="Controls\FlipViewContent.cs" />
+    <Compile Include="Controls\FlipViewContentProvider.cs" />
     <Compile Include="Controls\FlipViewStyle.cs" />
+    <Compile Include="Controls\IFlipViewContentProvider.cs" />
     <Compile Include="Dependencies\FormsDependencyAdapter.cs" />
     <Compile Include="Extensions\ApplicationExtensions.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />

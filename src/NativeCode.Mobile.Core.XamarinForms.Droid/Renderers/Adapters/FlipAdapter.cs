@@ -10,21 +10,25 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers.Adapters
 
     public class FlipAdapter : BaseAdapter<View>
     {
-        private readonly FlipView flipView;
+        private readonly IFlipViewContentProvider provider;
 
-        public FlipAdapter(FlipView flipView)
+        public FlipAdapter(IFlipViewContentProvider provider)
         {
-            this.flipView = flipView;
+            this.provider = provider;
         }
 
         public override int Count
         {
-            get { return this.flipView.Views.Count; }
+            get { return this.provider.Count; }
         }
 
         public override View this[int position]
         {
-            get { return ViewExtensions.GetRenderer(this.flipView.Views[position]).ViewGroup; }
+            get
+            {
+                var content = this.provider.GetContent(position);
+                return content.GetRenderer().ViewGroup;
+            }
         }
 
         public override JavaObject GetItem(int position)
