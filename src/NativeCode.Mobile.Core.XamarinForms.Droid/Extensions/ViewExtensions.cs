@@ -19,23 +19,32 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Extensions
 
         private static readonly FieldInfo FieldRenderer;
 
+        private static BindableProperty cachedRendererProperty;
+
+        /// <summary>
+        /// Initializes static members of the <see cref="ViewExtensions"/> class.
+        /// </summary>
         static ViewExtensions()
         {
             var type = Type.GetType(PlatformType, true);
             FieldRenderer = type.GetField(PlatformRenderer, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
         }
 
+        /// <summary>
+        /// Gets the renderer property.
+        /// </summary>
         internal static BindableProperty RendererProperty
         {
-            get { return (BindableProperty)FieldRenderer.GetValue(null); }
+            get { return cachedRendererProperty ?? (cachedRendererProperty = (BindableProperty)FieldRenderer.GetValue(null)); }
         }
 
         /// <summary>
         /// Attempts to get the <see cref="IVisualElementRenderer" /> for a given <see cref="BindableObject" />.
         /// </summary>
         /// <param name="element">The element.</param>
+        /// <param name="create">if set to <c>true</c> creates a renderer.</param>
         /// <returns>Returns a <see cref="IVisualElementRenderer" />.</returns>
-        public static IVisualElementRenderer GetRenderer(this VisualElement element)
+        public static IVisualElementRenderer GetRenderer(this VisualElement element, bool create = true)
         {
             var renderer = element.GetValue(RendererProperty) as IVisualElementRenderer;
 
@@ -44,9 +53,15 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Extensions
                 return renderer;
             }
 
+            if (!create)
+            {
+                return null;
+            }
+
             renderer = RendererFactory.GetRenderer(element);
             element.SetValue(RendererProperty, renderer);
 
+            // TODO: Why do we have to call this twice?
             return RendererFactory.GetRenderer(element);
         }
 

@@ -1,37 +1,30 @@
 namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers.Adapters
 {
-    using System.Collections.Generic;
-
     using Android.Views;
     using Android.Widget;
 
+    using NativeCode.Mobile.Core.XamarinForms.Controls;
+    using NativeCode.Mobile.Core.XamarinForms.Droid.Extensions;
+
     using JavaObject = Java.Lang.Object;
 
-    public class FlipAdapter : BaseAdapter<View>, View.IOnClickListener
+    public class FlipAdapter : BaseAdapter<View>
     {
-        private readonly List<View> views = new List<View>();
+        private readonly FlipView flipView;
 
-        private readonly IFlipAdapterCallback callback;
-
-        public FlipAdapter(IFlipAdapterCallback callback)
+        public FlipAdapter(FlipView flipView)
         {
-            this.callback = callback;
+            this.flipView = flipView;
         }
 
         public override int Count
         {
-            get { return this.views.Count; }
+            get { return this.flipView.Views.Count; }
         }
 
         public override View this[int position]
         {
-            get { return this.views[position]; }
-        }
-
-        public virtual void AddView(View view)
-        {
-            this.views.Add(view);
-            this.NotifyDataSetChanged();
+            get { return ViewExtensions.GetRenderer(this.flipView.Views[position]).ViewGroup; }
         }
 
         public override JavaObject GetItem(int position)
@@ -47,11 +40,6 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers.Adapters
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             return this[position];
-        }
-
-        public void OnClick(View view)
-        {
-            this.callback.OnPageRequested(this.views.IndexOf(view));
         }
     }
 }

@@ -7,84 +7,139 @@ using Xamarin.Forms;
 
 namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
 {
+    using System;
     using System.ComponentModel;
+
+    using Android.Views;
 
     using NativeCode.Bindings.AndroidFlipView;
     using NativeCode.Mobile.Core.XamarinForms.Droid.Renderers.Adapters;
 
+    using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
 
     using FlipView = NativeCode.Mobile.Core.XamarinForms.Controls.FlipView;
     using NativeFlipView = NativeCode.Bindings.AndroidFlipView.FlipView;
-    using ViewExtensions = NativeCode.Mobile.Core.XamarinForms.Droid.Extensions.ViewExtensions;
 
-    public class FlipViewRenderer : InflateViewRenderer<FlipView, NativeFlipView>,
+    public class FlipViewRenderer : NativeFlipView,
+                                    IVisualElementRenderer,
+                                    IFlipAdapterCallback,
                                     NativeFlipView.IOnFlipListener,
-                                    NativeFlipView.IOnOverFlipListener,
-                                    IFlipAdapterCallback
+                                    NativeFlipView.IOnOverFlipListener
     {
+        public FlipViewRenderer() : base(Forms.Context)
+        {
+        }
+
+        public event EventHandler<VisualElementChangedEventArgs> ElementChanged;
+
+        public VisualElement Element { get; private set; }
+
+        public VisualElementTracker Tracker { get; private set; }
+
+        public ViewGroup ViewGroup
+        {
+            get { return this; }
+        }
+
         protected FlipAdapter FlipAdapter { get; private set; }
+
+        protected FlipView FlipViewElement
+        {
+            get { return (FlipView)this.Element; }
+        }
 
         public void OnFlippedToPage(NativeFlipView view, int position, long id)
         {
+            this.UpdateContent(position);
         }
 
         public void OnPageRequested(int position)
         {
-            this.Control.SmoothFlipTo(position);
+            this.SmoothFlipTo(position);
         }
 
         public void OnOverFlip(NativeFlipView view, OverFlipMode mode, bool overFlippingPrevious, float overFlipDistance, float flipDistancePerPage)
         {
         }
 
-        protected override void OnElementChanged(ElementChangedEventArgs<FlipView> e)
+        public void SetElement(VisualElement element)
         {
-            base.OnElementChanged(e);
+            var oldElement = this.Element;
+            var newElement = element;
 
-            if (this.Control == null)
+            this.Element = newElement;
+
+            if (oldElement != null)
             {
-                this.SetNativeControl(this.InflateNativeControl(Resource.Layout.flipview));
-                this.SetFlipAdapter();
+                oldElement.PropertyChanged -= this.HandlePropertyChanged;
+            }
 
-                this.Control.PeakNext(false);
-                this.Control.SetOnFlipListener(this);
-                this.Control.SetOnOverFlipListener(this);
+            if (oldElement == null && newElement != null)
+            {
+                newElement.PropertyChanged += this.HandlePropertyChanged;
 
-                this.UpdateOverFlipMode();
+                this.RemoveAllViews();
+
+                this.Adapter = this.FlipAdapter = new FlipAdapter(this.FlipViewElement);
+                this.Tracker = new VisualElementTracker(this);
+
+                this.PeakNext(true);
+                this.SetOnFlipListener(this);
+                this.SetOnOverFlipListener(this);
+
+                this.UpdateContent(0);
+            }
+
+            this.OnElementChanged(new VisualElementChangedEventArgs(oldElement, newElement));
+        }
+
+        public SizeRequest GetDesiredSize(int widthConstraint, int heightConstraint)
+        {
+            this.Measure(widthConstraint, heightConstraint);
+
+            return new SizeRequest(new Size(widthConstraint, heightConstraint));
+        }
+
+        public void UpdateLayout()
+        {
+            if (this.Tracker != null)
+            {
+                this.Tracker.UpdateLayout();
             }
         }
 
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+        protected virtual void OnElementChanged(VisualElementChangedEventArgs e)
         {
-            base.OnElementPropertyChanged(sender, e);
+            var handler = this.ElementChanged;
 
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        private void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
             if (e.PropertyName == FlipView.FlipViewStyleProperty.PropertyName)
             {
-                this.UpdateOverFlipMode();
+                this.UpdateFlipViewStyle();
             }
         }
 
-        private void SetFlipAdapter()
+        private void UpdateFlipViewStyle()
         {
-            this.Control.Adapter = this.FlipAdapter = new FlipAdapter(this);
-
-            foreach (var view in this.Element.Views)
-            {
-                var renderer = ViewExtensions.GetRenderer(view);
-                this.FlipAdapter.AddView(renderer.ViewGroup);
-            }
+            this.OverFlipMode = this.FlipViewElement.FlipViewStyle == FlipViewStyle.RubberBand ? OverFlipMode.RubberBand : OverFlipMode.Glow;
         }
 
-        private void UpdateOverFlipMode()
+        private void UpdateContent(int position)
         {
-            if (this.Element.FlipViewStyle == FlipViewStyle.RubberBand)
+            if (this.FlipViewElement.Content != null)
             {
-                this.Control.OverFlipMode = OverFlipMode.RubberBand;
-                return;
+                this.FlipViewElement.Content.Parent = null;
             }
 
-            this.Control.OverFlipMode = OverFlipMode.Glow;
+            this.FlipViewElement.Content = this.FlipViewElement.Views[position];
         }
     }
 }
