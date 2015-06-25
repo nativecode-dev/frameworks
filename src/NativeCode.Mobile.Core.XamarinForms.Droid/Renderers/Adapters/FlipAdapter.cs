@@ -31,6 +31,7 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers.Adapters
         public virtual void AddView(View view)
         {
             this.views.Add(view);
+            this.NotifyDataSetChanged();
         }
 
         public override JavaObject GetItem(int position)

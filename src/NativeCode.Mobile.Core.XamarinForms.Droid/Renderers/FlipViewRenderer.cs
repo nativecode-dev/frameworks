@@ -7,6 +7,8 @@ using Xamarin.Forms;
 
 namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
 {
+    using System.ComponentModel;
+
     using NativeCode.Bindings.AndroidFlipView;
     using NativeCode.Mobile.Core.XamarinForms.Droid.Renderers.Adapters;
 
@@ -14,9 +16,12 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
 
     using FlipView = NativeCode.Mobile.Core.XamarinForms.Controls.FlipView;
     using NativeFlipView = NativeCode.Bindings.AndroidFlipView.FlipView;
-    using Resource = NativeCode.Mobile.Core.XamarinForms.Droid.Resource;
+    using ViewExtensions = NativeCode.Mobile.Core.XamarinForms.Droid.Extensions.ViewExtensions;
 
-    public class FlipViewRenderer : InflateViewRenderer<FlipView, NativeFlipView>, NativeFlipView.IOnFlipListener, NativeFlipView.IOnOverFlipListener, IFlipAdapterCallback
+    public class FlipViewRenderer : InflateViewRenderer<FlipView, NativeFlipView>,
+                                    NativeFlipView.IOnFlipListener,
+                                    NativeFlipView.IOnOverFlipListener,
+                                    IFlipAdapterCallback
     {
         protected FlipAdapter FlipAdapter { get; private set; }
 
@@ -39,28 +44,47 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
 
             if (this.Control == null)
             {
-                this.FlipAdapter = new FlipAdapter(this);
+                this.SetNativeControl(this.InflateNativeControl(Resource.Layout.flipview));
+                this.SetFlipAdapter();
 
-                var control = this.InflateNativeControl(Resource.Layout.flipview);
-                control.SetOnFlipListener(this);
-                control.SetOnOverFlipListener(this);
+                this.Control.PeakNext(false);
+                this.Control.SetOnFlipListener(this);
+                this.Control.SetOnOverFlipListener(this);
 
-                this.SetNativeControl(control);
-                this.UpdateFlipAdapter();
-                control.PeakNext(true);
+                this.UpdateOverFlipMode();
             }
         }
 
-        private void UpdateFlipAdapter()
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            base.OnElementPropertyChanged(sender, e);
+
+            if (e.PropertyName == FlipView.FlipViewStyleProperty.PropertyName)
+            {
+                this.UpdateOverFlipMode();
+            }
+        }
+
+        private void SetFlipAdapter()
+        {
+            this.Control.Adapter = this.FlipAdapter = new FlipAdapter(this);
+
             foreach (var view in this.Element.Views)
             {
-                var renderer = Droid.Extensions.ViewExtensions.GetRenderer(view);
+                var renderer = ViewExtensions.GetRenderer(view);
                 this.FlipAdapter.AddView(renderer.ViewGroup);
             }
+        }
 
-            this.Control.Adapter = this.FlipAdapter;
-            this.UpdateLayout();
+        private void UpdateOverFlipMode()
+        {
+            if (this.Element.FlipViewStyle == FlipViewStyle.RubberBand)
+            {
+                this.Control.OverFlipMode = OverFlipMode.RubberBand;
+                return;
+            }
+
+            this.Control.OverFlipMode = OverFlipMode.Glow;
         }
     }
 }
