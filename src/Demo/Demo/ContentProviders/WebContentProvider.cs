@@ -1,4 +1,4 @@
-﻿namespace Demo.DataSource
+﻿namespace Demo.ContentProviders
 {
     using System;
     using System.Collections.Generic;
@@ -7,8 +7,9 @@
     using Demo.Views;
 
     using NativeCode.Mobile.Core.XamarinForms.Controls;
+    using NativeCode.Mobile.Core.XamarinForms.Controls.ContentProviders;
 
-    public class WebContentProvider : FlipViewContentProvider<Uri>
+    public class WebContentProvider : FlipContentViewProvider<Uri>
     {
         public WebContentProvider(IEnumerable<Uri> enumerable) : base(enumerable)
         {

@@ -39,7 +39,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppBoostrapper.cs" />
-    <Compile Include="DataSource\WebContentProvider.cs" />
+    <Compile Include="ContentProviders\WebContentProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Triggers\WebViewNavigatedTrigger.cs" />
     <Compile Include="Triggers\WebViewNavigatingTrigger.cs" />

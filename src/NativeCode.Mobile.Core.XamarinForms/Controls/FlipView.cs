@@ -1,5 +1,7 @@
 ﻿namespace NativeCode.Mobile.Core.XamarinForms.Controls
 {
+    using NativeCode.Mobile.Core.XamarinForms.Controls.ContentProviders;
+
     using Xamarin.Forms;
 
     [ContentProperty("Views")]
@@ -9,13 +11,12 @@
             x => x.FlipViewStyle,
             default(FlipViewStyle));
 
-        public static readonly BindableProperty ContentProviderProperty = BindableProperty.Create<FlipView, IFlipViewContentProvider>(
-            x => x.ContentProvider,
-            default(IFlipViewContentProvider));
+        public static readonly BindableProperty ContentProviderProperty =
+            BindableProperty.Create<FlipView, IContentViewProvider<FlipViewContent>>(x => x.ContentProvider, default(IContentViewProvider<FlipViewContent>));
 
-        public IFlipViewContentProvider ContentProvider
+        public IContentViewProvider<FlipViewContent> ContentProvider
         {
-            get { return (IFlipViewContentProvider)this.GetValue(ContentProviderProperty); }
+            get { return (IContentViewProvider<FlipViewContent>)this.GetValue(ContentProviderProperty); }
             set { this.SetValue(ContentProviderProperty, value); }
         }
 

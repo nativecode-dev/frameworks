@@ -1,15 +1,15 @@
-﻿namespace NativeCode.Mobile.Core.XamarinForms.Controls
+﻿namespace NativeCode.Mobile.Core.XamarinForms.Controls.ContentProviders
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    public abstract class FlipViewContentProvider<T> : IFlipViewContentProvider
+    public abstract class FlipContentViewProvider<T> : IContentViewProvider<FlipViewContent>
     {
         private readonly IEnumerable<T> enumerable;
 
         private readonly List<FlipViewContent> cache = new List<FlipViewContent>();
 
-        protected FlipViewContentProvider(IEnumerable<T> enumerable)
+        protected FlipContentViewProvider(IEnumerable<T> enumerable)
         {
             this.enumerable = enumerable;
         }

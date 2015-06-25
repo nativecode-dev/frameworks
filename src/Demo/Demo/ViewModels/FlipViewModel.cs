@@ -3,10 +3,11 @@
     using System;
     using System.Collections.Generic;
 
-    using Demo.DataSource;
+    using Demo.ContentProviders;
 
     using NativeCode.Mobile.Core.Presentation;
     using NativeCode.Mobile.Core.XamarinForms.Controls;
+    using NativeCode.Mobile.Core.XamarinForms.Controls.ContentProviders;
 
     public class FlipViewModel : NavigableViewModel
     {
@@ -26,6 +27,6 @@
                     });
         }
 
-        public IFlipViewContentProvider ContentProvider { get; private set; }
+        public IContentViewProvider<FlipViewContent> ContentProvider { get; private set; }
     }
 }

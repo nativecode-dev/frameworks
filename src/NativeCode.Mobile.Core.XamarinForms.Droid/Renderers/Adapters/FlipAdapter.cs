@@ -4,15 +4,16 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers.Adapters
     using Android.Widget;
 
     using NativeCode.Mobile.Core.XamarinForms.Controls;
+    using NativeCode.Mobile.Core.XamarinForms.Controls.ContentProviders;
     using NativeCode.Mobile.Core.XamarinForms.Droid.Extensions;
 
     using JavaObject = Java.Lang.Object;
 
     public class FlipAdapter : BaseAdapter<View>
     {
-        private readonly IFlipViewContentProvider provider;
+        private readonly IContentViewProvider<FlipViewContent> provider;
 
-        public FlipAdapter(IFlipViewContentProvider provider)
+        public FlipAdapter(IContentViewProvider<FlipViewContent> provider)
         {
             this.provider = provider;
         }
