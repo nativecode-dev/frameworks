@@ -43,6 +43,11 @@
             this.container.Register(contract, implementation, CreateLifestyle(lifetime));
         }
 
+        public override void RegisterAll<TContract>(IEnumerable<Type> implementations)
+        {
+            this.container.RegisterAll<TContract>(implementations);
+        }
+
         public override object Resolve(Type type, string key = null)
         {
             return this.container.GetInstance(type);

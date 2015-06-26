@@ -137,6 +137,13 @@
             this.Register(typeof(TContract), type, key, lifetime);
         }
 
+        public abstract void RegisterAll<TContract>(IEnumerable<Type> implementations) where TContract : class;
+
+        public void RegisterAll<TContract>(params Type[] implementations) where TContract : class
+        {
+            this.RegisterAll<TContract>((IEnumerable<Type>)implementations);
+        }
+
         /// <summary>
         /// Resolves the registered type of the dependency.
         /// </summary>

@@ -17,16 +17,16 @@
             this.ProductString = device.GetProductString();
         }
 
-        public string DeviceIdentifier { get; set; }
+        public string DeviceIdentifier { get; private set; }
 
-        public string DeviceString { get; set; }
+        public string DeviceString { get; private set; }
 
-        public string DisplayString { get; set; }
+        public string DisplayString { get; private set; }
 
-        public string HardwareString { get; set; }
+        public string HardwareString { get; private set; }
 
-        public string PlatformString { get; set; }
+        public string PlatformString { get; private set; }
 
-        public string ProductString { get; set; }
+        public string ProductString { get; private set; }
     }
 }

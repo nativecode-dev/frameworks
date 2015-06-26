@@ -21,11 +21,7 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
     using FlipView = NativeCode.Mobile.Core.XamarinForms.Controls.FlipView;
     using NativeFlipView = NativeCode.Bindings.AndroidFlipView.FlipView;
 
-    public class FlipViewRenderer : NativeFlipView,
-                                    IVisualElementRenderer,
-                                    IFlipAdapterCallback,
-                                    NativeFlipView.IOnFlipListener,
-                                    NativeFlipView.IOnOverFlipListener
+    public class FlipViewRenderer : NativeFlipView, IVisualElementRenderer, NativeFlipView.IOnFlipListener, NativeFlipView.IOnOverFlipListener
     {
         public FlipViewRenderer() : base(Forms.Context)
         {
@@ -54,11 +50,6 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
             this.UpdateContent(position);
         }
 
-        public void OnPageRequested(int position)
-        {
-            this.SmoothFlipTo(position);
-        }
-
         public void OnOverFlip(NativeFlipView view, OverFlipMode mode, bool overFlippingPrevious, float overFlipDistance, float flipDistancePerPage)
         {
         }
@@ -81,13 +72,14 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
 
                 this.RemoveAllViews();
 
-                this.Adapter = this.FlipAdapter = new FlipAdapter(this.FlipViewElement.ContentProvider);
+                this.Adapter = this.FlipAdapter = this.CreateAdapter();
                 this.Tracker = new VisualElementTracker(this);
 
                 this.PeakNext(true);
                 this.SetOnFlipListener(this);
                 this.SetOnOverFlipListener(this);
 
+                this.FlipAdapter.Invalidate();
                 this.UpdateContent(0);
             }
 
@@ -119,6 +111,13 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
             }
         }
 
+        private FlipAdapter CreateAdapter()
+        {
+            var adapter = new FlipAdapter(this.FlipViewElement.ContentProvider);
+
+            return adapter;
+        }
+
         private void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == FlipView.FlipViewStyleProperty.PropertyName)
@@ -134,11 +133,6 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
 
         private void UpdateContent(int position)
         {
-            if (this.FlipViewElement.Content != null)
-            {
-                this.FlipViewElement.Content.Parent = null;
-            }
-
             this.FlipViewElement.Content = this.FlipViewElement.ContentProvider.GetContent(position);
         }
     }

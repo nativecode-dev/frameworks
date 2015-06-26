@@ -1,6 +1,7 @@
 ﻿namespace NativeCode.Mobile.Core.Dependencies
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Provides a contract to register dependencies.
@@ -91,5 +92,9 @@
         /// <param name="lifetime">The lifetime.</param>
         void Register<TContract, TImplementation>(string key, DependencyLifetime lifetime = DependencyLifetime.Default) where TContract : class
             where TImplementation : class, TContract;
+
+        void RegisterAll<TContract>(IEnumerable<Type> implementations) where TContract : class;
+
+        void RegisterAll<TContract>(params Type[] implementations) where TContract : class;
     }
 }

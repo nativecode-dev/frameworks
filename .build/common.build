@@ -78,6 +78,7 @@
     <if test="${not ArtifactsCleaned}">
       <delete dir="artifacts" if="${directory::exists('artifacts')}" />
       <delete dir="packages" if="${directory::exists('packages')}" />
+      <delete dir="src\packages" if="${directory::exists('src\packages')}" />
       <property name="ArtifactsCleaned" value="true" />
     </if>
     <mkdir dir="artifacts" if="${not directory::exists('artifacts')}" />

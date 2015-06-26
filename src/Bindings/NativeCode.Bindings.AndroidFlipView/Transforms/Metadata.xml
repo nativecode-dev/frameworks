@@ -6,12 +6,38 @@
   This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
+  <!-- Removals -->
+  <remove-node path="/api/package[@name='se.emilsjolander.flipview']/class[@name='GlowOverFlipper']" />
+  <remove-node path="/api/package[@name='se.emilsjolander.flipview']/class[@name='OverFlipper']" />
+  <remove-node path="/api/package[@name='se.emilsjolander.flipview']/class[@name='OverFlipperFactory']" />
+  <remove-node path="/api/package[@name='se.emilsjolander.flipview']/class[@name='Recycler']" />
+  <remove-node path="/api/package[@name='se.emilsjolander.flipview']/class[@name='RubberBandOverFlipper']" />
+
+  <!-- Classes -->
   <attr path="/api/package[@name='se.emilsjolander.flipview']" name="managedName">NativeCode.Bindings.AndroidFlipView</attr>
 
+  <!-- Constructors -->
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/class[@name='FlipView']/constructor[@name='FlipView']/parameter[@name='p0']" name="name">context</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/class[@name='FlipView']/constructor[@name='FlipView']/parameter[@name='p1']" name="name">attr</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/class[@name='FlipView']/constructor[@name='FlipView']/parameter[@name='p2']" name="name">defStyleRes</attr>
+
+  <!-- Methods -->
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/class[@name='FlipView']/method[@name='flipBy']/parameter[@name='p0']" name="name">delta</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/class[@name='FlipView']/method[@name='flipTo']/parameter[@name='p0']" name="name">page</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/class[@name='FlipView']/method[@name='peakNext']/parameter[@name='p0']" name="name">once</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/class[@name='FlipView']/method[@name='peakPrevious']/parameter[@name='p0']" name="name">once</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/class[@name='FlipView']/method[@name='setEmptyView']/parameter[@name='p0']" name="name">view</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/class[@name='FlipView']/method[@name='setOnFlipListener']/parameter[@name='p0']" name="name">listener</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/class[@name='FlipView']/method[@name='setOnOverFlipListener']/parameter[@name='p0']" name="name">listener</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/class[@name='FlipView']/method[@name='smoothFlipBy']/parameter[@name='p0']" name="name">page</attr>
+  <attr path="/api/package[@name='se.emilsjolander.flipview']/class[@name='FlipView']/method[@name='smoothFlipTo']/parameter[@name='p0']" name="name">page</attr>
+
+  <!-- FlipView.OnFlipListener -->
   <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnFlipListener']/method[@name='onFlippedToPage']/parameter[@name='p0']" name="name">view</attr>
   <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnFlipListener']/method[@name='onFlippedToPage']/parameter[@name='p1']" name="name">position</attr>
   <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnFlipListener']/method[@name='onFlippedToPage']/parameter[@name='p2']" name="name">id</attr>
 
+  <!-- FlipView.OnOverFlipListener -->
   <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnOverFlipListener']/method[@name='onOverFlip']/parameter[@name='p0']" name="name">view</attr>
   <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnOverFlipListener']/method[@name='onOverFlip']/parameter[@name='p1']" name="name">mode</attr>
   <attr path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='FlipView.OnOverFlipListener']/method[@name='onOverFlip']/parameter[@name='p2']" name="name">overFlippingPrevious</attr>

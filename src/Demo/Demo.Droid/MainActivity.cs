@@ -16,13 +16,15 @@
 
     using Xamarin.Forms;
 
-    [Activity(ConfigurationChanges = AppConfiguration, MainLauncher = true, Theme = CompatTheme)]
+    [Activity(ConfigurationChanges = AppConfiguration, MainLauncher = true, Theme = CompatThemeLightDarkActionBar)]
     public class MainActivity : AppCompatFormsApplicationActivity
     {
         private const ConfigChanges AppConfiguration = ConfigChanges.Orientation | ConfigChanges.ScreenSize;
 
         protected override void OnCreate(Bundle bundle)
         {
+            this.EnableCoordinatorLayout = true;
+
             base.OnCreate(bundle);
 
             Forms.Init(this, bundle);

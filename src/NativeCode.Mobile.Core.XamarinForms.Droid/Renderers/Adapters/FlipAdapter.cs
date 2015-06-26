@@ -23,6 +23,11 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers.Adapters
             get { return this.provider.Count; }
         }
 
+        public override bool HasStableIds
+        {
+            get { return true; }
+        }
+
         public override View this[int position]
         {
             get
@@ -39,12 +44,17 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers.Adapters
 
         public override long GetItemId(int position)
         {
-            return this[position].Id;
+            return position;
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             return this[position];
+        }
+
+        public void Invalidate()
+        {
+            this.NotifyDataSetChanged();
         }
     }
 }

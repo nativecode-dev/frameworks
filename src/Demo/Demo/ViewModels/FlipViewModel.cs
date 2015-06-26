@@ -18,12 +18,13 @@
                 new WebContentProvider(
                     new List<Uri>
                     {
-                        new Uri("http://www.xamarin.com"),
-                        new Uri("http://www.google.com"),
-                        new Uri("http://www.flipboard.com"),
-                        new Uri("http://www.github.com"),
-                        new Uri("http://www.microsoft.com"),
-                        new Uri("http://www.bing.com")
+                        new Uri("https://www.nativecode.com"),
+                        new Uri("https://www.xamarin.com"),
+                        new Uri("https://www.google.com"),
+                        new Uri("https://www.flipboard.com"),
+                        new Uri("https://www.github.com"),
+                        new Uri("https://www.microsoft.com"),
+                        new Uri("https://www.bing.com")
                     });
         }
 
