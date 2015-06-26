@@ -8,7 +8,7 @@
     using Xamarin.Forms.Xaml;
 
     [ContentProperty("Key")]
-    public class TranslateExtensions : IMarkupExtension
+    public class TranslateExtension : IMarkupExtension
     {
         public string Key { get; set; }
 
