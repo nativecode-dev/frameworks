@@ -8,7 +8,7 @@
   -->
   <!-- Removals -->
   <remove-node path="/api/package[@name='se.emilsjolander.flipview']/class[@name='GlowOverFlipper']" />
-  <remove-node path="/api/package[@name='se.emilsjolander.flipview']/class[@name='OverFlipper']" />
+  <remove-node path="/api/package[@name='se.emilsjolander.flipview']/interface[@name='OverFlipper']" />
   <remove-node path="/api/package[@name='se.emilsjolander.flipview']/class[@name='OverFlipperFactory']" />
   <remove-node path="/api/package[@name='se.emilsjolander.flipview']/class[@name='Recycler']" />
   <remove-node path="/api/package[@name='se.emilsjolander.flipview']/class[@name='RubberBandOverFlipper']" />
