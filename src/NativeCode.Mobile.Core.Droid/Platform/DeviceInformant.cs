@@ -7,6 +7,8 @@ namespace NativeCode.Mobile.Core.Droid.Platform
 
     using NativeCode.Mobile.Core.Platform;
 
+    using Environment = System.Environment;
+
     public class DeviceInformant : IDeviceInformant
     {
         private readonly IContextProvider provider;
@@ -14,6 +16,11 @@ namespace NativeCode.Mobile.Core.Droid.Platform
         public DeviceInformant(IContextProvider provider)
         {
             this.provider = provider;
+        }
+
+        public string AppPath
+        {
+            get { return Environment.GetFolderPath(Environment.SpecialFolder.Personal, Environment.SpecialFolderOption.Create); }
         }
 
         public string DeviceIdentifier
@@ -29,6 +36,14 @@ namespace NativeCode.Mobile.Core.Droid.Platform
         protected Context Context
         {
             get { return this.provider.GetCurrentContext(); }
+        }
+
+        public string GetAppDataPath(string filename)
+        {
+            using (var file = this.Context.GetDatabasePath(filename))
+            {
+                return file.AbsolutePath;
+            }
         }
 
         public string GetDisplayString()

@@ -6,6 +6,11 @@
     public interface IDeviceInformant
     {
         /// <summary>
+        /// Gets the application path.
+        /// </summary>
+        string AppPath { get; }
+
+        /// <summary>
         /// Gets the device identifier.
         /// </summary>
         string DeviceIdentifier { get; }
@@ -14,6 +19,13 @@
         /// Gets a value indicating whether this instance is connected.
         /// </summary>
         bool IsConnected { get; }
+
+        /// <summary>
+        /// Gets the application data path.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
+        /// <returns>Returns a path to the data file.</returns>
+        string GetAppDataPath(string filename);
 
         /// <summary>
         /// Gets the device string.
