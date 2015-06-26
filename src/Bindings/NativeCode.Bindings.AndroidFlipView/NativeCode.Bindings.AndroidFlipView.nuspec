@@ -12,6 +12,6 @@
     <version>$version$</version>
   </metadata>
   <files>
-    <file src="obj\$configuration$\generated" target="obj\$configuration$\generated" />
+    <file src="obj\$configuration$\generated\**\*.*" target="obj\$configuration$\generated" />
   </files>
 </package>
