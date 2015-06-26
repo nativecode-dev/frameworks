@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<package>
+  <metadata>
+    <id>$id$</id>
+    <authors>NativeCode</authors>
+    <description>Provides bindings for the android-FlipView project.</description>
+    <language>en-US</language>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/nativecode-dev/mobile</projectUrl>
+    <tags>mobile framework library android</tags>
+    <version>$version$</version>
+  </metadata>
+  <files>
+    <file src="obj\$configuration$\generated" target="obj\$configuration$\generated" />
+  </files>
+</package>
