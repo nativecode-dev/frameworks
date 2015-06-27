@@ -63,6 +63,11 @@
             [CallerMemberName] string callerMemberName = null) where TException : Exception;
 
         /// <summary>
+        /// Flushes all <see cref="ILogWriter" /> instances.
+        /// </summary>
+        void Flush();
+
+        /// <summary>
         /// Logs the specified message.
         /// </summary>
         /// <param name="message">The message.</param>

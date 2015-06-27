@@ -50,6 +50,14 @@
             this.WriteLogMessage(message, LogMessageType.Exception, callerFilePath, callerLineNumber, callerMemberName);
         }
 
+        public void Flush()
+        {
+            foreach (var writer in this.writers)
+            {
+                writer.Flush();
+            }
+        }
+
         public void Informational(string message, string callerFilePath = null, int callerLineNumber = 0, string callerMemberName = null)
         {
             this.WriteLogMessage(message, LogMessageType.Informational, callerFilePath, callerLineNumber, callerMemberName);
