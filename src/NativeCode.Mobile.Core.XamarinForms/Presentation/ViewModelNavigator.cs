@@ -62,6 +62,40 @@
         {
             var view = this.PresentationFactory.GetViewFor<TViewModel>();
 
+            return this.PushPageAsync(initializer, animated, view);
+        }
+
+        public Task PushWithNavigationAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel
+        {
+            return this.PushWithNavigationAsync<TViewModel>(null, animated);
+        }
+
+        public Task PushWithNavigationAsync<TViewModel>(Action<TViewModel> initializer, bool animated = true) where TViewModel : NavigableViewModel
+        {
+            var view = this.PresentationFactory.GetViewFor<TViewModel>();
+
+            return this.PushPageAsync(initializer, animated, view.WithNavigation());
+        }
+
+        public Task PushModalAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel
+        {
+            return this.PushModalAsync<TViewModel>(null, animated);
+        }
+
+        public Task PushModalAsync<TViewModel>(Action<TViewModel> initializer, bool animated = true) where TViewModel : NavigableViewModel
+        {
+            var view = this.PresentationFactory.GetViewFor<TViewModel>();
+
+            if (initializer != null)
+            {
+                initializer((TViewModel)view.BindingContext);
+            }
+
+            return this.Navigation.PushModalAsync(view, animated);
+        }
+
+        private Task PushPageAsync<TViewModel>(Action<TViewModel> initializer, bool animated, Page view) where TViewModel : NavigableViewModel
+        {
             if (initializer != null)
             {
                 initializer((TViewModel)view.BindingContext);
@@ -80,23 +114,6 @@
             }
 
             return this.Navigation.PushAsync(view, animated);
-        }
-
-        public Task PushModalAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel
-        {
-            return this.PushModalAsync<TViewModel>(null, animated);
-        }
-
-        public Task PushModalAsync<TViewModel>(Action<TViewModel> initializer, bool animated = true) where TViewModel : NavigableViewModel
-        {
-            var view = this.PresentationFactory.GetViewFor<TViewModel>();
-
-            if (initializer != null)
-            {
-                initializer((TViewModel)view.BindingContext);
-            }
-
-            return this.Navigation.PushModalAsync(view, animated);
         }
     }
 }

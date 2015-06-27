@@ -47,6 +47,23 @@
         Task PushAsync<TViewModel>(Action<TViewModel> initializer, bool animated = true) where TViewModel : NavigableViewModel;
 
         /// <summary>
+        /// Pushes the view model with navigation capabilities.
+        /// </summary>
+        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+        /// <param name="animated">if set to <c>true</c> animate transition.</param>
+        /// <returns>Returns a <see cref="Task" />.</returns>
+        Task PushWithNavigationAsync<TViewModel>(bool animated = true) where TViewModel : NavigableViewModel;
+
+        /// <summary>
+        /// Pushes the view model with navigation capabilities.
+        /// </summary>
+        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+        /// <param name="initializer">The initializer.</param>
+        /// <param name="animated">if set to <c>true</c> animate transition.</param>
+        /// <returns>Returns a <see cref="Task" />.</returns>
+        Task PushWithNavigationAsync<TViewModel>(Action<TViewModel> initializer, bool animated = true) where TViewModel : NavigableViewModel;
+
+        /// <summary>
         /// Pushes the view model as a model.
         /// </summary>
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>
