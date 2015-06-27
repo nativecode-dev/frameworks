@@ -27,6 +27,11 @@
             this.container.Register(() => factory(this));
         }
 
+        public override void Instance<TContract>(TContract instance)
+        {
+            this.container.RegisterSingle(instance);
+        }
+
         public override void Register(Type contract, string key, DependencyLifetime lifetime = DependencyLifetime.Default)
         {
             if (lifetime == DependencyLifetime.PerApplication)

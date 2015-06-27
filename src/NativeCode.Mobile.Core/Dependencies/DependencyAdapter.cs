@@ -37,6 +37,13 @@
         public abstract void Factory<TContract>(Func<IDependencyResolver, TContract> factory) where TContract : class;
 
         /// <summary>
+        /// Registers an instance.
+        /// </summary>
+        /// <typeparam name="TContract">The type of the contract.</typeparam>
+        /// <param name="instance">The instance.</param>
+        public abstract void Instance<TContract>(TContract instance) where TContract : class;
+
+        /// <summary>
         /// Registers a dependency.
         /// </summary>
         /// <param name="contract">The contract.</param>
