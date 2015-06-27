@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
 {
+    using System.Collections.Specialized;
     using System.ComponentModel;
 
     using Android.Support.V7.Widget;
@@ -22,6 +23,8 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
     public class SpinSelectorRenderer : InflateViewRenderer<SpinSelector, AppCompatSpinner>, AdapterView.IOnItemSelectedListener
     {
         protected ArrayAdapter<object> Adapter { get; private set; }
+
+        protected INotifyCollectionChanged ObservableCollection { get; private set; }
 
         public void OnItemSelected(AdapterView parent, View view, int position, long id)
         {
@@ -78,8 +81,27 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
             return this.InflateNativeControl<AppCompatSpinner>(Resource.Layout.spinner_dialog);
         }
 
+        private void HandleCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (var item in e.NewItems)
+                {
+                    this.Adapter.Add(item);
+                }
+            }
+            else if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                foreach (var item in e.OldItems)
+                {
+                    this.Adapter.Remove(item);
+                }
+            }
+        }
+
         private void UpdateItemsSource()
         {
+            this.UnhookObservableCollection();
             this.Adapter.Clear();
 
             if (this.Element.ItemsSource == null)
@@ -91,6 +113,8 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
             {
                 this.Adapter.Add(item);
             }
+
+            this.HookObservableCollection();
         }
 
         private void UpdateSelectedItem()
@@ -100,6 +124,25 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
             if (index != this.Control.SelectedItemPosition)
             {
                 this.Control.SetSelection(index);
+            }
+        }
+
+        private void HookObservableCollection()
+        {
+            this.ObservableCollection = this.Element.ItemsSource as INotifyCollectionChanged;
+
+            if (this.ObservableCollection != null)
+            {
+                this.ObservableCollection.CollectionChanged += this.HandleCollectionChanged;
+            }
+        }
+
+        private void UnhookObservableCollection()
+        {
+            if (this.ObservableCollection != null)
+            {
+                this.ObservableCollection.CollectionChanged -= this.HandleCollectionChanged;
+                this.ObservableCollection = null;
             }
         }
     }
