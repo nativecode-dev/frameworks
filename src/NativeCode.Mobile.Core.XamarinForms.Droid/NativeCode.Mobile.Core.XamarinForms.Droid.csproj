@@ -81,6 +81,7 @@
     <Compile Include="Renderers\Adapters\FlipAdapter.cs" />
     <Compile Include="Renderers\FlipViewRenderer.cs" />
     <Compile Include="Renderers\InflateViewRenderer.cs" />
+    <Compile Include="Renderers\ShapeRenderer.cs" />
     <Compile Include="Renderers\SpinSelectorRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

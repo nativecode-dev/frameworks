@@ -9,7 +9,6 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
 {
     using System.ComponentModel;
 
-    using Android;
     using Android.Support.V7.Widget;
     using Android.Views;
     using Android.Widget;
@@ -82,6 +81,11 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
         private void UpdateItemsSource()
         {
             this.Adapter.Clear();
+
+            if (this.Element.ItemsSource == null)
+            {
+                return;
+            }
 
             foreach (var item in this.Element.ItemsSource)
             {

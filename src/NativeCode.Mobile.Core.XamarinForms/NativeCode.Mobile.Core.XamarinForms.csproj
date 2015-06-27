@@ -43,6 +43,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Shape.cs" />
     <Compile Include="Controls\SpinSelector.cs" />
     <Compile Include="Controls\FlipView.cs" />
     <Compile Include="Controls\FlipViewContent.cs" />

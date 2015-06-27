@@ -32,6 +32,13 @@
 
         public ObservableCollection<ItemViewModel> Items { get; private set; }
 
+        public void OnCurrentItemChanged()
+        {
+            var current = this.CurrentItem;
+            var index = this.Items.IndexOf((ItemViewModel)current);
+            this.Title = "Selected index " + index;
+        }
+
         public class ItemViewModel : ViewModel
         {
             public string Text { get; set; }

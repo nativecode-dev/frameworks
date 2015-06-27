@@ -8,7 +8,10 @@
     {
         public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create<SpinSelector, IList>(x => x.ItemsSource, default(IList));
 
-        public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create<SpinSelector, object>(x => x.SelectedItem, default(object));
+        public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create<SpinSelector, object>(
+            x => x.SelectedItem,
+            default(object),
+            BindingMode.TwoWay);
 
         public static readonly BindableProperty SelectorStyleProperty = BindableProperty.Create<SpinSelector, SpinSelectorStyle>(
             x => x.SelectorStyle,
