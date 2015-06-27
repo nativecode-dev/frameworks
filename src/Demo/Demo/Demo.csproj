@@ -85,9 +85,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="NativeCode.Mobile.AppCompat.Controls, Version=1.0.0.61, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NativeCode.Mobile.AppCompat.Controls.1.0.0.61\lib\portable-net45+win+wp80+MonoAndroid10+xamarinios10+MonoTouch10\NativeCode.Mobile.AppCompat.Controls.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NativeCode.Mobile.AppCompat.Controls">
+      <HintPath>..\..\packages\NativeCode.Mobile.AppCompat.Controls.1.0.0.74\lib\portable-net45+win+wp80+MonoAndroid10+xamarinios10+MonoTouch10\NativeCode.Mobile.AppCompat.Controls.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged, Version=1.50.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PropertyChanged.Fody.1.50.1\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
