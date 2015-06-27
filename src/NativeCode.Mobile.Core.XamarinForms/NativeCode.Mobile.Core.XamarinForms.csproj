@@ -43,11 +43,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\SpinSelector.cs" />
     <Compile Include="Controls\FlipView.cs" />
     <Compile Include="Controls\FlipViewContent.cs" />
     <Compile Include="Controls\ContentProviders\FlipContentViewProvider.cs" />
     <Compile Include="Controls\FlipViewStyle.cs" />
     <Compile Include="Controls\ContentProviders\IContentViewProvider.cs" />
+    <Compile Include="Controls\SpinSelectorStyle.cs" />
     <Compile Include="Dependencies\FormsDependencyAdapter.cs" />
     <Compile Include="Extensions\ApplicationExtensions.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />

@@ -1914,6 +1914,9 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid
 			// aapt resource value: 0x7f0b006b
 			public static int snackbar_text = 2131427435;
 			
+			// aapt resource value: 0x7f0b007a
+			public static int spinner = 2131427450;
+			
 			// aapt resource value: 0x7f0b0007
 			public static int split_action_bar = 2131427335;
 			
@@ -2157,7 +2160,13 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid
 			public static int select_dialog_singlechoice_material = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public static int support_simple_spinner_dropdown_item = 2130903084;
+			public static int spinner_dialog = 2130903084;
+			
+			// aapt resource value: 0x7f03002d
+			public static int spinner_dropdown = 2130903085;
+			
+			// aapt resource value: 0x7f03002e
+			public static int support_simple_spinner_dropdown_item = 2130903086;
 			
 			static Layout()
 			{

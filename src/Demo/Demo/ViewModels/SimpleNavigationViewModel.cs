@@ -16,6 +16,7 @@
             this.AboutCommand = new Command(async () => await this.Navigator.PushAsync<AboutViewModel>());
             this.ArticleCommand = new Command(async () => await this.Navigator.PushAsync<ArticleViewModel>());
             this.ChooseStyleCommand = new Command(App.ShowAppStyleMenu);
+            this.ControlsCommand = new Command(async () => await this.Navigator.PushAsync<ControlsViewModel>());
             this.FlipViewCommand = new Command(async () => await this.Navigator.PushAsync<FlipViewModel>());
             this.WebBrowserCommand = new Command(async () => await this.Navigator.PushAsync<WebBrowserViewModel>());
             this.WebBrowserNavigationEnabled = device.IsConnected;
@@ -26,6 +27,8 @@
         public ICommand ArticleCommand { get; private set; }
 
         public ICommand ChooseStyleCommand { get; private set; }
+
+        public ICommand ControlsCommand { get; private set; }
 
         public ICommand FlipViewCommand { get; private set; }
 
