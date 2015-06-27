@@ -46,12 +46,12 @@
             this.AddRange(range);
         }
 
-        private void OnCollectionReset()
+        protected virtual void OnCollectionReset()
         {
             this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
-        private void OnPropertyChanged(string property)
+        protected virtual void OnPropertyChanged(string property)
         {
             this.OnPropertyChanged(new PropertyChangedEventArgs(property));
         }
