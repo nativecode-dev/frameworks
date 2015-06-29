@@ -18,7 +18,7 @@
         public void RegisterDependencies(IDependencyRegistrar registrar)
         {
             registrar.Register<IQueueProcessorFactory, QueueProcessorFactory>();
-            registrar.Register<ILogger, Logger>();
+            registrar.Register<ILogger, Logger>(lifetime: DependencyLifetime.PerApplication);
             registrar.Register<IStringSerializer, JsonStringSerializer>();
             registrar.Register<ITranslationProvider, DefaultTranslationProvider>();
             registrar.Register<ITranslator, Translator>();
