@@ -16,6 +16,11 @@
             await this.ExecuteAsync(parameter).ConfigureAwait(true);
         }
 
+        void IAsyncCommand.ChangeCanExecute()
+        {
+            this.OnCanExecuteChanged();
+        }
+
         public abstract Task ExecuteAsync(object parameter);
 
         protected void OnCanExecuteChanged()

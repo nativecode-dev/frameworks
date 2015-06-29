@@ -9,6 +9,11 @@
     public interface IAsyncCommand : ICommand
     {
         /// <summary>
+        /// Notifies the command to refresh the execution state.
+        /// </summary>
+        void ChangeCanExecute();
+
+        /// <summary>
         /// Executes the command asynchronously.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
