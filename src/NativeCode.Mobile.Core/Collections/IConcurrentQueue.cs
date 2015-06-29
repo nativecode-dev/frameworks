@@ -7,6 +7,11 @@
     public interface IConcurrentQueue<T>
     {
         /// <summary>
+        /// Gets the count.
+        /// </summary>
+        int Count { get; }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is empty.
         /// </summary>
         bool IsEmpty { get; }
