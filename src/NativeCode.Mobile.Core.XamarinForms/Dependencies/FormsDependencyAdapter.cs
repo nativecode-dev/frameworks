@@ -34,13 +34,7 @@
 
         public override void Register(Type contract, string key, DependencyLifetime lifetime = DependencyLifetime.Default)
         {
-            if (lifetime == DependencyLifetime.PerApplication)
-            {
-                this.container.RegisterSingle(contract);
-                return;
-            }
-
-            this.container.Register(contract);
+            this.Register(contract, contract, key, lifetime);
         }
 
         public override void Register(Type contract, Type implementation, string key, DependencyLifetime lifetime = DependencyLifetime.Default)
