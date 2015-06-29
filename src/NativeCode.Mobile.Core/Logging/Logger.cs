@@ -3,14 +3,11 @@
     using System;
     using System.Collections.Generic;
 
-    using NativeCode.Mobile.Core.Dependencies;
     using NativeCode.Mobile.Core.Extensions;
     using NativeCode.Mobile.Core.Serialization;
 
     public class Logger : ILogger
     {
-        private static readonly Lazy<ILogger> DefaultInstance = new Lazy<ILogger>(CreateDefaultInstance);
-
         private readonly IStringSerializer serializer;
 
         private readonly IEnumerable<ILogWriter> writers;
@@ -19,11 +16,6 @@
         {
             this.serializer = serializer;
             this.writers = writers;
-        }
-
-        public static ILogger Default
-        {
-            get { return DefaultInstance.Value; }
         }
 
         public void Debug(string message, string callerFilePath = null, int callerLineNumber = 0, string callerMemberName = null)
@@ -66,11 +58,6 @@
         public void Warning(string message, string callerFilePath = null, int callerLineNumber = 0, string callerMemberName = null)
         {
             this.WriteLogMessage(message, LogMessageType.Warning, callerFilePath, callerLineNumber, callerMemberName);
-        }
-
-        private static ILogger CreateDefaultInstance()
-        {
-            return DependencyResolver.Current.Resolve<ILogger>();
         }
 
         private void WriteLogMessage(string message, LogMessageType messageType, string callerFilePath, int callerLineNumber, string callerMemberName)

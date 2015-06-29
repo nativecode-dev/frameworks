@@ -6,7 +6,6 @@
 
     using NativeCode.Mobile.Core;
     using NativeCode.Mobile.Core.Dependencies;
-    using NativeCode.Mobile.Core.Logging;
     using NativeCode.Mobile.Core.XamarinForms.Extensions;
     using NativeCode.Mobile.Core.XamarinForms.Presentation;
 
@@ -43,31 +42,26 @@
         public static void ShowAppStyleMenu()
         {
             Current.MainPage = Instance.PresentationFactory.GetViewFor<AppStylesViewModel>();
-            Logger.Default.Debug("ShowAppStyleMenu");
         }
 
         public static void ShowInnerMasterDetailStyle()
         {
             Current.MainPage = Instance.PresentationFactory.GetViewFor<MasterDetailInnerNavigationViewModel>();
-            Logger.Default.Debug("ShowInnerMasterDetailStyle");
         }
 
         public static void ShowOuterMasterDetailStyle()
         {
             Current.MainPage = Instance.PresentationFactory.GetViewFor<MasterDetailOuterNavigationViewModel>().WithNavigation();
-            Logger.Default.Debug("ShowOuterMasterDetailStyle");
         }
 
         public static void ShowSimpleMasterDetailStyle()
         {
             Current.MainPage = Instance.PresentationFactory.GetViewFor<SimpleMasterDetailViewModel>();
-            Logger.Default.Debug("ShowSimpleMasterDetailStyle");
         }
 
         public static void ShowSimpleNavigationStyle()
         {
             Current.MainPage = Instance.PresentationFactory.GetViewFor<SimpleNavigationViewModel>().WithNavigation();
-            Logger.Default.Debug("ShowSimpleNavigationStyle");
         }
     }
 }

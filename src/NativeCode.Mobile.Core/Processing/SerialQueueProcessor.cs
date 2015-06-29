@@ -3,14 +3,11 @@
     using System;
     using System.Collections.Generic;
 
-    using NativeCode.Mobile.Core.Logging;
-
     internal class SerialQueueProcessor<T> : QueueProcessor<T>
     {
         private readonly Queue<T> queue = new Queue<T>();
 
-        internal SerialQueueProcessor(Action<T> processor)
-            : base(processor)
+        internal SerialQueueProcessor(Action<T> processor) : base(processor)
         {
         }
 
@@ -64,9 +61,8 @@
                     this.Processor(item);
                     this.HandleItemProcessed(item);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Logger.Default.Exception(ex);
                     this.HandleItemProcessingFailed(item);
                 }
             }

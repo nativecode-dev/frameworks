@@ -84,9 +84,9 @@
             {
                 await task.ConfigureAwait(false);
             }
-            catch (Exception ex)
+            catch
             {
-                Logger.Default.Exception(ex);
+                // TODO: Add logging.
             }
 
             var handler = this.PropertyChanged;

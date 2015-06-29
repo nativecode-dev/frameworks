@@ -4,8 +4,6 @@ namespace NativeCode.Mobile.Core.Processing
     using System.Threading;
     using System.Threading.Tasks;
 
-    using NativeCode.Mobile.Core.Logging;
-
     internal abstract class QueueProcessor<T> : IDisposable, IQueueProcessor<T>
     {
         private QueueProcessorState state;
@@ -125,18 +123,17 @@ namespace NativeCode.Mobile.Core.Processing
 
                 this.ProcessorTask = Task.Run(
                     () =>
+                    {
+                        try
                         {
-                            try
-                            {
-                                this.ProcessQueueItems();
-                                this.State = QueueProcessorState.Idle;
-                            }
-                            catch (Exception ex)
-                            {
-                                this.State = QueueProcessorState.Idle;
-                                Logger.Default.Exception(ex);
-                            }
-                        },
+                            this.ProcessQueueItems();
+                            this.State = QueueProcessorState.Idle;
+                        }
+                        catch
+                        {
+                            this.State = QueueProcessorState.Idle;
+                        }
+                    },
                     this.CancellationTokenSource.Token);
             }
         }
