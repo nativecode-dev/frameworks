@@ -1,4 +1,4 @@
-namespace NativeCode.Sqlite.QueryBuilder.Tests.Entities
+namespace Tests.Entities
 {
     using SQLite.Net.Attributes;
 

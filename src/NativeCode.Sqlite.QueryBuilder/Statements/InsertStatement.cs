@@ -12,6 +12,10 @@
         {
         }
 
+        protected internal override void Prepare(QueryBuilder builder, QueryStatement previous)
+        {
+        }
+
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         protected internal override void WriteTo(StringBuilder template, QueryStatement parent)
         {

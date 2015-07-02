@@ -13,7 +13,7 @@
     {
         private readonly StringBuilder template = new StringBuilder(200);
 
-        private readonly Queue<QueryStatement> statements = new Queue<QueryStatement>();
+        private readonly Queue<QueryStatement> queue = new Queue<QueryStatement>();
 
         private QueryBuilder(EntityTable table)
         {
@@ -43,11 +43,19 @@
 
         public virtual QueryTemplate BuildTemplate()
         {
-            QueryStatement parent = this.statements.First();
+            var parent = this.queue.First();
+            var statements = new List<QueryStatement>();
 
-            while (this.statements.Any())
+            while (this.queue.Any())
             {
-                var statement = this.statements.Dequeue();
+                var statement = this.queue.Dequeue();
+                statements.Add(statement);
+                statement.Prepare(this, this.CurrentStatement);
+                this.CurrentStatement = statement;
+            }
+
+            foreach (var statement in statements)
+            {
                 statement.WriteTo(this.template, parent);
             }
 
@@ -67,6 +75,18 @@
         {
             this.BeginStatement(new InsertStatement(this.Table));
             this.CurrentStatement.Select(factory(this.Table));
+
+            return this;
+        }
+
+        public QueryBuilder Join<TEntity>(Func<EntityTable, EntityColumn> parent, Func<EntityTable, EntityColumn> child) where TEntity : class
+        {
+            var table = QueryBuilderCache.GetEntityTable<TEntity>();
+
+            var parentColumn = parent(this.Table);
+            var childColumn = child(table);
+
+            this.BeginStatement(new JoinStatement(this.Table, table, parentColumn, childColumn));
 
             return this;
         }
@@ -128,7 +148,7 @@
         {
             if (statement.CanBeginStatement(this.CurrentStatement))
             {
-                this.statements.Enqueue(statement);
+                this.queue.Enqueue(statement);
                 this.CurrentStatement = statement;
 
                 return this;

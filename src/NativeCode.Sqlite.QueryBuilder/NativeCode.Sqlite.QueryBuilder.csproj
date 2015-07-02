@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Attributes\ConvertAttribute.cs" />
+    <Compile Include="Attributes\ForeignTypeAttribute.cs" />
     <Compile Include="Attributes\SortAttribute.cs" />
     <Compile Include="Attributes\SortDirection.cs" />
     <Compile Include="Exceptions\StatementException.cs" />
@@ -45,6 +46,7 @@
     <Compile Include="Statements\DeleteStatement.cs" />
     <Compile Include="EntityColumnSort.cs" />
     <Compile Include="Statements\InsertStatement.cs" />
+    <Compile Include="Statements\JoinStatement.cs" />
     <Compile Include="Statements\OrderByStatement.cs" />
     <Compile Include="Statements\SelectStatement.cs" />
     <Compile Include="Statements\UpdateStatement.cs" />

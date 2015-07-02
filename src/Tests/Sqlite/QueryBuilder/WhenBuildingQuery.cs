@@ -1,12 +1,12 @@
-﻿namespace NativeCode.Sqlite.QueryBuilder.Tests.Sqlite.QueryBuilder
+﻿namespace Tests.Sqlite.QueryBuilder
 {
     using System.Diagnostics.CodeAnalysis;
 
     using NativeCode.Sqlite.QueryBuilder;
-    using NativeCode.Sqlite.QueryBuilder.Tests;
-    using NativeCode.Sqlite.QueryBuilder.Tests.Entities;
 
     using NUnit.Framework;
+
+    using Tests.Entities;
 
     using QueryBuilder = NativeCode.Sqlite.QueryBuilder.QueryBuilder;
 
@@ -65,6 +65,13 @@
 
             // Assert
             Assert.AreEqual(Expect(ExpectedInsertQuery), template.Query);
+        }
+
+        [Test]
+        public void ShouldBuildJoinedQuery()
+        {
+            // Arrange
+            var builder = QueryBuilder.From<Person>().Join<PersonLocation>(p => p["Id"], pl => pl["PersonId"]);
         }
 
         [Test]

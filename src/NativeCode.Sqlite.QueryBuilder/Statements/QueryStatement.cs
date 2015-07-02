@@ -73,6 +73,8 @@
             this.Sortables.AddRange(columns.Select(c => new EntityColumnSort(c, SortDirection.Default)));
         }
 
+        protected internal abstract void Prepare(QueryBuilder builder, QueryStatement previous);
+
         protected internal abstract void WriteTo(StringBuilder template, QueryStatement parent);
     }
 }

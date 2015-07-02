@@ -21,6 +21,10 @@
             return AllowedStatements.Contains(current.GetType());
         }
 
+        protected internal override void Prepare(QueryBuilder builder, QueryStatement previous)
+        {
+        }
+
         protected internal override void WriteTo(StringBuilder template, QueryStatement parent)
         {
             var aliases = !(parent is UpdateStatement || parent is InsertStatement);

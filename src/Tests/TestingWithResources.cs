@@ -1,8 +1,8 @@
-﻿namespace NativeCode.Sqlite.QueryBuilder.Tests
+﻿namespace Tests
 {
     using System.IO;
 
-    using NativeCode.Sqlite.QueryBuilder.Tests.Sqlite.QueryBuilder;
+    using Tests.Sqlite.QueryBuilder;
 
     public abstract class TestingWithResources
     {
