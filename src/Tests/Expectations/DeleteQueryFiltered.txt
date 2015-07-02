@@ -1,0 +1,2 @@
+﻿DELETE FROM [people] AS [Person]
+WHERE [Person].[id] = {Id};

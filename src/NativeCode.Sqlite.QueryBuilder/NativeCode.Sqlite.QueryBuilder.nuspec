@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<package>
+  <metadata>
+    <id>$id$</id>
+    <authors>NativeCode</authors>
+    <description>Provides a set of classes to help write queries for SQLite.</description>
+    <language>en-US</language>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/nativecode-dev/mobile</projectUrl>
+    <tags>mobile framework library</tags>
+    <version>$version$</version>
+  </metadata>
+</package>
