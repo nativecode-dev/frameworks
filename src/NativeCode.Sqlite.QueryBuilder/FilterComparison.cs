@@ -22,6 +22,8 @@ namespace NativeCode.Sqlite.QueryBuilder
 
         Like = 8,
 
-        NotLike = 9
+        NotLike = 9,
+
+        Contains = 10
     }
 }

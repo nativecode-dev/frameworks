@@ -1,5 +1,6 @@
 ﻿namespace Tests
 {
+    using System;
     using System.IO;
 
     using Tests.Sqlite.QueryBuilder;
@@ -13,6 +14,11 @@
             // ReSharper disable once AssignNullToNotNullAttribute
             using (var reader = new StreamReader(assembly.GetManifestResourceStream(key)))
             {
+                if (Environment.NewLine == "\n")
+                {
+                    return reader.ReadToEnd().Replace("\r", string.Empty);
+                }
+
                 return reader.ReadToEnd();
             }
         }
