@@ -12,7 +12,7 @@
     {
         private static readonly Type[] AllowedStatements = { typeof(DeleteStatement), typeof(SelectStatement), typeof(UpdateStatement) };
 
-        public WhereStatement(EntityTable table) : base("WHERE", table)
+        public WhereStatement(IQueryBuilder builder) : base(builder, "WHERE")
         {
         }
 
@@ -25,9 +25,9 @@
         {
         }
 
-        protected internal override void WriteTo(StringBuilder template, QueryStatement parent)
+        protected internal override void WriteTo(StringBuilder template, QueryStatement root)
         {
-            var aliases = !(parent is UpdateStatement || parent is InsertStatement);
+            var aliases = !(root is UpdateStatement || root is InsertStatement);
 
             template.AppendLine();
             template.Append(this.Keyword);
@@ -61,10 +61,10 @@
         {
             var result = string.Empty;
 
-            for (var index = 0; index < this.Filterables.Count; index++)
+            for (var index = 0; index < this.Builder.Filterables.Count; index++)
             {
-                var filter = this.Filterables[index];
-                var last = index == this.Filterables.Count - 1;
+                var filter = this.Builder.Filterables[index];
+                var last = index == this.Builder.Filterables.Count - 1;
 
                 result += filter.Column.Name + Space + filter.Comparison.Stringify();
                 result = GetFilterComparison(filter, result, last);
@@ -77,10 +77,10 @@
         {
             var result = string.Empty;
 
-            for (var index = 0; index < this.Filterables.Count; index++)
+            for (var index = 0; index < this.Builder.Filterables.Count; index++)
             {
-                var filter = this.Filterables[index];
-                var last = index == this.Filterables.Count - 1;
+                var filter = this.Builder.Filterables[index];
+                var last = index == this.Builder.Filterables.Count - 1;
 
                 result += filter.Column.GetName(false) + Space + filter.Comparison.Stringify();
                 result = GetFilterComparison(filter, result, last);

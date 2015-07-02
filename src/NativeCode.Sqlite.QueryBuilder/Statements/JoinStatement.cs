@@ -4,24 +4,15 @@
 
     public class JoinStatement : QueryStatement
     {
-        public JoinStatement(EntityTable table, EntityTable join, EntityColumn left, EntityColumn right) : base("JOIN", table)
+        public JoinStatement(IQueryBuilder builder) : base(builder, "JOIN")
         {
-            this.Left = left;
-            this.Right = right;
-            this.TableJoin = join;
         }
-
-        protected EntityColumn Left { get; private set; }
-
-        protected EntityColumn Right { get; private set; }
-
-        protected EntityTable TableJoin { get; private set; }
 
         protected internal override void Prepare(QueryBuilder builder, QueryStatement previous)
         {
         }
 
-        protected internal override void WriteTo(StringBuilder template, QueryStatement parent)
+        protected internal override void WriteTo(StringBuilder template, QueryStatement root)
         {
         }
     }

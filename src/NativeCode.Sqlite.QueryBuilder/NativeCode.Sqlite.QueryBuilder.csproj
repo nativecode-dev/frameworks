@@ -43,6 +43,7 @@
     <Compile Include="Extensions\EntityTableExtensions.cs" />
     <Compile Include="Extensions\FilterComparisonExtensions.cs" />
     <Compile Include="Extensions\FilterExpressionExtensions.cs" />
+    <Compile Include="IQueryBuilder.cs" />
     <Compile Include="Statements\DeleteStatement.cs" />
     <Compile Include="EntityColumnSort.cs" />
     <Compile Include="Statements\InsertStatement.cs" />

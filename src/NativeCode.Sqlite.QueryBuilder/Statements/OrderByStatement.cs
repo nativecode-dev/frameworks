@@ -4,7 +4,7 @@
 
     public class OrderByStatement : QueryStatement
     {
-        public OrderByStatement(EntityTable table) : base("ORDER BY", table)
+        public OrderByStatement(IQueryBuilder builder) : base(builder, "ORDER BY")
         {
         }
 
@@ -17,7 +17,7 @@
         {
         }
 
-        protected internal override void WriteTo(StringBuilder template, QueryStatement parent)
+        protected internal override void WriteTo(StringBuilder template, QueryStatement root)
         {
         }
     }

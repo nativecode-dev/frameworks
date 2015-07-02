@@ -7,7 +7,7 @@
 
     public class SelectStatement : QueryStatement
     {
-        public SelectStatement(EntityTable table) : base("SELECT", table)
+        public SelectStatement(IQueryBuilder builder) : base(builder, "SELECT")
         {
         }
 
@@ -16,14 +16,14 @@
         }
 
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Reviewed. Suppression is OK here.")]
-        protected internal override void WriteTo(StringBuilder template, QueryStatement parent)
+        protected internal override void WriteTo(StringBuilder template, QueryStatement root)
         {
             template.Append(this.Keyword);
             template.Append(Space);
-            template.AppendLine(this.Table.GetAllColumns().Join());
+            template.AppendLine(this.Builder.RootTable.GetAllColumns().Join());
             template.Append("FROM");
             template.Append(Space);
-            template.Append(this.Table.GetName());
+            template.Append(this.Builder.RootTable.GetName());
         }
     }
 }

@@ -9,20 +9,46 @@
     using NativeCode.Sqlite.QueryBuilder.Exceptions;
     using NativeCode.Sqlite.QueryBuilder.Statements;
 
-    public class QueryBuilder
+    public class QueryBuilder : IQueryBuilder
     {
+        private readonly List<EntityColumnFilter> filterables = new List<EntityColumnFilter>();
+
+        private readonly List<EntityColumn> selectables = new List<EntityColumn>();
+
+        private readonly List<EntityColumnSort> sortables = new List<EntityColumnSort>();
+
         private readonly StringBuilder template = new StringBuilder(200);
 
         private readonly Queue<QueryStatement> queue = new Queue<QueryStatement>();
 
         private QueryBuilder(EntityTable table)
         {
-            this.Table = table;
+            this.RootTable = table;
+        }
+
+        public EntityTable RootTable { get; private set; }
+
+        public IReadOnlyList<EntityColumnFilter> Filterables
+        {
+            get { return this.filterables; }
+        }
+
+        public IReadOnlyList<EntityColumn> Selectables
+        {
+            get { return this.selectables; }
+        }
+
+        public IReadOnlyList<EntityColumnSort> Sortables
+        {
+            get { return this.sortables; }
+        }
+
+        protected IQueryBuilder Builder
+        {
+            get { return this; }
         }
 
         protected QueryStatement CurrentStatement { get; private set; }
-
-        protected EntityTable Table { get; private set; }
 
         public static QueryBuilder From<TEntity>() where TEntity : class
         {
@@ -34,18 +60,59 @@
             return new QueryBuilder(table);
         }
 
+        void IQueryBuilder.Filter(EntityColumn column, FilterCondition condition, FilterComparison comparison)
+        {
+            this.filterables.Add(new EntityColumnFilter(column, "Default", condition, comparison));
+        }
+
+        void IQueryBuilder.Filter(IEnumerable<EntityColumn> columns, FilterCondition condition, FilterComparison comparison)
+        {
+            foreach (var column in columns)
+            {
+                this.Builder.Filter(column, condition, comparison);
+            }
+        }
+
+        void IQueryBuilder.Select(EntityColumn column)
+        {
+            this.selectables.Add(column);
+        }
+
+        void IQueryBuilder.Select(IEnumerable<EntityColumn> columns)
+        {
+            foreach (var column in columns)
+            {
+                this.Builder.Select(column);
+            }
+        }
+
+        void IQueryBuilder.Sort(EntityColumn column, SortDirection direction)
+        {
+            this.sortables.Add(new EntityColumnSort(column, direction));
+        }
+
+        void IQueryBuilder.Sort(IEnumerable<EntityColumn> columns, SortDirection direction)
+        {
+            foreach (var column in columns)
+            {
+                this.Builder.Sort(column, direction);
+            }
+        }
+
         public QueryBuilder And(Func<EntityTable, EntityColumn> factory, FilterComparison comparison = FilterComparison.Equals)
         {
-            this.CurrentStatement.Filter(factory(this.Table), comparison: comparison);
+            this.Builder.Filter(factory(this.Builder.RootTable), comparison: comparison);
 
             return this;
         }
 
         public virtual QueryTemplate BuildTemplate()
         {
-            var parent = this.queue.First();
+            var root = this.queue.First();
             var statements = new List<QueryStatement>();
 
+            // Go through the queue and let each statement prepare
+            // whatever it needs to before writing.
             while (this.queue.Any())
             {
                 var statement = this.queue.Dequeue();
@@ -54,9 +121,11 @@
                 this.CurrentStatement = statement;
             }
 
+            // Enumerate through the statements and write to
+            // the template.
             foreach (var statement in statements)
             {
-                statement.WriteTo(this.template, parent);
+                statement.WriteTo(this.template, root);
             }
 
             this.template.Append(";");
@@ -66,27 +135,22 @@
 
         public QueryBuilder Delete()
         {
-            this.BeginStatement(new DeleteStatement(this.Table));
+            this.BeginStatement(new DeleteStatement(this));
 
             return this;
         }
 
         public QueryBuilder Insert(Func<EntityTable, IEnumerable<EntityColumn>> factory)
         {
-            this.BeginStatement(new InsertStatement(this.Table));
-            this.CurrentStatement.Select(factory(this.Table));
+            this.BeginStatement(new InsertStatement(this));
+            this.Builder.Select(factory(this.Builder.RootTable));
 
             return this;
         }
 
         public QueryBuilder Join<TEntity>(Func<EntityTable, EntityColumn> parent, Func<EntityTable, EntityColumn> child) where TEntity : class
         {
-            var table = QueryBuilderCache.GetEntityTable<TEntity>();
-
-            var parentColumn = parent(this.Table);
-            var childColumn = child(table);
-
-            this.BeginStatement(new JoinStatement(this.Table, table, parentColumn, childColumn));
+            this.BeginStatement(new JoinStatement(this));
 
             return this;
         }
@@ -98,48 +162,48 @@
 
         public QueryBuilder Select(Func<EntityTable, IEnumerable<EntityColumn>> factory)
         {
-            this.BeginStatement(new SelectStatement(this.Table));
-            this.CurrentStatement.Select(factory(this.Table));
+            this.BeginStatement(new SelectStatement(this));
+            this.Builder.Select(factory(this.Builder.RootTable));
 
             return this;
         }
 
         public QueryBuilder OrderBy(Func<EntityTable, EntityColumn> factory, SortDirection direction = SortDirection.Default)
         {
-            this.BeginStatement(new OrderByStatement(this.Table));
-            this.CurrentStatement.Sort(factory(this.Table), direction);
+            this.BeginStatement(new OrderByStatement(this));
+            this.Builder.Sort(factory(this.Builder.RootTable));
 
             return this;
         }
 
         public QueryBuilder OrderBy(Func<EntityTable, IEnumerable<EntityColumn>> factory)
         {
-            this.BeginStatement(new OrderByStatement(this.Table));
-            this.CurrentStatement.Sort(factory(this.Table));
+            this.BeginStatement(new OrderByStatement(this));
+            this.Builder.Sort(factory(this.Builder.RootTable));
 
             return this;
         }
 
         public QueryBuilder Update(Func<EntityTable, IEnumerable<EntityColumn>> factory)
         {
-            this.BeginStatement(new UpdateStatement(this.Table));
-            this.CurrentStatement.Select(factory(this.Table));
+            this.BeginStatement(new UpdateStatement(this));
+            this.Builder.Select(factory(this.Builder.RootTable));
 
             return this;
         }
 
         public QueryBuilder Where(Func<EntityTable, EntityColumn> factory)
         {
-            this.BeginStatement(new WhereStatement(this.Table));
-            this.CurrentStatement.Filter(factory(this.Table));
+            this.BeginStatement(new WhereStatement(this));
+            this.Builder.Filter(factory(this.Builder.RootTable));
 
             return this;
         }
 
         public QueryBuilder Where(Func<EntityTable, IEnumerable<EntityColumn>> factory)
         {
-            this.BeginStatement(new WhereStatement(this.Table));
-            this.CurrentStatement.Filter(factory(this.Table));
+            this.BeginStatement(new WhereStatement(this));
+            this.Builder.Filter(factory(this.Builder.RootTable));
 
             return this;
         }

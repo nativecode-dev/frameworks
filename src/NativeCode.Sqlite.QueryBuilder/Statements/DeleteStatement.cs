@@ -7,7 +7,7 @@
 
     public class DeleteStatement : QueryStatement
     {
-        public DeleteStatement(EntityTable table) : base("DELETE", table)
+        public DeleteStatement(IQueryBuilder builder) : base(builder, "DELETE")
         {
         }
 
@@ -16,13 +16,13 @@
         }
 
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Reviewed. Suppression is OK here.")]
-        protected internal override void WriteTo(StringBuilder template, QueryStatement parent)
+        protected internal override void WriteTo(StringBuilder template, QueryStatement root)
         {
             template.Append(this.Keyword);
             template.Append(Space);
             template.Append("FROM");
             template.Append(Space);
-            template.Append(this.Table.GetName());
+            template.Append(this.Builder.RootTable.GetName());
         }
     }
 }

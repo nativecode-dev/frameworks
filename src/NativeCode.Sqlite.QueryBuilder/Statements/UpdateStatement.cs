@@ -8,7 +8,7 @@
 
     public class UpdateStatement : QueryStatement
     {
-        public UpdateStatement(EntityTable table) : base("UPDATE", table)
+        public UpdateStatement(IQueryBuilder builder) : base(builder, "UPDATE")
         {
         }
 
@@ -17,11 +17,11 @@
         }
 
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Reviewed. Suppression is OK here.")]
-        protected internal override void WriteTo(StringBuilder template, QueryStatement parent)
+        protected internal override void WriteTo(StringBuilder template, QueryStatement root)
         {
             template.Append(this.Keyword);
             template.Append(Space);
-            template.Append(this.Table.Name);
+            template.Append(this.Builder.RootTable.Name);
             template.AppendLine();
             template.Append("SET");
             template.Append(Space);
@@ -30,7 +30,7 @@
 
         private string GetColumnSetters()
         {
-            return this.Selectables.Select(column => string.Format("{0} = {1}", column.Name, column.GetValue())).Join();
+            return this.Builder.Selectables.Select(column => string.Format("{0} = {1}", column.Name, column.GetValue())).Join();
         }
     }
 }
