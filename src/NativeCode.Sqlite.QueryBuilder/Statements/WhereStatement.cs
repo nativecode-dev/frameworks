@@ -10,7 +10,7 @@
     [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Reviewed. Suppression is OK here.")]
     public class WhereStatement : QueryStatement
     {
-        private static readonly Type[] AllowedStatements = { typeof(DeleteStatement), typeof(SelectStatement), typeof(UpdateStatement) };
+        private static readonly Type[] AllowedStatements = { typeof(DeleteStatement), typeof(JoinStatement), typeof(SelectStatement), typeof(UpdateStatement) };
 
         public WhereStatement(IQueryBuilder builder) : base(builder, "WHERE")
         {

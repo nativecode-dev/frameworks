@@ -13,13 +13,13 @@
     {
         private readonly List<EntityColumnFilter> filterables = new List<EntityColumnFilter>();
 
+        private readonly Queue<QueryStatement> queue = new Queue<QueryStatement>();
+
         private readonly List<EntityColumn> selectables = new List<EntityColumn>();
 
         private readonly List<EntityColumnSort> sortables = new List<EntityColumnSort>();
 
         private readonly StringBuilder template = new StringBuilder(200);
-
-        private readonly Queue<QueryStatement> queue = new Queue<QueryStatement>();
 
         private QueryBuilder(EntityTable table)
         {
@@ -111,7 +111,7 @@
             var root = this.queue.First();
             var statements = new List<QueryStatement>();
 
-            // Go through the queue and let each statement prepare
+            // Emtpy the queue and let each statement prepare
             // whatever it needs to before writing.
             while (this.queue.Any())
             {
@@ -121,8 +121,8 @@
                 this.CurrentStatement = statement;
             }
 
-            // Enumerate through the statements and write to
-            // the template.
+            // Move forward through the statements and write
+            // to the template.
             foreach (var statement in statements)
             {
                 statement.WriteTo(this.template, root);
@@ -150,7 +150,11 @@
 
         public QueryBuilder Join<TEntity>(Func<EntityTable, EntityColumn> parent, Func<EntityTable, EntityColumn> child) where TEntity : class
         {
-            this.BeginStatement(new JoinStatement(this));
+            var table = QueryBuilderCache.GetEntityTable<TEntity>();
+            var left = parent(this.Builder.RootTable);
+            var right = child(table);
+
+            this.BeginStatement(new JoinStatement(this, left, right));
 
             return this;
         }

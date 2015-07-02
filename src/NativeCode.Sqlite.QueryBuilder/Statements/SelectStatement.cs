@@ -18,12 +18,17 @@
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         protected internal override void WriteTo(StringBuilder template, QueryStatement root)
         {
-            template.Append(this.Keyword);
-            template.Append(Space);
-            template.AppendLine(this.Builder.RootTable.GetAllColumns().Join());
-            template.Append("FROM");
-            template.Append(Space);
-            template.Append(this.Builder.RootTable.GetName());
+            foreach (var selectable in this.GetSelectables())
+            {
+                var table = selectable.Key;
+
+                template.Append(this.Keyword);
+                template.Append(Space);
+                template.AppendLine(selectable.Join());
+                template.Append("FROM");
+                template.Append(Space);
+                template.Append(table.GetName());
+            }
         }
     }
 }

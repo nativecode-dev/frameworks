@@ -20,6 +20,10 @@
 
         private const string ExpectedInsertQuery = "Tests.Expectations.InsertQuery.txt";
 
+        private const string ExpectedJoinQuery = "Tests.Expectations.JoinQuery.txt";
+
+        private const string ExpectedJoinQueryFiltered = "Tests.Expectations.JoinQueryFiltered.txt";
+
         private const string ExpectedSelectQuery = "Tests.Expectations.SelectQuery.txt";
 
         private const string ExpectedSelectQueryFiltered = "Tests.Expectations.SelectQueryFiltered.txt";
@@ -71,7 +75,33 @@
         public void ShouldBuildJoinedQuery()
         {
             // Arrange
-            var builder = QueryBuilder.From<Person>().Join<PersonLocation>(p => p["Id"], pl => pl["PersonId"]);
+            var builder =
+                QueryBuilder.From<Person>()
+                    .Select(person => person.GetAllColumns())
+                    .Join<PersonLocation>(p => p["Id"], pl => pl["PersonId"]);
+
+            // Act
+            var template = builder.BuildTemplate();
+
+            // Assert
+            Assert.AreEqual(Expect(ExpectedJoinQuery), template.Query);
+        }
+
+        [Test]
+        public void ShouldBuildJoinedQueryFiltered()
+        {
+            // Arrange
+            var builder =
+                QueryBuilder.From<Person>()
+                    .Select(person => person.GetAllColumns())
+                    .Join<PersonLocation>(p => p["Id"], pl => pl["PersonId"])
+                    .Where(person => person.GetPrimaryKey());
+
+            // Act
+            var template = builder.BuildTemplate();
+
+            // Assert
+            Assert.AreEqual(Expect(ExpectedJoinQueryFiltered), template.Query);
         }
 
         [Test]

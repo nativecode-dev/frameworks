@@ -142,6 +142,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Expectations\UpdateQueryFiltered.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Expectations\JoinQuery.txt" />
+    <EmbeddedResource Include="Expectations\JoinQueryFiltered.txt" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
