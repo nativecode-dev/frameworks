@@ -12,23 +12,23 @@
     [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Reviewed. Suppression is OK here.")]
     public class WhenBuildingQuery : TestingWithResources
     {
-        private const string ExpectedDeleteQuery = "Tests.Expectations.DeleteQuery.txt";
+        private const string ExpectedDeleteQuery = "Tests.Expectations.DeleteQuery.expect";
 
-        private const string ExpectedDeleteQueryFiltered = "Tests.Expectations.DeleteQueryFiltered.txt";
+        private const string ExpectedDeleteQueryFiltered = "Tests.Expectations.DeleteQueryFiltered.expect";
 
-        private const string ExpectedInsertQuery = "Tests.Expectations.InsertQuery.txt";
+        private const string ExpectedInsertQuery = "Tests.Expectations.InsertQuery.expect";
 
-        private const string ExpectedJoinQuery = "Tests.Expectations.JoinQuery.txt";
+        private const string ExpectedJoinQuery = "Tests.Expectations.JoinQuery.expect";
 
-        private const string ExpectedJoinQueryFiltered = "Tests.Expectations.JoinQueryFiltered.txt";
+        private const string ExpectedJoinQueryFiltered = "Tests.Expectations.JoinQueryFiltered.expect";
 
-        private const string ExpectedSelectQuery = "Tests.Expectations.SelectQuery.txt";
+        private const string ExpectedSelectQuery = "Tests.Expectations.SelectQuery.expect";
 
-        private const string ExpectedSelectQueryFiltered = "Tests.Expectations.SelectQueryFiltered.txt";
+        private const string ExpectedSelectQueryFiltered = "Tests.Expectations.SelectQueryFiltered.expect";
 
-        private const string ExpectedUpdateQuery = "Tests.Expectations.UpdateQuery.txt";
+        private const string ExpectedUpdateQuery = "Tests.Expectations.UpdateQuery.expect";
 
-        private const string ExpectedUpdateQueryFiltered = "Tests.Expectations.UpdateQueryFiltered.txt";
+        private const string ExpectedUpdateQueryFiltered = "Tests.Expectations.UpdateQueryFiltered.expect";
 
         [Test]
         public void ShouldBuildDeleteQuery()

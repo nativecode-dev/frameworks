@@ -121,6 +121,15 @@
     <Compile Include="TestQueries.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Expectations\DeleteQuery.expect" />
+    <EmbeddedResource Include="Expectations\DeleteQueryFiltered.expect" />
+    <EmbeddedResource Include="Expectations\InsertQuery.expect" />
+    <EmbeddedResource Include="Expectations\JoinQuery.expect" />
+    <EmbeddedResource Include="Expectations\JoinQueryFiltered.expect" />
+    <EmbeddedResource Include="Expectations\SelectQuery.expect" />
+    <EmbeddedResource Include="Expectations\SelectQueryFiltered.expect" />
+    <EmbeddedResource Include="Expectations\UpdateQuery.expect" />
+    <EmbeddedResource Include="Expectations\UpdateQueryFiltered.expect" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -130,32 +139,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Expectations\SelectQueryFiltered.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <TransformFile Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Expectations\SelectQuery.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Expectations\DeleteQuery.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Expectations\DeleteQueryFiltered.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Expectations\InsertQuery.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Expectations\UpdateQuery.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Expectations\UpdateQueryFiltered.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Expectations\JoinQuery.txt" />
-    <EmbeddedResource Include="Expectations\JoinQueryFiltered.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
