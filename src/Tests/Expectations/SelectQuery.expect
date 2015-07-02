@@ -1,0 +1,2 @@
+﻿SELECT [Person].[id] AS [Id], [Person].[first_name] AS [FirstName], [Person].[last_name] AS [LastName]
+FROM [people] AS [Person];
