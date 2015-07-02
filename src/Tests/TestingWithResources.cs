@@ -16,9 +16,11 @@
             {
                 if (Environment.NewLine == "\n")
                 {
+                    Console.WriteLine("Reading expect file {0} on Linux.", key);
                     return reader.ReadToEnd().Replace("\r", string.Empty);
                 }
 
+                Console.WriteLine("Reading expect file {0} on Windows.", key);
                 return reader.ReadToEnd();
             }
         }

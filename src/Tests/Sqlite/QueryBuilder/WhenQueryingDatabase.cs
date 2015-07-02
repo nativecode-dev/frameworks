@@ -1,5 +1,8 @@
 ﻿namespace Tests.Sqlite.QueryBuilder
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.CompilerServices;
+
     using NativeCode.Sqlite.QueryBuilder;
 
     using NUnit.Framework;
@@ -9,13 +12,13 @@
     using Tests.Entities;
 
     [TestFixture]
-    public class WhenQueryingDatabase : TestingWithDatabase
+    public class WhenQueryingDatabase : TestingWithDatabaseIsolation
     {
         [Test]
         public void ShouldQueryPerson()
         {
             // Arrange
-            using (var connection = this.Database.CreateConnection())
+            using (var connection = this.CreateDatabase().CreateConnection())
             {
                 var query = QueryBuilder.From<Person>().Select(p => p.GetAllColumns()).BuildTemplate();
 
@@ -31,7 +34,7 @@
         public void ShouldQueryPersonByLinkTable()
         {
             // Arrange
-            using (var connection = this.Database.CreateConnection())
+            using (var connection = this.CreateDatabase().CreateConnection())
             {
                 var query =
                     QueryBuilder.From<Person>()
@@ -50,11 +53,12 @@
             }
         }
 
-        protected override void DoFixtureSetUp()
+        [SuppressMessage("ReSharper", "ExplicitCallerInfoArgument", Justification = "Reviewed. Suppression is OK here.")]
+        protected override DatabaseInstance CreateDatabase([CallerMemberName] string testname = null)
         {
-            base.DoFixtureSetUp();
+            var database = base.CreateDatabase(testname);
 
-            using (var connection = this.Database.CreateConnection())
+            using (var connection = database.CreateConnection())
             {
                 connection.CreateTable<Location>();
                 connection.CreateTable<Person>();
@@ -62,6 +66,8 @@
 
                 CreateTestUser1(connection);
             }
+
+            return database;
         }
 
         private static void CreateTestUser1(SQLiteConnection connection)
