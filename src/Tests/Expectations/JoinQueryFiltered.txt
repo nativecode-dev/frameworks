@@ -1,4 +1,4 @@
-﻿SELECT [Person].[id] AS [Id], [Person].[first_name] AS [FirstName], [Person].[last_name] AS [LastName]
+﻿SELECT [Person].[id] AS [Id], [Person].[first_name] AS [FirstName], [Person].[last_name] AS [LastName], [PersonLocation].[location_id] AS [LocationId], [PersonLocation].[person_id] AS [PersonId]
 FROM [people] AS [Person]
 JOIN [person_location] AS [PersonLocation] ON [Person].[id] = [PersonLocation].[person_id]
-WHERE [Person].[id] = {Id};
+WHERE [PersonLocation].[person_id] = {PersonId};

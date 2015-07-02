@@ -8,8 +8,6 @@
 
     using Tests.Entities;
 
-    using QueryBuilder = NativeCode.Sqlite.QueryBuilder.QueryBuilder;
-
     [TestFixture]
     [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Reviewed. Suppression is OK here.")]
     public class WhenBuildingQuery : TestingWithResources
@@ -75,10 +73,7 @@
         public void ShouldBuildJoinedQuery()
         {
             // Arrange
-            var builder =
-                QueryBuilder.From<Person>()
-                    .Select(person => person.GetAllColumns())
-                    .Join<PersonLocation>(p => p["Id"], pl => pl["PersonId"]);
+            var builder = QueryBuilder.From<Person>().Select(person => person.GetAllColumns()).Join<PersonLocation>(p => p["Id"], pl => pl["PersonId"]);
 
             // Act
             var template = builder.BuildTemplate();
@@ -94,8 +89,8 @@
             var builder =
                 QueryBuilder.From<Person>()
                     .Select(person => person.GetAllColumns())
-                    .Join<PersonLocation>(p => p["Id"], pl => pl["PersonId"])
-                    .Where(person => person.GetPrimaryKey());
+                    .JoinSelect<PersonLocation>(p => p["Id"], pl => pl["PersonId"], pl => pl.GetAllColumns())
+                    .Where<PersonLocation>(pl => pl["PersonId"]);
 
             // Act
             var template = builder.BuildTemplate();
@@ -159,8 +154,7 @@
             Assert.AreEqual(Expect(ExpectedUpdateQueryFiltered), template.Query);
         }
 
-        [TestFixtureSetUp]
-        public void FixtureSetUp()
+        protected override void DoFixtureSetUp()
         {
             var configuration = new QueryBuilderConfiguration
             {

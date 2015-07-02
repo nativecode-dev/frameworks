@@ -159,6 +159,22 @@
             return this;
         }
 
+        public QueryBuilder JoinSelect<TEntity>(
+            Func<EntityTable, EntityColumn> parent,
+            Func<EntityTable, EntityColumn> child,
+            Func<EntityTable, IEnumerable<EntityColumn>> select) where TEntity : class
+        {
+            var table = QueryBuilderCache.GetEntityTable<TEntity>();
+            var left = parent(this.Builder.RootTable);
+            var right = child(table);
+            var columns = select(table);
+
+            this.BeginStatement(new JoinStatement(this, left, right));
+            this.Builder.Select(columns);
+
+            return this;
+        }
+
         public void Reset()
         {
             this.template.Clear();
@@ -192,6 +208,15 @@
         {
             this.BeginStatement(new UpdateStatement(this));
             this.Builder.Select(factory(this.Builder.RootTable));
+
+            return this;
+        }
+
+        public QueryBuilder Where<TEntity>(Func<EntityTable, EntityColumn> factory)
+        {
+            var table = QueryBuilderCache.GetEntityTable<TEntity>();
+            this.BeginStatement(new WhereStatement(this));
+            this.Builder.Filter(factory(table));
 
             return this;
         }

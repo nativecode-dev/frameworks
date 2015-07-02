@@ -2,6 +2,7 @@ namespace Tests.Entities
 {
     using SQLite.Net.Attributes;
 
+    [Table("location")]
     public class Location
     {
         [PrimaryKey]

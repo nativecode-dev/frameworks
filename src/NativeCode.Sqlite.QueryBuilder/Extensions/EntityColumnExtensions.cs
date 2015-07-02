@@ -34,7 +34,7 @@
                 name = name.QualifyString();
             }
 
-            if (QueryBuilderConfiguration.Current.QualifyTableNames)
+            if (QueryBuilderConfiguration.Current.UseTableAlias)
             {
                 name = column.Table.Alias.QualifyString() + "." + name;
             }

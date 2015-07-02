@@ -4,7 +4,7 @@
 
     using Tests.Sqlite.QueryBuilder;
 
-    public abstract class TestingWithResources
+    public abstract class TestingWithResources : Testing
     {
         protected static string Expect(string key)
         {

@@ -19,7 +19,7 @@
 
         public override bool CanBeginStatement(QueryStatement current)
         {
-            return current is SelectStatement || current is JoinStatement;
+            return current == null || current is SelectStatement || current is JoinStatement;
         }
 
         protected internal override void Prepare(QueryBuilder builder, QueryStatement previous)

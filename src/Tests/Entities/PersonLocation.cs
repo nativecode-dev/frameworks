@@ -8,13 +8,13 @@ namespace Tests.Entities
     public class PersonLocation
     {
         [Column("location_id")]
-        [PrimaryKey]
         [ForeignType(typeof(Location))]
-        public int LocationId { get; set; }
+        [Indexed]
+        public string LocationId { get; set; }
 
         [Column("person_id")]
-        [PrimaryKey]
         [ForeignType(typeof(Person))]
+        [Indexed]
         public int PersonId { get; set; }
     }
 }
