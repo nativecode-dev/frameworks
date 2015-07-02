@@ -14,15 +14,13 @@
             // ReSharper disable once AssignNullToNotNullAttribute
             using (var reader = new StreamReader(assembly.GetManifestResourceStream(key)))
             {
-                var platform = (int)Environment.OSVersion.Platform;
-
-                if ((platform == 4) || (platform == 6) || (platform == 128))
+                if (Type.GetType("Mono.Runtime") != null)
                 {
-                    Console.WriteLine("Reading expect file {0} on Linux.", key);
+                    Console.WriteLine("Reading expect file {0} on Mono CLR.", key);
                     return reader.ReadToEnd().Replace("\n", "\r\n");
                 }
 
-                Console.WriteLine("Reading expect file {0} on Windows.", key);
+                Console.WriteLine("Reading expect file {0} on .NET CLR.", key);
                 return reader.ReadToEnd();
             }
         }
