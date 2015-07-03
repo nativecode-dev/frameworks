@@ -6,7 +6,7 @@
 
     using NativeCode.Sqlite.QueryBuilder.Extensions;
 
-    public class UpdateStatement : QueryStatement
+    internal class UpdateStatement : QueryStatement
     {
         public UpdateStatement(IQueryBuilder builder) : base(builder, "UPDATE")
         {

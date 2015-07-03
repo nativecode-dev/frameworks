@@ -6,9 +6,9 @@
 
     using NativeCode.Sqlite.QueryBuilder.Extensions;
 
-    public class InsertStatement : QueryStatement
+    internal class InsertStatement : QueryStatement
     {
-        protected internal InsertStatement(IQueryBuilder builder) : base(builder, "INSERT")
+        internal InsertStatement(IQueryBuilder builder) : base(builder, "INSERT")
         {
         }
 

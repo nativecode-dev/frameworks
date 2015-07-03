@@ -9,11 +9,13 @@
     using NativeCode.Sqlite.QueryBuilder.Exceptions;
     using NativeCode.Sqlite.QueryBuilder.Statements;
 
-    public class QueryBuilder : IQueryBuilder
+    public sealed class QueryBuilder : IQueryBuilder
     {
         private readonly List<EntityColumnFilter> filterables = new List<EntityColumnFilter>();
 
         private readonly Queue<QueryStatement> queue = new Queue<QueryStatement>();
+
+        private readonly EntityTable root;
 
         private readonly List<EntityColumn> selectables = new List<EntityColumn>();
 
@@ -21,42 +23,42 @@
 
         private readonly StringBuilder template = new StringBuilder(200);
 
-        private QueryBuilder(EntityTable table)
+        private QueryBuilder(EntityTable root)
         {
-            this.RootTable = table;
+            this.root = root;
         }
 
-        public EntityTable RootTable { get; private set; }
-
-        public IReadOnlyList<EntityColumnFilter> Filterables
+        IReadOnlyList<EntityColumnFilter> IQueryBuilder.Filterables
         {
             get { return this.filterables; }
         }
 
-        public IReadOnlyList<EntityColumn> Selectables
+        EntityTable IQueryBuilder.RootTable
+        {
+            get { return this.root; }
+        }
+
+        IReadOnlyList<EntityColumn> IQueryBuilder.Selectables
         {
             get { return this.selectables; }
         }
 
-        public IReadOnlyList<EntityColumnSort> Sortables
+        IReadOnlyList<EntityColumnSort> IQueryBuilder.Sortables
         {
             get { return this.sortables; }
         }
 
-        protected IQueryBuilder Builder
+        private IQueryBuilder Builder
         {
             get { return this; }
         }
 
-        protected QueryStatement CurrentStatement { get; private set; }
+        private QueryStatement CurrentStatement { get; set; }
 
         public static QueryBuilder From<TEntity>() where TEntity : class
         {
-            return From(QueryBuilderCache.GetEntityTable<TEntity>());
-        }
+            var table = QueryBuilderCache.GetEntityTable<TEntity>();
 
-        public static QueryBuilder From(EntityTable table)
-        {
             return new QueryBuilder(table);
         }
 
@@ -106,9 +108,9 @@
             return this;
         }
 
-        public virtual QueryTemplate BuildTemplate()
+        public QueryTemplate BuildTemplate()
         {
-            var root = this.queue.First();
+            var first = this.queue.First();
             var statements = new List<QueryStatement>();
 
             // Emtpy the queue and let each statement prepare
@@ -125,12 +127,12 @@
             // to the template.
             foreach (var statement in statements)
             {
-                statement.WriteTo(this.template, root);
+                statement.WriteTo(this.template, first);
             }
 
             this.template.Append(";");
 
-            return this.ParseQueryTemplate(this.template.ToString());
+            return ParseQueryTemplate(this.template.ToString());
         }
 
         public QueryBuilder Delete()
@@ -237,22 +239,21 @@
             return this;
         }
 
-        protected QueryBuilder BeginStatement(QueryStatement statement)
+        private static QueryTemplate ParseQueryTemplate(string query)
+        {
+            return QueryTemplate.Parse(query);
+        }
+
+        private void BeginStatement(QueryStatement statement)
         {
             if (statement.CanBeginStatement(this.CurrentStatement))
             {
                 this.queue.Enqueue(statement);
                 this.CurrentStatement = statement;
-
-                return this;
+                return;
             }
 
             throw new StatementException(this.CurrentStatement, statement);
-        }
-
-        protected QueryTemplate ParseQueryTemplate(string query)
-        {
-            return QueryTemplate.Parse(query);
         }
     }
 }

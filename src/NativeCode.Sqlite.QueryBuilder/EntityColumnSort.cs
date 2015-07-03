@@ -2,9 +2,9 @@
 {
     using NativeCode.Sqlite.QueryBuilder.Attributes;
 
-    public class EntityColumnSort
+    internal class EntityColumnSort
     {
-        public EntityColumnSort(EntityColumn column, SortDirection direction)
+        internal EntityColumnSort(EntityColumn column, SortDirection direction)
         {
             this.Column = column;
             this.Direction = direction;

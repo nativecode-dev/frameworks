@@ -9,7 +9,7 @@
 
     public class EntityColumn
     {
-        public EntityColumn(EntityTable table, PropertyInfo property)
+        internal EntityColumn(EntityTable table, PropertyInfo property)
         {
             this.Property = property;
             this.Table = table;

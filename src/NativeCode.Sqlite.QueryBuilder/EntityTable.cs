@@ -11,7 +11,7 @@ namespace NativeCode.Sqlite.QueryBuilder
     {
         private readonly List<EntityColumn> columns;
 
-        public EntityTable(Type type)
+        internal EntityTable(Type type)
         {
             this.Type = type;
 

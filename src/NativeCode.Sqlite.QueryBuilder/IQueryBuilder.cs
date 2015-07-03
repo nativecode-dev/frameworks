@@ -4,7 +4,7 @@ namespace NativeCode.Sqlite.QueryBuilder
 
     using NativeCode.Sqlite.QueryBuilder.Attributes;
 
-    public interface IQueryBuilder
+    internal interface IQueryBuilder
     {
         IReadOnlyList<EntityColumnFilter> Filterables { get; }
 

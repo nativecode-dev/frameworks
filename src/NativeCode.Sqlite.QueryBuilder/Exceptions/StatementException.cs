@@ -6,7 +6,7 @@
 
     public class StatementException : Exception
     {
-        public StatementException(QueryStatement current, QueryStatement statement) : base(CreateExceptionMessage(current, statement))
+        internal StatementException(QueryStatement current, QueryStatement statement) : base(CreateExceptionMessage(current, statement))
         {
         }
 

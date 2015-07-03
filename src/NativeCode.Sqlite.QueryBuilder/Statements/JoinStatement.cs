@@ -5,9 +5,9 @@
 
     using NativeCode.Sqlite.QueryBuilder.Extensions;
 
-    public class JoinStatement : QueryStatement
+    internal class JoinStatement : QueryStatement
     {
-        public JoinStatement(IQueryBuilder builder, EntityColumn left, EntityColumn right) : base(builder, "JOIN")
+        internal JoinStatement(IQueryBuilder builder, EntityColumn left, EntityColumn right) : base(builder, "JOIN")
         {
             this.Left = left;
             this.Right = right;

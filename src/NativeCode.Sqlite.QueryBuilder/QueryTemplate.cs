@@ -19,7 +19,7 @@
 
         private static readonly Regex ParameterRegex = new Regex(@"(?<token>{(?<name>[a-zA-z,_,\-,\.]+)})", RegexOptions.IgnoreCase);
 
-        protected QueryTemplate(string query)
+        protected internal QueryTemplate(string query)
         {
             this.Query = query;
 

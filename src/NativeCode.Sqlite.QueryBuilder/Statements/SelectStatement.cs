@@ -6,7 +6,7 @@
 
     using NativeCode.Sqlite.QueryBuilder.Extensions;
 
-    public class SelectStatement : QueryStatement
+    internal class SelectStatement : QueryStatement
     {
         public SelectStatement(IQueryBuilder builder) : base(builder, "SELECT")
         {

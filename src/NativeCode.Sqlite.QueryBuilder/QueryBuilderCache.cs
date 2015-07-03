@@ -7,7 +7,7 @@
     {
         private static readonly Dictionary<string, EntityTable> CachedTables = new Dictionary<string, EntityTable>();
 
-        public static EntityTable GetEntityTable(Type type)
+        internal static EntityTable GetEntityTable(Type type)
         {
             var key = type.AssemblyQualifiedName;
 
@@ -22,7 +22,7 @@
             return table;
         }
 
-        public static EntityTable GetEntityTable<T>()
+        internal static EntityTable GetEntityTable<T>()
         {
             return GetEntityTable(typeof(T));
         }

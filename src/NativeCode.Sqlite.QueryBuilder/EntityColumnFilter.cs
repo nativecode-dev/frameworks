@@ -1,6 +1,6 @@
 ﻿namespace NativeCode.Sqlite.QueryBuilder
 {
-    public class EntityColumnFilter
+    internal class EntityColumnFilter
     {
         internal EntityColumnFilter(EntityColumn column, string groupName, FilterCondition condition, FilterComparison comparison)
         {

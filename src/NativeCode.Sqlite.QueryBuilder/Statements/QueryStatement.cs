@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Text;
 
-    public abstract class QueryStatement
+    internal abstract class QueryStatement
     {
         protected const string CloseParens = ")";
 
@@ -12,7 +12,7 @@
 
         protected const string Space = " ";
 
-        protected internal QueryStatement(IQueryBuilder builder, string keyword)
+        internal QueryStatement(IQueryBuilder builder, string keyword)
         {
             this.Builder = builder;
             this.Keyword = keyword;
@@ -20,7 +20,7 @@
 
         public string Keyword { get; private set; }
 
-        protected IQueryBuilder Builder { get; private set; }
+        protected IQueryBuilder Builder { get; set; }
 
         public virtual bool CanBeginStatement(QueryStatement current)
         {

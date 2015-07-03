@@ -2,9 +2,9 @@
 {
     using System.Text;
 
-    public class OrderByStatement : QueryStatement
+    internal class OrderByStatement : QueryStatement
     {
-        public OrderByStatement(IQueryBuilder builder) : base(builder, "ORDER BY")
+        internal OrderByStatement(IQueryBuilder builder) : base(builder, "ORDER BY")
         {
         }
 

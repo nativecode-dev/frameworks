@@ -5,9 +5,9 @@
 
     using NativeCode.Sqlite.QueryBuilder.Extensions;
 
-    public class DeleteStatement : QueryStatement
+    internal class DeleteStatement : QueryStatement
     {
-        public DeleteStatement(IQueryBuilder builder) : base(builder, "DELETE")
+        internal DeleteStatement(IQueryBuilder builder) : base(builder, "DELETE")
         {
         }
 
