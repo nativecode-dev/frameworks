@@ -10,6 +10,8 @@
 
         protected const string OpenParens = "(";
 
+        protected const string Period = ".";
+
         protected const string Space = " ";
 
         internal QueryStatement(IQueryBuilder builder, string keyword)

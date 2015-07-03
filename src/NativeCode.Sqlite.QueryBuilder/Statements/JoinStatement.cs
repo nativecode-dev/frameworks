@@ -36,11 +36,15 @@
             template.Append(Space);
             template.Append("ON");
             template.Append(Space);
-            template.Append(this.Left.GetName(false));
+            template.Append(this.Left.Table.Name.QualifyString());
+            template.Append(Period);
+            template.Append(this.Left.Name.QualifyString());
             template.Append(Space);
             template.Append("=");
             template.Append(Space);
-            template.Append(this.Right.GetName(false));
+            template.Append(this.Right.Table.Name.QualifyString());
+            template.Append(Period);
+            template.Append(this.Right.Name.QualifyString());
         }
     }
 }

@@ -53,7 +53,15 @@
         {
             var output = this.Query;
 
-            return this.QueryParameters.Aggregate(output, (current, kvp) => current.Replace("{" + kvp.Key + "}", GetStringValue(kvp.Value)));
+            foreach (var parameter in this.Parameters)
+            {
+                var key = parameter.Key;
+                var value = parameter.Value;
+
+                output = Regex.Replace(output, "{" + key + "}", GetStringValue(value), RegexOptions.IgnoreCase);
+            }
+
+            return output;
         }
 
         public QueryTemplate Reset()
@@ -102,6 +110,8 @@
 
         private object SafeGetValue(string key)
         {
+            key = key.ToUpper();
+
             if (this.QueryParameters.ContainsKey(key))
             {
                 return this.QueryParameters[key];
@@ -112,6 +122,8 @@
 
         private void SafeSetValue(string key, object value)
         {
+            key = key.ToUpper();
+
             if (this.QueryParameters.ContainsKey(key))
             {
                 this.QueryParameters[key] = value;
@@ -132,7 +144,7 @@
                 var name = match.Groups[KeyTokenName].Value;
 
                 this.QueryTokens.Add(token);
-                this.QueryParameters.Add(name, null);
+                this.QueryParameters.Add(name.ToUpper(), null);
             }
         }
     }

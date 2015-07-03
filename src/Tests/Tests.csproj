@@ -95,6 +95,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sqlite\QueryBuilder\WhenExecutingQuery.cs" />
     <Compile Include="Sqlite\QueryBuilder\WhenQueryingDatabase.cs" />
+    <Compile Include="Sqlite\QueryBuilder\WhenUsingQueryTemplate.cs" />
     <Compile Include="Testing.cs" />
     <Compile Include="TestingWithDatabase.cs" />
     <Compile Include="TestingWithDatabaseIsolation.cs" />
@@ -112,6 +113,7 @@
     <EmbeddedResource Include="Expectations\SelectQueryFiltered.expect" />
     <EmbeddedResource Include="Expectations\UpdateQuery.expect" />
     <EmbeddedResource Include="Expectations\UpdateQueryFiltered.expect" />
+    <EmbeddedResource Include="Expectations\ShouldReplaceTokenIgnoringCase.expect" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
