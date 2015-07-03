@@ -32,6 +32,7 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void ShouldQueryPersonByLinkTable()
         {
             // Arrange

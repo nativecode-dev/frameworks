@@ -26,5 +26,21 @@
             // Assert
             Assert.AreEqual(Expect(ExpectShouldReplaceTokenIgnoringCase), query);
         }
+
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            var configuration = new QueryBuilderConfiguration
+            {
+                QualifyColumnNames = true,
+                QualifyTableNames = true,
+                StoreDateTimeAsTicks = true,
+                UseColumnAlias = true,
+                UseTableAlias = true
+            };
+
+            QueryBuilderConfiguration.Current = configuration;
+        }
     }
 }
