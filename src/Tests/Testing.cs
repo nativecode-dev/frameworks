@@ -3,34 +3,37 @@ namespace Tests
     using System;
     using System.Collections.Generic;
 
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    [TestClass]
     public abstract class Testing : IDisposable
     {
         private readonly List<IDisposable> disposables = new List<IDisposable>();
 
-        [TestFixtureSetUp]
-        public void FixtureSetUp()
+        public TestContext TestContext { get; set; }
+
+        [ClassInitialize]
+        public void ClassInitialize()
         {
-            this.DoFixtureSetUp();
+            this.DoClassInitialize();
         }
 
-        [TestFixtureTearDown]
-        public void FixtureTearDown()
+        [ClassCleanup]
+        public void ClassCleanup()
         {
-            this.DoFixtureTearDown();
+            this.DoClassCleanup();
         }
 
-        [SetUp]
-        public void TestSetUp()
+        [TestInitialize]
+        public void Initialize()
         {
-            this.DoTestSetUp();
+            this.DoInitialize();
         }
 
-        [TearDown]
-        public void TestTearDown()
+        [TestCleanup]
+        public void Cleanup()
         {
-            this.DoTestTearDown();
+            this.DoCleanup();
         }
 
         public void Dispose()
@@ -57,19 +60,19 @@ namespace Tests
             }
         }
 
-        protected virtual void DoFixtureSetUp()
+        protected virtual void DoClassInitialize()
         {
         }
 
-        protected virtual void DoFixtureTearDown()
+        protected virtual void DoClassCleanup()
         {
         }
 
-        protected virtual void DoTestSetUp()
+        protected virtual void DoInitialize()
         {
         }
 
-        protected virtual void DoTestTearDown()
+        protected virtual void DoCleanup()
         {
         }
     }

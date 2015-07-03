@@ -1,20 +1,21 @@
 ﻿namespace Tests.Sqlite.QueryBuilder
 {
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Runtime.CompilerServices;
 
-    using NativeCode.Sqlite.QueryBuilder;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using NUnit.Framework;
+    using NativeCode.Sqlite.QueryBuilder;
 
     using SQLite.Net;
 
     using Tests.Entities;
 
-    [TestFixture]
+    [TestClass]
     public class WhenQueryingDatabase : TestingWithDatabaseIsolation
     {
-        [Test]
+        [TestMethod]
         public void ShouldQueryPerson()
         {
             // Arrange
@@ -26,11 +27,11 @@
                 var people = connection.Query<Person>(query.Apply());
 
                 // Assert
-                Assert.IsNotEmpty(people);
+                Assert.IsTrue(people.Any());
             }
         }
 
-        [Test]
+        [TestMethod]
         public void ShouldQueryPersonByLinkTable()
         {
             // Arrange
@@ -49,7 +50,7 @@
                 var people = connection.Query<Person>(query.Apply());
 
                 // Assert
-                Assert.IsNotEmpty(people);
+                Assert.IsTrue(people.Any());
             }
         }
 

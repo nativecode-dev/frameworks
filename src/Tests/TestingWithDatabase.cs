@@ -4,12 +4,12 @@
     {
         protected DatabaseInstance Database { get; private set; }
 
-        protected override void DoFixtureSetUp()
+        protected override void DoClassInitialize()
         {
-            this.Database = new DatabaseInstance();
+            this.Database = new DatabaseInstance(this.TestContext);
         }
 
-        protected override void DoTestTearDown()
+        protected override void DoCleanup()
         {
             this.Database.Dispose();
         }

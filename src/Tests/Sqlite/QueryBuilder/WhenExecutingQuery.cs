@@ -1,17 +1,20 @@
 ﻿namespace Tests.Sqlite.QueryBuilder
 {
-    using NUnit.Framework;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.CompilerServices;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Tests.Entities;
 
-    [TestFixture]
-    public class WhenExecutingQuery : TestingWithDatabase
+    [TestClass]
+    public class WhenExecutingQuery : TestingWithDatabaseIsolation
     {
-        [Test]
+        [TestMethod]
         public void ShouldInsertRecord()
         {
             // Arrange
-            using (var connection = this.Database.CreateConnection())
+            using (var connection = this.CreateDatabase().CreateConnection())
             {
                 var person = new Person { FirstName = "Mike", LastName = "Pham" };
 
@@ -29,16 +32,19 @@
             }
         }
 
-        protected override void DoTestSetUp()
+        [SuppressMessage("ReSharper", "ExplicitCallerInfoArgument", Justification = "Reviewed. Suppression is OK here.")]
+        protected override DatabaseInstance CreateDatabase([CallerMemberName] string testname = null)
         {
-            base.DoTestSetUp();
+            var database = base.CreateDatabase(testname);
 
-            using (var connection = this.Database.CreateConnection())
+            using (var connection = database.CreateConnection())
             {
                 connection.CreateTable<Location>();
                 connection.CreateTable<Person>();
                 connection.CreateTable<PersonLocation>();
             }
+
+            return database;
         }
     }
 }

@@ -2,13 +2,13 @@
 {
     using System.Diagnostics.CodeAnalysis;
 
-    using NativeCode.Sqlite.QueryBuilder;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using NUnit.Framework;
+    using NativeCode.Sqlite.QueryBuilder;
 
     using Tests.Entities;
 
-    [TestFixture]
+    [TestClass]
     [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Reviewed. Suppression is OK here.")]
     public class WhenBuildingQuery : TestingWithResources
     {
@@ -30,7 +30,7 @@
 
         private const string ExpectedUpdateQueryFiltered = "Tests.Expectations.UpdateQueryFiltered.expect";
 
-        [Test]
+        [TestMethod]
         public void ShouldBuildDeleteQuery()
         {
             // Arrange
@@ -43,7 +43,7 @@
             Assert.AreEqual(Expect(ExpectedDeleteQuery), template.Query);
         }
 
-        [Test]
+        [TestMethod]
         public void ShouldBuildDeleteQueryFiltered()
         {
             // Arrange
@@ -56,7 +56,7 @@
             Assert.AreEqual(Expect(ExpectedDeleteQueryFiltered), template.Query);
         }
 
-        [Test]
+        [TestMethod]
         public void ShouldBuildInsertQuery()
         {
             // Arrange
@@ -69,7 +69,7 @@
             Assert.AreEqual(Expect(ExpectedInsertQuery), template.Query);
         }
 
-        [Test]
+        [TestMethod]
         public void ShouldBuildJoinedQuery()
         {
             // Arrange
@@ -82,7 +82,7 @@
             Assert.AreEqual(Expect(ExpectedJoinQuery), template.Query);
         }
 
-        [Test]
+        [TestMethod]
         public void ShouldBuildJoinedQueryFiltered()
         {
             // Arrange
@@ -99,7 +99,7 @@
             Assert.AreEqual(Expect(ExpectedJoinQueryFiltered), template.Query);
         }
 
-        [Test]
+        [TestMethod]
         public void ShouldBuildSelectQuery()
         {
             // Arrange
@@ -112,7 +112,7 @@
             Assert.AreEqual(Expect(ExpectedSelectQuery), template.Query);
         }
 
-        [Test]
+        [TestMethod]
         public void ShouldBuildSelectQueryFiltered()
         {
             // Arrange
@@ -128,7 +128,7 @@
             Assert.AreEqual(Expect(ExpectedSelectQueryFiltered), template.Query);
         }
 
-        [Test]
+        [TestMethod]
         public void ShouldBuildUpdateQuery()
         {
             // Arrange
@@ -141,7 +141,7 @@
             Assert.AreEqual(Expect(ExpectedUpdateQuery), template.Query);
         }
 
-        [Test]
+        [TestMethod]
         public void ShouldBuildUpdateQueryFiltered()
         {
             // Arrange
@@ -154,8 +154,10 @@
             Assert.AreEqual(Expect(ExpectedUpdateQueryFiltered), template.Query);
         }
 
-        protected override void DoFixtureSetUp()
+        protected override void DoInitialize()
         {
+            base.DoInitialize();
+
             var configuration = new QueryBuilderConfiguration
             {
                 QualifyColumnNames = true,

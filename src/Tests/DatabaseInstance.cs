@@ -3,7 +3,7 @@ namespace Tests
     using System;
     using System.IO;
 
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using SQLite.Net;
     using SQLite.Net.Interop;
@@ -15,12 +15,13 @@ namespace Tests
 
         private readonly ISQLitePlatform platform = new SQLitePlatformWin32();
 
-        public DatabaseInstance() : this("database")
+        public DatabaseInstance(TestContext context) : this(context, "database")
         {
         }
 
-        public DatabaseInstance(string prefix)
+        public DatabaseInstance(TestContext context, string prefix)
         {
+            this.Context = context;
             this.filename = string.Format("{0}-{1}.db", prefix, Guid.NewGuid());
             this.platform.SQLiteApi.Config(ConfigOption.MultiThread);
 
@@ -28,6 +29,8 @@ namespace Tests
         }
 
         public SQLiteConnectionString ConnectionString { get; private set; }
+
+        private TestContext Context { get; set; }
 
         public SQLiteConnection CreateConnection()
         {
@@ -42,7 +45,7 @@ namespace Tests
 
         public string GetDatabasePath()
         {
-            return Path.Combine(TestContext.CurrentContext.WorkDirectory, this.filename);
+            return Path.Combine(this.Context.TestDeploymentDir, this.filename);
         }
 
         public void Dispose()

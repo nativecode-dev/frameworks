@@ -6,7 +6,7 @@
     {
         protected virtual DatabaseInstance CreateDatabase([CallerMemberName] string testname = null)
         {
-            var database = new DatabaseInstance(testname);
+            var database = new DatabaseInstance(this.TestContext, testname);
             this.Dispose(database);
 
             return database;
