@@ -143,8 +143,11 @@
                 var token = match.Groups[KeyToken].Value;
                 var name = match.Groups[KeyTokenName].Value;
 
-                this.QueryTokens.Add(token);
-                this.QueryParameters.Add(name.ToUpper(), null);
+                if (!this.QueryTokens.Contains(token))
+                {
+                    this.QueryTokens.Add(token);
+                    this.QueryParameters.Add(name.ToUpper(), null);
+                }
             }
         }
     }
