@@ -97,6 +97,10 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid.Renderers
                     this.Adapter.Remove(item);
                 }
             }
+            else if (e.Action == NotifyCollectionChangedAction.Reset)
+            {
+                this.Adapter.Clear();
+            }
         }
 
         private void UpdateItemsSource()

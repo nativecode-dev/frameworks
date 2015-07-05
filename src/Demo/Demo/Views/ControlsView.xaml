@@ -5,6 +5,5 @@
              x:Class="Demo.Views.ControlsView" IsBusy="{Binding IsBusy}" Title="{Binding Title}">
   <StackLayout>
     <controls:SpinSelector ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" />
-    <controls:Shape />
   </StackLayout>
 </ContentPage>
