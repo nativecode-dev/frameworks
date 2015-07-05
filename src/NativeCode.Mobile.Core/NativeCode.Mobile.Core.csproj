@@ -64,6 +64,9 @@
     <Compile Include="Logging\LogMessageType.cs" />
     <Compile Include="Logging\LogWriter.cs" />
     <Compile Include="Platform\IDeviceInformant.cs" />
+    <Compile Include="Platform\IStorageProvider.cs" />
+    <Compile Include="Platform\StorageDevice.cs" />
+    <Compile Include="Platform\StorageState.cs" />
     <Compile Include="Presentation\IViewModelNavigator.cs" />
     <Compile Include="Presentation\IViewModelNavigatorProvider.cs" />
     <Compile Include="Presentation\NavigableViewModel.cs" />

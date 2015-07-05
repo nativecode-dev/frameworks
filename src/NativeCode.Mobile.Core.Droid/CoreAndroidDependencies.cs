@@ -5,6 +5,7 @@ namespace NativeCode.Mobile.Core.Droid
     using NativeCode.Mobile.Core.Droid.Collections;
     using NativeCode.Mobile.Core.Droid.Logging;
     using NativeCode.Mobile.Core.Droid.Platform;
+    using NativeCode.Mobile.Core.Droid.Platform.Storage;
     using NativeCode.Mobile.Core.Logging;
     using NativeCode.Mobile.Core.Platform;
 
@@ -21,6 +22,8 @@ namespace NativeCode.Mobile.Core.Droid
         {
             registrar.Register<ICollectionFactory, CollectionFactory>();
             registrar.Register<IDeviceInformant, DeviceInformant>();
+            registrar.Register<IStorageProvider, StorageProvider>();
+
             registrar.RegisterAll<ILogWriter>(typeof(LogcatLogWriter));
         }
     }

@@ -1,5 +1,7 @@
 namespace NativeCode.Mobile.Core.Droid.Platform
 {
+    using System.Collections.Generic;
+
     using Android.Content;
     using Android.Net;
     using Android.OS;
@@ -11,11 +13,14 @@ namespace NativeCode.Mobile.Core.Droid.Platform
 
     public class DeviceInformant : IDeviceInformant
     {
-        private readonly IContextProvider provider;
+        private readonly IContextProvider contextProvider;
 
-        public DeviceInformant(IContextProvider provider)
+        private readonly IStorageProvider storageProvider;
+
+        public DeviceInformant(IContextProvider contextProvider, IStorageProvider storageProvider)
         {
-            this.provider = provider;
+            this.contextProvider = contextProvider;
+            this.storageProvider = storageProvider;
         }
 
         public string AppPath
@@ -33,9 +38,14 @@ namespace NativeCode.Mobile.Core.Droid.Platform
             get { return this.GetIsConnected(); }
         }
 
+        public bool IsExternalStorageSupported
+        {
+            get { return true; }
+        }
+
         protected Context Context
         {
-            get { return this.provider.GetCurrentContext(); }
+            get { return this.contextProvider.GetCurrentContext(); }
         }
 
         public string GetAppDataPath(string filename)
@@ -49,6 +59,11 @@ namespace NativeCode.Mobile.Core.Droid.Platform
         public string GetDisplayString()
         {
             return Build.Display;
+        }
+
+        public IEnumerable<StorageDevice> GetStorageDevices()
+        {
+            return storageProvider.GetStorageDevices();
         }
 
         public string GetDeviceString()

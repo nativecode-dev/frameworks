@@ -48,6 +48,8 @@
     <Compile Include="Logging\LogcatLogWriter.cs" />
     <Compile Include="Platform\DeviceInformant.cs" />
     <Compile Include="Platform\IContextProvider.cs" />
+    <Compile Include="Platform\Storage\AndroidStorageDevice.cs" />
+    <Compile Include="Platform\Storage\StorageProvider.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
