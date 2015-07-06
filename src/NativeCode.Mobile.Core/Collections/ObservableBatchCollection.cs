@@ -1,5 +1,6 @@
 ﻿namespace NativeCode.Mobile.Core.Collections
 {
+    using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
@@ -24,36 +25,49 @@
         {
             using (this.BlockReentrancy())
             {
+                var additions = new List<T>();
+
                 foreach (var item in range)
                 {
                     this.Items.Add(item);
+                    additions.Add(item);
                 }
 
                 this.OnPropertyChanged(CountName);
                 this.OnPropertyChanged(IndexerName);
-                this.OnCollectionReset();
+                this.OnCollectionChanged(this.CreateAddArgs(additions));
             }
         }
 
-        public void Reset()
+        public virtual void Reset()
         {
             this.Reset(Enumerable.Empty<T>());
         }
 
-        public void Reset(IEnumerable<T> range)
+        public virtual void Reset(IEnumerable<T> range)
         {
             this.ClearItems();
             this.AddRange(range);
         }
 
-        protected virtual void OnCollectionReset()
-        {
-            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-        }
-
         protected virtual void OnPropertyChanged(string property)
         {
             this.OnPropertyChanged(new PropertyChangedEventArgs(property));
+        }
+
+        protected virtual NotifyCollectionChangedEventArgs CreateAddArgs(IList additions)
+        {
+            return new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, additions);
+        }
+
+        protected virtual NotifyCollectionChangedEventArgs CreateRemoveArgs(IList removals)
+        {
+            return new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, removals);
+        }
+
+        protected virtual NotifyCollectionChangedEventArgs CreateResetArgs()
+        {
+            return new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
         }
     }
 }
