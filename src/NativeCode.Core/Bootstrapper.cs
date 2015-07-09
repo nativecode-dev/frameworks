@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using NativeCode.Core.Dependencies;
-
-namespace NativeCode.Core
+﻿namespace NativeCode.Core
 {
+    using System.Collections.Generic;
+
+    using NativeCode.Core.Dependencies;
+
     public abstract class Bootstrapper : IBootstrapper
     {
         public DependencyAdapter DependencyAdapter { get; private set; }

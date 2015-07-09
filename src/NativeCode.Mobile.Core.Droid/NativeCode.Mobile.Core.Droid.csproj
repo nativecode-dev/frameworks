@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Collections\CollectionFactory.cs" />
     <Compile Include="CoreAndroidDependencies.cs" />
+    <Compile Include="Logging\FileLogWriter.cs" />
     <Compile Include="Logging\LogcatLogWriter.cs" />
     <Compile Include="Platform\DeviceInformant.cs" />
     <Compile Include="Platform\IContextProvider.cs" />

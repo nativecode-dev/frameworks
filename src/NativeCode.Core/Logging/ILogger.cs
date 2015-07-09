@@ -1,8 +1,10 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-
-namespace NativeCode.Core.Logging
+﻿namespace NativeCode.Core.Logging
 {
+    using System;
+    using System.Runtime.CompilerServices;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Provides a contract to log various types of messages.
     /// </summary>
@@ -68,6 +70,13 @@ namespace NativeCode.Core.Logging
         void Flush();
 
         /// <summary>
+        /// Flushes all <see cref="ILogWriter" /> instances.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>Returns a <see cref="Task" />.</returns>
+        Task FlushAsync(CancellationToken cancellationToken);
+
+        /// <summary>
         /// Logs the specified message.
         /// </summary>
         /// <param name="message">The message.</param>
@@ -76,6 +85,17 @@ namespace NativeCode.Core.Logging
         /// <param name="callerMemberName">Name of the caller member.</param>
         void Informational(
             string message,
+            [CallerFilePath] string callerFilePath = null,
+            [CallerLineNumber] int callerLineNumber = 0,
+            [CallerMemberName] string callerMemberName = null);
+
+        /// <summary>
+        /// Logs the specified message.
+        /// </summary>
+        /// <param name="callerFilePath">The caller file path.</param>
+        /// <param name="callerLineNumber">The caller line number.</param>
+        /// <param name="callerMemberName">Name of the caller member.</param>
+        void Trace(
             [CallerFilePath] string callerFilePath = null,
             [CallerLineNumber] int callerLineNumber = 0,
             [CallerMemberName] string callerMemberName = null);

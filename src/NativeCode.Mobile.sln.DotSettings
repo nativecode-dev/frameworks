@@ -1,6 +1,0 @@
-﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=AC1AE0321F9ECC43856D9DE4659608D2/AbsolutePath/@EntryValue">D:\Projects\Repositories\NativeCode.DotSettings</s:String>
-	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=AC1AE0321F9ECC43856D9DE4659608D2/RelativePath/@EntryValue">..\..\..\NativeCode.DotSettings</s:String>
-	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=AC1AE0321F9ECC43856D9DE4659608D2/@KeyIndexDefined">True</s:Boolean>
-	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileAC1AE0321F9ECC43856D9DE4659608D2/@KeyIndexDefined">True</s:Boolean>
-	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileAC1AE0321F9ECC43856D9DE4659608D2/RelativePriority/@EntryValue">1</s:Double></wpf:ResourceDictionary>

@@ -11,10 +11,7 @@
 
         public static IDependencyModule Instance
         {
-            get
-            {
-                return DefaultInstance;
-            }
+            get { return DefaultInstance; }
         }
 
         public void RegisterDependencies(IDependencyRegistrar registrar)

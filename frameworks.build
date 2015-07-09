@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 
-<project name="Mobile" default="manual">
+<project name="Frameworks" default="manual">
 
   <!--
   # Define properties
   -->
   <property name="CurrentPath" value="${path::get-directory-name(project::get-buildfile-path())}" />
-  <property name="Solution" value="src\NativeCode.Mobile.sln" />
+  <property name="Solution" value="src\NativeCode.Frameworks.sln" />
   <property name="ToolsPath" value="${path::get-full-path(path::combine(CurrentPath, '.build'))}" />
 
   <!--

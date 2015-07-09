@@ -1,35 +1,33 @@
 namespace NativeCode.Mobile.Core.Droid.Logging
 {
+    using System.Threading;
+
     using Android.Util;
 
     using NativeCode.Core.Logging;
 
     public class LogcatLogWriter : LogWriter
     {
-        public override void Flush()
-        {
-        }
-
         public override void Write(LogMessage message)
         {
             var text = message.ToString();
-            var tag = message.MessageType.ToString();
+            var tag = message.Severity.ToString();
 
-            switch (message.MessageType)
+            switch (message.Severity)
             {
-                case LogMessageType.Debug:
+                case LogSeverity.Debug:
                     Log.Debug(tag, text);
                     break;
 
-                case LogMessageType.Error:
+                case LogSeverity.Error:
                     Log.Error(tag, text);
                     break;
 
-                case LogMessageType.Exception:
+                case LogSeverity.Exception:
                     Log.Error(tag, text);
                     break;
 
-                case LogMessageType.Warning:
+                case LogSeverity.Warning:
                     Log.Warn(tag, text);
                     break;
 
@@ -37,6 +35,10 @@ namespace NativeCode.Mobile.Core.Droid.Logging
                     Log.Info(tag, text);
                     break;
             }
+        }
+
+        protected override void DoFlush(CancellationToken cancellationToken)
+        {
         }
     }
 }

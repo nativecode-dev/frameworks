@@ -1,12 +1,11 @@
-﻿using System;
-using System.Text;
-
-namespace NativeCode.Core.Extensions
+﻿namespace NativeCode.Core.Extensions
 {
+    using System;
+    using System.Text;
+
     public static class ExceptionExtensions
     {
-        public static StringBuilder BuildExceptionMessage<TException>(this TException exception, bool includeStackTrace = true)
-            where TException : Exception
+        public static StringBuilder BuildExceptionMessage<TException>(this TException exception, bool includeStackTrace = true) where TException : Exception
         {
             var builder = new StringBuilder();
 
@@ -27,7 +26,7 @@ namespace NativeCode.Core.Extensions
             return builder;
         }
 
-        public static string ToExceptionString<TException>(this TException exception, bool includeStackTrace = true) where TException : Exception
+        public static string Stringify<TException>(this TException exception, bool includeStackTrace = true) where TException : Exception
         {
             return exception.BuildExceptionMessage(includeStackTrace).ToString();
         }

@@ -1,7 +1,9 @@
-﻿using System;
-
-namespace NativeCode.Core.Logging
+﻿namespace NativeCode.Core.Logging
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Provides a contract to write a <see cref="LogMessage"/>.
     /// </summary>
@@ -11,6 +13,13 @@ namespace NativeCode.Core.Logging
         /// Flushes this instance.
         /// </summary>
         void Flush();
+
+        /// <summary>
+        /// Flushes this instance.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>Returns a <see cref="Task" />.</returns>
+        Task FlushAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Writes the specified message.
