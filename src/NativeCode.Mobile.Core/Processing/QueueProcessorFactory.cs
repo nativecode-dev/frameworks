@@ -2,8 +2,8 @@
 {
     using System;
 
+    using NativeCode.Core.Dependencies;
     using NativeCode.Mobile.Core.Collections;
-    using NativeCode.Mobile.Core.Dependencies;
 
     public class QueueProcessorFactory : IQueueProcessorFactory
     {

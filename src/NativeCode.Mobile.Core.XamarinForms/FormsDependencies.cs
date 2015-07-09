@@ -1,6 +1,6 @@
 ﻿namespace NativeCode.Mobile.Core.XamarinForms
 {
-    using NativeCode.Mobile.Core.Dependencies;
+    using NativeCode.Core.Dependencies;
     using NativeCode.Mobile.Core.Presentation;
     using NativeCode.Mobile.Core.XamarinForms.Presentation;
 
@@ -10,7 +10,10 @@
 
         public static IDependencyModule Instance
         {
-            get { return DefaultInstance; }
+            get
+            {
+                return DefaultInstance;
+            }
         }
 
         public void RegisterDependencies(IDependencyRegistrar registrar)

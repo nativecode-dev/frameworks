@@ -54,6 +54,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NativeCode.Core\NativeCode.Core.csproj">
+      <Project>{E82FF32E-A546-441E-9625-BA8897BB5584}</Project>
+      <Name>NativeCode.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NativeCode.Mobile.Core\NativeCode.Mobile.Core.csproj">
       <Project>{CB24CD06-8765-4AD4-8DE2-766E98BDDA23}</Project>
       <Name>NativeCode.Mobile.Core</Name>

@@ -4,6 +4,8 @@ namespace NativeCode.Mobile.Core.Processing
     using System.Threading;
     using System.Threading.Tasks;
 
+    using NativeCode.Core;
+
     internal abstract class QueueProcessor<T> : IDisposable, IQueueProcessor<T>
     {
         private QueueProcessorState state;

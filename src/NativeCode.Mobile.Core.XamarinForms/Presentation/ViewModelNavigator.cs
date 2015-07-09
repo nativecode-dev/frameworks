@@ -3,8 +3,8 @@
     using System;
     using System.Threading.Tasks;
 
-    using NativeCode.Mobile.Core.Dependencies;
-    using NativeCode.Mobile.Core.Extensions;
+    using NativeCode.Core.Dependencies;
+    using NativeCode.Core.Extensions;
     using NativeCode.Mobile.Core.Presentation;
     using NativeCode.Mobile.Core.XamarinForms.Extensions;
 

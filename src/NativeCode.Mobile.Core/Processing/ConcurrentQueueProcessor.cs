@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using NativeCode.Core;
     using NativeCode.Mobile.Core.Collections;
 
     internal class ConcurrentQueueProcessor<T> : QueueProcessor<T>

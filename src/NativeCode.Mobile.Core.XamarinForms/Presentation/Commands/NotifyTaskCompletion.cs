@@ -4,8 +4,6 @@
     using System.ComponentModel;
     using System.Threading.Tasks;
 
-    using NativeCode.Mobile.Core.Logging;
-
     /// <summary>
     /// <see href="https://msdn.microsoft.com/en-us/magazine/dn630647.aspx"/>
     /// </summary>

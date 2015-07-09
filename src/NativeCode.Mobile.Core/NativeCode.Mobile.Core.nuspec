@@ -7,7 +7,7 @@
     <description>Provides a core set of features for mobile development.</description>
     <language>en-US</language>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-    <projectUrl>https://github.com/nativecode-dev/mobile</projectUrl>
+    <projectUrl>https://github.com/nativecode-dev/frameworks</projectUrl>
     <tags>mobile framework library</tags>
     <version>$version$</version>
   </metadata>

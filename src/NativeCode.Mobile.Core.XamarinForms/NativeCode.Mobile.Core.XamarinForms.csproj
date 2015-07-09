@@ -37,6 +37,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\NativeCode.Core\NativeCode.Core.csproj">
+      <Project>{E82FF32E-A546-441E-9625-BA8897BB5584}</Project>
+      <Name>NativeCode.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NativeCode.Mobile.Core\NativeCode.Mobile.Core.csproj">
       <Project>{cb24cd06-8765-4ad4-8de2-766e98bdda23}</Project>
       <Name>NativeCode.Mobile.Core</Name>

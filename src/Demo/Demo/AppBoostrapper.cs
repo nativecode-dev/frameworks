@@ -3,8 +3,8 @@
     using Demo.ViewModels;
     using Demo.Views;
 
-    using NativeCode.Mobile.Core;
-    using NativeCode.Mobile.Core.Dependencies;
+    using NativeCode.Core;
+    using NativeCode.Core.Dependencies;
     using NativeCode.Mobile.Core.XamarinForms.Dependencies;
     using NativeCode.Mobile.Core.XamarinForms.Presentation;
 

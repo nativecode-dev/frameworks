@@ -2,7 +2,7 @@
 {
     using System;
 
-    using NativeCode.Mobile.Core.Localization;
+    using NativeCode.Core.Localization;
 
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;

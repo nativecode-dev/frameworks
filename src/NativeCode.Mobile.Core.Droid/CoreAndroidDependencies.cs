@@ -1,12 +1,12 @@
 namespace NativeCode.Mobile.Core.Droid
 {
+    using NativeCode.Core.Dependencies;
+    using NativeCode.Core.Logging;
     using NativeCode.Mobile.Core.Collections;
-    using NativeCode.Mobile.Core.Dependencies;
     using NativeCode.Mobile.Core.Droid.Collections;
     using NativeCode.Mobile.Core.Droid.Logging;
     using NativeCode.Mobile.Core.Droid.Platform;
     using NativeCode.Mobile.Core.Droid.Platform.Storage;
-    using NativeCode.Mobile.Core.Logging;
     using NativeCode.Mobile.Core.Platform;
 
     public class CoreAndroidDependencies : IDependencyModule
@@ -15,7 +15,10 @@ namespace NativeCode.Mobile.Core.Droid
 
         public static IDependencyModule Instance
         {
-            get { return DefaultInstance; }
+            get
+            {
+                return DefaultInstance;
+            }
         }
 
         public void RegisterDependencies(IDependencyRegistrar registrar)

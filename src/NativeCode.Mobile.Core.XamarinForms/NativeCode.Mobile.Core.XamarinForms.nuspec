@@ -7,7 +7,7 @@
     <description>Provides controls and types for Xamarin.Forms.</description>
     <language>en-US</language>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-    <projectUrl>https://github.com/nativecode-dev/mobile</projectUrl>
+    <projectUrl>https://github.com/nativecode-dev/frameworks</projectUrl>
     <tags>mobile framework library xamarin forms</tags>
     <version>$version$</version>
   </metadata>

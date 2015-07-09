@@ -116,6 +116,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\NativeCode.Core\NativeCode.Core.csproj">
+      <Project>{E82FF32E-A546-441E-9625-BA8897BB5584}</Project>
+      <Name>NativeCode.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\NativeCode.Mobile.Core.XamarinForms\NativeCode.Mobile.Core.XamarinForms.csproj">
       <Project>{D283C287-3C33-4B08-99ED-6C70AE2D81F6}</Project>
       <Name>NativeCode.Mobile.Core.XamarinForms</Name>

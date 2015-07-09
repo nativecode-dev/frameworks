@@ -2,7 +2,7 @@ namespace NativeCode.Mobile.Core.Droid.Logging
 {
     using Android.Util;
 
-    using NativeCode.Mobile.Core.Logging;
+    using NativeCode.Core.Logging;
 
     public class LogcatLogWriter : LogWriter
     {

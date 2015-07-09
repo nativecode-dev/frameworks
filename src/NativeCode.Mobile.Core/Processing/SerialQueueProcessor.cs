@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
 
+    using NativeCode.Core;
+
     internal class SerialQueueProcessor<T> : QueueProcessor<T>
     {
         private readonly Queue<T> queue = new Queue<T>();

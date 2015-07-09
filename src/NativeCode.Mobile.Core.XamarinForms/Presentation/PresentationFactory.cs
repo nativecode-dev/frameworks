@@ -1,6 +1,6 @@
 ﻿namespace NativeCode.Mobile.Core.XamarinForms.Presentation
 {
-    using NativeCode.Mobile.Core.Dependencies;
+    using NativeCode.Core.Dependencies;
     using NativeCode.Mobile.Core.Presentation;
 
     using Xamarin.Forms;

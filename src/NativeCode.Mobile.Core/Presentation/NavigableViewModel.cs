@@ -1,6 +1,6 @@
 ﻿namespace NativeCode.Mobile.Core.Presentation
 {
-    using NativeCode.Mobile.Core.Dependencies;
+    using NativeCode.Core.Dependencies;
 
     public abstract class NavigableViewModel : ViewModel
     {

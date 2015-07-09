@@ -6,10 +6,11 @@
     using Android.Content.PM;
     using Android.OS;
 
+    using NativeCode.Core;
+    using NativeCode.Core.Dependencies;
     using NativeCode.Mobile.AppCompat.FormsAppCompat;
     using NativeCode.Mobile.AppCompat.Renderers;
     using NativeCode.Mobile.Core;
-    using NativeCode.Mobile.Core.Dependencies;
     using NativeCode.Mobile.Core.Droid;
     using NativeCode.Mobile.Core.XamarinForms;
     using NativeCode.Mobile.Core.XamarinForms.Droid;
@@ -35,7 +36,11 @@
 
         private static IEnumerable<IDependencyModule> CreateDependencyModules()
         {
-            return new[] { CoreDependencies.Instance, CoreAndroidDependencies.Instance, FormsDependencies.Instance, FormsAndroidDependencies.Instance };
+            return new[]
+                       {
+                           CoreDependencies.Instance, CoreMobileDependencies.Instance, CoreAndroidDependencies.Instance,
+                           FormsDependencies.Instance, FormsAndroidDependencies.Instance
+                       };
         }
     }
 }

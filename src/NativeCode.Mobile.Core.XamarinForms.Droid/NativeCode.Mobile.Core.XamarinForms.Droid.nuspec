@@ -7,7 +7,7 @@
     <description>Provides Android-specific renderers and types.</description>
     <language>en-US</language>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-    <projectUrl>https://github.com/nativecode-dev/mobile</projectUrl>
+    <projectUrl>https://github.com/nativecode-dev/frameworks</projectUrl>
     <tags>mobile framework library android</tags>
     <version>$version$</version>
   </metadata>

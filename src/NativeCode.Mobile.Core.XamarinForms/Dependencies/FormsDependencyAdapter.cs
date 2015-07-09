@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    using NativeCode.Mobile.Core.Dependencies;
+    using NativeCode.Core.Dependencies;
 
     using SimpleInjector;
 
