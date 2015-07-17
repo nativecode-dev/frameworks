@@ -3,6 +3,7 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid
     using NativeCode.Core.Dependencies;
     using NativeCode.Mobile.Core.Droid.Platform;
     using NativeCode.Mobile.Core.XamarinForms.Droid.Platform;
+    using NativeCode.Mobile.Core.XamarinForms.Platform;
 
     public class FormsAndroidDependencies : IDependencyModule
     {
@@ -16,6 +17,7 @@ namespace NativeCode.Mobile.Core.XamarinForms.Droid
         public void RegisterDependencies(IDependencyRegistrar registrar)
         {
             registrar.Register<IContextProvider, FormsContextProvider>();
+            registrar.Register<IMobileInformant, MobileInformant>();
         }
     }
 }

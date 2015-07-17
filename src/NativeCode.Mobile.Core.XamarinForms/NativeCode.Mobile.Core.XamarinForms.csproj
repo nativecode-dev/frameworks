@@ -60,6 +60,8 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\AppHelper.cs" />
     <Compile Include="MarkupExtensions\TranslateExtension.cs" />
+    <Compile Include="Platform\IMobileInformant.cs" />
+    <Compile Include="Platform\PlatformSystem.cs" />
     <Compile Include="Presentation\Commands\AsyncCommand.cs" />
     <Compile Include="Presentation\Commands\AsyncCommandBase.cs" />
     <Compile Include="Presentation\Commands\IAsyncCommand.cs" />

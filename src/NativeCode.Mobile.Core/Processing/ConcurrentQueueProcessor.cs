@@ -72,21 +72,23 @@
         private Task ProcessQueueItemAsync(T item)
         {
             this.HandleItemProcessing(item);
-            return Task.Run(() => this.Processor(item)).ContinueWith(
-                x =>
-                    {
-                        switch (x.Status)
-                        {
-                            case TaskStatus.Canceled:
-                            case TaskStatus.Faulted:
-                                this.HandleItemProcessed(item);
-                                break;
 
-                            default:
-                                this.HandleItemProcessingFailed(item);
-                                break;
-                        }
-                    });
+            return Task.Run(() => this.Processor(item)).ContinueWith(x => this.CompleteProcessQueueItem(item, x));
+        }
+
+        private void CompleteProcessQueueItem(T item, Task x)
+        {
+            switch (x.Status)
+            {
+                case TaskStatus.Canceled:
+                case TaskStatus.Faulted:
+                    this.HandleItemProcessed(item);
+                    break;
+
+                default:
+                    this.HandleItemProcessingFailed(item);
+                    break;
+            }
         }
     }
 }

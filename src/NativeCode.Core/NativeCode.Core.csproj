@@ -51,6 +51,7 @@
     <Compile Include="Dependencies\IDependencyRegistrar.cs" />
     <Compile Include="Dependencies\IDependencyResolver.cs" />
     <Compile Include="EventArgs.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="IBootstrapper.cs" />

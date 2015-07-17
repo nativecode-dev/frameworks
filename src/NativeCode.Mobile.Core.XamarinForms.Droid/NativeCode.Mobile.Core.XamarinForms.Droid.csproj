@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="Extensions\ViewExtensions.cs" />
     <Compile Include="Platform\FormsContextProvider.cs" />
+    <Compile Include="Platform\MobileInformant.cs" />
     <Compile Include="Renderers\Adapters\FlipAdapter.cs" />
     <Compile Include="Renderers\FlipViewRenderer.cs" />
     <Compile Include="Renderers\InflateViewRenderer.cs" />
