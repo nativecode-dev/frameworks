@@ -59,6 +59,7 @@
     <Compile Include="Localization\ITranslationProvider.cs" />
     <Compile Include="Localization\ITranslator.cs" />
     <Compile Include="Localization\Translator.cs" />
+    <Compile Include="Logging\DebugLogWriter.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\ILogWriter.cs" />
     <Compile Include="Logging\Logger.cs" />

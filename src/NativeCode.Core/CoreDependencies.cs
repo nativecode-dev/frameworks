@@ -16,6 +16,8 @@
 
         public void RegisterDependencies(IDependencyRegistrar registrar)
         {
+            registrar.Register<DebugLogWriter, DebugLogWriter>(lifetime: DependencyLifetime.PerApplication);
+
             registrar.Register<ILogger, Logger>(lifetime: DependencyLifetime.PerApplication);
             registrar.Register<IStringSerializer, JsonStringSerializer>();
             registrar.Register<ITranslationProvider, DefaultTranslationProvider>();
