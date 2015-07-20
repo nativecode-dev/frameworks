@@ -1,4 +1,4 @@
-namespace NativeCode.Mobile.Core.Processing
+namespace NativeCode.Core.Processing
 {
     /// <summary>
     /// Enumeration of queue processor states.

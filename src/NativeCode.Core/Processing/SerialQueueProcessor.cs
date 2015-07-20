@@ -1,21 +1,30 @@
-﻿namespace NativeCode.Mobile.Core.Processing
+﻿namespace NativeCode.Core.Processing
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     using NativeCode.Core;
+
+    using Nito.AsyncEx;
 
     internal class SerialQueueProcessor<T> : QueueProcessor<T>
     {
         private readonly Queue<T> queue = new Queue<T>();
 
-        internal SerialQueueProcessor(Action<T> processor) : base(processor)
+        internal SerialQueueProcessor(Func<T, Task<T>> processor) : base(processor)
         {
         }
 
         public event EventHandler<EventArgs<T>> ItemDequeued;
 
         public event EventHandler<EventArgs<T>> ItemEnqueued;
+
+        public override int Queued
+        {
+            get { return this.queue.Count; }
+        }
 
         public override void Enqueue(T item)
         {
@@ -44,11 +53,11 @@
             }
         }
 
-        protected override void ProcessQueueItems()
+        protected override Task ProcessQueueItemsAsync(CancellationToken cancellationToken)
         {
             if (this.queue.Count == 0)
             {
-                return;
+                return TaskConstants.Completed;
             }
 
             do
@@ -60,7 +69,7 @@
                 try
                 {
                     this.HandleItemProcessing(item);
-                    this.Processor(item);
+                    this.AsyncProcessor(item);
                     this.HandleItemProcessed(item);
                 }
                 catch
@@ -69,6 +78,8 @@
                 }
             }
             while (this.queue.Count > 0);
+
+            return TaskConstants.Completed;
         }
     }
 }

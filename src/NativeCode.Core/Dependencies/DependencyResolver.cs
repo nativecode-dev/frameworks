@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace NativeCode.Core.Dependencies
+﻿namespace NativeCode.Core.Dependencies
 {
+    using System;
+
     public static class DependencyResolver
     {
         public static IDependencyResolver Current

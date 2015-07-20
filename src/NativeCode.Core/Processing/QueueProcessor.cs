@@ -1,18 +1,18 @@
-namespace NativeCode.Mobile.Core.Processing
+namespace NativeCode.Core.Processing
 {
     using System;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using NativeCode.Core;
-
     internal abstract class QueueProcessor<T> : IDisposable, IQueueProcessor<T>
     {
         private QueueProcessorState state;
 
-        protected QueueProcessor(Action<T> processor)
+        private int running;
+
+        protected QueueProcessor(Func<T, Task<T>> processor)
         {
-            this.Processor = processor;
+            this.AsyncProcessor = processor;
         }
 
         public event EventHandler<EventArgs<T>> ItemProcessed;
@@ -37,11 +37,18 @@ namespace NativeCode.Mobile.Core.Processing
             }
         }
 
-        public Task ProcessorTask { get; private set; }
+        public abstract int Queued { get; }
+
+        public int Running
+        {
+            get { return this.running; }
+        }
+
+        public Task QueueProcessorTask { get; private set; }
+
+        protected Func<T, Task<T>> AsyncProcessor { get; private set; }
 
         protected CancellationTokenSource CancellationTokenSource { get; private set; }
-
-        protected Action<T> Processor { get; private set; }
 
         public void Cancel()
         {
@@ -55,7 +62,7 @@ namespace NativeCode.Mobile.Core.Processing
                 finally
                 {
                     this.CancellationTokenSource = null;
-                    this.ProcessorTask = null;
+                    this.QueueProcessorTask = null;
                 }
             }
         }
@@ -78,6 +85,8 @@ namespace NativeCode.Mobile.Core.Processing
 
         protected void HandleItemProcessed(T item)
         {
+            Interlocked.Decrement(ref this.running);
+
             var handler = this.ItemProcessed;
 
             if (handler != null)
@@ -88,6 +97,8 @@ namespace NativeCode.Mobile.Core.Processing
 
         protected void HandleItemProcessing(T item)
         {
+            Interlocked.Increment(ref this.running);
+
             var handler = this.ItemProcessing;
 
             if (handler != null)
@@ -104,6 +115,8 @@ namespace NativeCode.Mobile.Core.Processing
             {
                 handler(this, new EventArgs<T>(item));
             }
+
+            this.HandleItemProcessed(item);
         }
 
         protected void HandleStateChanged(QueueProcessorState queueProcessorState)
@@ -121,25 +134,26 @@ namespace NativeCode.Mobile.Core.Processing
             if (this.CancellationTokenSource == null)
             {
                 this.CancellationTokenSource = new CancellationTokenSource();
-                this.State = QueueProcessorState.Running;
-
-                this.ProcessorTask = Task.Run(
-                    () =>
-                    {
-                        try
-                        {
-                            this.ProcessQueueItems();
-                            this.State = QueueProcessorState.Idle;
-                        }
-                        catch
-                        {
-                            this.State = QueueProcessorState.Idle;
-                        }
-                    },
+                this.QueueProcessorTask = Task.Run(
+                    async () => await this.ExecuteProcessQueueAsync(this.CancellationTokenSource.Token).ConfigureAwait(false),
                     this.CancellationTokenSource.Token);
             }
         }
 
-        protected abstract void ProcessQueueItems();
+        protected abstract Task ProcessQueueItemsAsync(CancellationToken cancellationToken);
+
+        private async Task ExecuteProcessQueueAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                this.State = QueueProcessorState.Running;
+                await this.ProcessQueueItemsAsync(cancellationToken).ConfigureAwait(false);
+                this.State = QueueProcessorState.Idle;
+            }
+            catch
+            {
+                this.State = QueueProcessorState.Idle;
+            }
+        }
     }
 }

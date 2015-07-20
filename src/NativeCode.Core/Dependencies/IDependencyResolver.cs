@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace NativeCode.Core.Dependencies
+﻿namespace NativeCode.Core.Dependencies
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Provides a contract to resolve dependencies.
     /// </summary>

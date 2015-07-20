@@ -1,4 +1,4 @@
-namespace NativeCode.Mobile.Core.Droid.Collections
+namespace Tests.Testables
 {
     using System;
     using System.Collections.Concurrent;
@@ -7,7 +7,10 @@ namespace NativeCode.Mobile.Core.Droid.Collections
 
     public class CollectionFactory : ICollectionFactory
     {
-        public int DefaultConcurrency => Environment.ProcessorCount;
+        public int DefaultConcurrency
+        {
+            get { return Environment.ProcessorCount; }
+        }
 
         public IConcurrentDictionary<TKey, TValue> CreateDictionary<TKey, TValue>()
         {

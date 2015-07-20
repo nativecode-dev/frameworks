@@ -26,6 +26,11 @@
             this.InternalInitialize();
         }
 
+        public void Initialize(params IDependencyModule[] modules)
+        {
+            this.Initialize((IEnumerable<IDependencyModule>)modules);
+        }
+
         /// <summary>
         /// Creates a dependency adapter.
         /// </summary>

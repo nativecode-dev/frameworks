@@ -1,4 +1,4 @@
-namespace NativeCode.Mobile.Core.Processing
+namespace NativeCode.Core.Processing
 {
     using System;
 

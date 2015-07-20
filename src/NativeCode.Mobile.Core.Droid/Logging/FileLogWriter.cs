@@ -7,8 +7,8 @@ namespace NativeCode.Mobile.Core.Droid.Logging
     using System.Text;
     using System.Threading;
 
+    using NativeCode.Core.Collections;
     using NativeCode.Core.Logging;
-    using NativeCode.Mobile.Core.Collections;
     using NativeCode.Mobile.Core.Droid.Platform;
 
     public class FileLogWriter : LogWriter

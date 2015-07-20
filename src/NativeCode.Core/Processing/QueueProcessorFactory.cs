@@ -1,9 +1,10 @@
-﻿namespace NativeCode.Mobile.Core.Processing
+﻿namespace NativeCode.Core.Processing
 {
     using System;
+    using System.Threading.Tasks;
 
+    using NativeCode.Core.Collections;
     using NativeCode.Core.Dependencies;
-    using NativeCode.Mobile.Core.Collections;
 
     public class QueueProcessorFactory : IQueueProcessorFactory
     {
@@ -19,12 +20,12 @@
             this.collectionFactory = collectionFactory;
         }
 
-        public IQueueProcessor<T> CreateConcurrentQueueProcessor<T>(Action<T> processor)
+        public IQueueProcessor<T> CreateConcurrentQueueProcessor<T>(Func<T, Task<T>> processor, int concurrency)
         {
-            return new ConcurrentQueueProcessor<T>(processor, this.collectionFactory);
+            return new ConcurrentQueueProcessor<T>(processor, this.collectionFactory, concurrency);
         }
 
-        public IQueueProcessor<T> CreateSerialQueueProcessor<T>(Action<T> processor)
+        public IQueueProcessor<T> CreateSerialQueueProcessor<T>(Func<T, Task<T>> processor)
         {
             return new SerialQueueProcessor<T>(processor);
         }

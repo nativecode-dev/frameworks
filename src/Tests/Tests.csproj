@@ -92,10 +92,12 @@
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\PersonLocation.cs" />
+    <Compile Include="Processing\WhenProcessingConcurrentTasks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sqlite\QueryBuilder\WhenExecutingQuery.cs" />
     <Compile Include="Sqlite\QueryBuilder\WhenQueryingDatabase.cs" />
     <Compile Include="Sqlite\QueryBuilder\WhenUsingQueryTemplate.cs" />
+    <Compile Include="Testables\CollectionFactory.cs" />
     <Compile Include="Testing.cs" />
     <Compile Include="TestingWithDatabase.cs" />
     <Compile Include="TestingWithDatabaseIsolation.cs" />
@@ -117,6 +119,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NativeCode.Core\NativeCode.Core.csproj">
+      <Project>{E82FF32E-A546-441E-9625-BA8897BB5584}</Project>
+      <Name>NativeCode.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NativeCode.Sqlite.QueryBuilder\NativeCode.Sqlite.QueryBuilder.csproj">
       <Project>{388DAB39-0D49-4C2F-9903-4F2C242BD764}</Project>
       <Name>NativeCode.Sqlite.QueryBuilder</Name>

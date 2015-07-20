@@ -36,9 +36,6 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Collections\ICollectionFactory.cs" />
-    <Compile Include="Collections\IConcurrentDictionary.cs" />
-    <Compile Include="Collections\IConcurrentQueue.cs" />
     <Compile Include="CoreMobileDependencies.cs" />
     <Compile Include="Platform\IDeviceInformant.cs" />
     <Compile Include="Platform\IStorageProvider.cs" />
@@ -48,14 +45,6 @@
     <Compile Include="Presentation\IViewModelNavigatorProvider.cs" />
     <Compile Include="Presentation\NavigableViewModel.cs" />
     <Compile Include="Presentation\ViewModel.cs" />
-    <Compile Include="Processing\ConcurrentQueueProcessor.cs" />
-    <Compile Include="Processing\IQueueProcessor.cs" />
-    <Compile Include="Processing\IQueueProcessorFactory.cs" />
-    <Compile Include="Processing\QueueProcessor.cs" />
-    <Compile Include="Processing\QueueProcessorFactory.cs" />
-    <Compile Include="Processing\QueueProcessorState.cs" />
-    <Compile Include="Processing\QueueProcessorStateEventArgs.cs" />
-    <Compile Include="Processing\SerialQueueProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

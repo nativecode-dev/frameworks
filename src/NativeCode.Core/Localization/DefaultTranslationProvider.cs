@@ -1,7 +1,7 @@
-﻿using System.Globalization;
-
-namespace NativeCode.Core.Localization
+﻿namespace NativeCode.Core.Localization
 {
+    using System.Globalization;
+
     public class DefaultTranslationProvider : ITranslationProvider
     {
         public string GetString(string key, CultureInfo culture)

@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace NativeCode.Core.Dependencies
+﻿namespace NativeCode.Core.Dependencies
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Provides basic functionality for a dependency adapter.
     /// </summary>
     public abstract class DependencyAdapter : IDependencyRegistrar, IDependencyResolver, IDisposable
     {
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="DependencyAdapter"/> is disposed.
+        /// Gets or sets a value indicating whether this <see cref="DependencyAdapter" /> is disposed.
         /// </summary>
         protected bool Disposed { get; set; }
 

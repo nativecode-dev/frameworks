@@ -1,7 +1,7 @@
-﻿using System.Globalization;
-
-namespace NativeCode.Core.Localization
+﻿namespace NativeCode.Core.Localization
 {
+    using System.Globalization;
+
     /// <summary>
     /// Provides a contract to translate strings.
     /// </summary>

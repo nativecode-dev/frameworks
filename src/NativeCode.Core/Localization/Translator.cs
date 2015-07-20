@@ -1,9 +1,10 @@
-﻿using System;
-using System.Globalization;
-using NativeCode.Core.Dependencies;
-
-namespace NativeCode.Core.Localization
+﻿namespace NativeCode.Core.Localization
 {
+    using System;
+    using System.Globalization;
+
+    using NativeCode.Core.Dependencies;
+
     public sealed class Translator : ITranslator
     {
         private static readonly Lazy<ITranslator> DefaultInstance = new Lazy<ITranslator>(CreateDefaultInstance);

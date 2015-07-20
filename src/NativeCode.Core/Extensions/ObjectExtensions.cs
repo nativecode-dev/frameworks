@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace NativeCode.Core.Extensions
+﻿namespace NativeCode.Core.Extensions
 {
+    using System;
+
     public static class ObjectExtensions
     {
         public static void DisposeIfNeeded(this object instance)

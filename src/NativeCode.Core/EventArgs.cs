@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace NativeCode.Core
+﻿namespace NativeCode.Core
 {
+    using System;
+
     public class EventArgs<T> : EventArgs
     {
         public EventArgs()

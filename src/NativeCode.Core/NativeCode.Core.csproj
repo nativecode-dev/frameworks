@@ -40,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Collections\ICollectionFactory.cs" />
+    <Compile Include="Collections\IConcurrentDictionary.cs" />
+    <Compile Include="Collections\IConcurrentQueue.cs" />
     <Compile Include="Collections\ObservableBatchCollection.cs" />
     <Compile Include="CoreConfiguration.cs" />
     <Compile Include="CoreDependencies.cs" />
@@ -66,6 +69,14 @@
     <Compile Include="Logging\LogMessage.cs" />
     <Compile Include="Logging\LogSeverity.cs" />
     <Compile Include="Logging\LogWriter.cs" />
+    <Compile Include="Processing\ConcurrentQueueProcessor.cs" />
+    <Compile Include="Processing\IQueueProcessor.cs" />
+    <Compile Include="Processing\IQueueProcessorFactory.cs" />
+    <Compile Include="Processing\QueueProcessor.cs" />
+    <Compile Include="Processing\QueueProcessorFactory.cs" />
+    <Compile Include="Processing\QueueProcessorState.cs" />
+    <Compile Include="Processing\QueueProcessorStateEventArgs.cs" />
+    <Compile Include="Processing\SerialQueueProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\IStringSerializer.cs" />
     <Compile Include="Serialization\JsonStringSerializer.cs" />

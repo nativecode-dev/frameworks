@@ -1,4 +1,4 @@
-﻿namespace NativeCode.Mobile.Core.Collections
+﻿namespace NativeCode.Core.Collections
 {
     /// <summary>
     /// Provides a contract to create concurrent collections.

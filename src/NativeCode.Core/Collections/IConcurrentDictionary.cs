@@ -1,4 +1,4 @@
-﻿namespace NativeCode.Mobile.Core.Collections
+﻿namespace NativeCode.Core.Collections
 {
     using System;
     using System.Collections.Generic;

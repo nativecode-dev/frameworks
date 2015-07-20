@@ -1,7 +1,6 @@
 ﻿namespace NativeCode.Mobile.Core
 {
     using NativeCode.Core.Dependencies;
-    using NativeCode.Mobile.Core.Processing;
 
     public class CoreMobileDependencies : IDependencyModule
     {
@@ -9,15 +8,11 @@
 
         public static IDependencyModule Instance
         {
-            get
-            {
-                return DefaultInstance;
-            }
+            get { return DefaultInstance; }
         }
 
         public void RegisterDependencies(IDependencyRegistrar registrar)
         {
-            registrar.Register<IQueueProcessorFactory, QueueProcessorFactory>();
         }
     }
 }

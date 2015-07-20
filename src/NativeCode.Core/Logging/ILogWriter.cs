@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Provides a contract to write a <see cref="LogMessage"/>.
+    /// Provides a contract to write a <see cref="LogMessage" />.
     /// </summary>
     public interface ILogWriter : IDisposable
     {

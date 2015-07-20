@@ -3,6 +3,7 @@
     using NativeCode.Core.Dependencies;
     using NativeCode.Core.Localization;
     using NativeCode.Core.Logging;
+    using NativeCode.Core.Processing;
     using NativeCode.Core.Serialization;
 
     public class CoreDependencies : IDependencyModule
@@ -19,6 +20,7 @@
             registrar.Register<DebugLogWriter, DebugLogWriter>(lifetime: DependencyLifetime.PerApplication);
 
             registrar.Register<ILogger, Logger>(lifetime: DependencyLifetime.PerApplication);
+            registrar.Register<IQueueProcessorFactory, QueueProcessorFactory>();
             registrar.Register<IStringSerializer, JsonStringSerializer>();
             registrar.Register<ITranslationProvider, DefaultTranslationProvider>();
             registrar.Register<ITranslator, Translator>();

@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-
-namespace NativeCode.Core.Collections
+﻿namespace NativeCode.Core.Collections
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
+    using System.ComponentModel;
+    using System.Linq;
+
     public class ObservableBatchCollection<T> : ObservableCollection<T>
     {
         private const string CountName = "Count";
